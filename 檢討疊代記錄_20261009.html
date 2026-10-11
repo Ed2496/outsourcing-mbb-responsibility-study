@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>五份報告檢討與疊代記錄（2026-10-09）</title><style>
+:root { --ink:#1c2833; --accent:#1F618D; --red:#B03A2E; --line:#d5dbdb; }
+* { box-sizing: border-box; }
+body { font-family: "Microsoft JhengHei","Noto Sans CJK TC",sans-serif; color:var(--ink);
+       line-height:1.85; margin:0; background:#f7f8fa; }
+main { max-width:960px; margin:0 auto; padding:48px 28px 80px; background:#fff;
+       box-shadow:0 0 24px rgba(0,0,0,.06); }
+h1 { font-size:1.65rem; border-bottom:4px solid var(--accent); padding-bottom:.4em; line-height:1.5;}
+h2 { font-size:1.3rem; margin-top:2.2em; border-left:6px solid var(--accent); padding-left:.55em; }
+h3 { font-size:1.12rem; margin-top:1.8em; color:var(--accent); }
+p  { margin:1em 0; text-align:justify; }
+strong { color:#111; }
+table { border-collapse:collapse; width:100%; margin:1.4em 0; font-size:.92rem; }
+th,td { border:1px solid var(--line); padding:.5em .7em; vertical-align:top; }
+th { background:#eef3f7; }
+tr:nth-child(even) td { background:#fafcfd; }
+blockquote { border-left:4px solid var(--red); background:#fdf6f5; margin:1.2em 0;
+             padding:.6em 1.1em; color:#4d3b39; }
+img { max-width:100%; height:auto; display:block; margin:1.4em auto;
+      border:1px solid var(--line); border-radius:6px; }
+hr { border:none; border-top:2px solid var(--line); margin:2.4em 0; }
+sup.cite { color:var(--red); font-size:.72em; }
+nav.toc { background:#f2f6f9; border:1px solid var(--line); border-radius:8px;
+          padding:1em 1.4em; margin:1.6em 0; font-size:.92rem; }
+nav.toc ul { margin:.3em 0; padding-left:1.2em; }
+nav.toc a { color:var(--accent); text-decoration:none; }
+nav.toc a:hover { text-decoration:underline; }
+details.sources { margin-top:3em; background:#fbfbf6; border:1px solid var(--line);
+                  border-radius:8px; padding:1em 1.4em; font-size:.88rem; }
+details.sources ol li { margin:.35em 0; }
+details.sources a { color:var(--accent); word-break:break-all; }
+footer { text-align:center; color:#888; font-size:.8rem; margin-top:3em; }
+code { background:#f0f2f4; padding:.1em .35em; border-radius:4px; }
+</style></head>
+<body><main>
+<nav class="toc"><strong>目錄</strong><ul><li style="margin-left:0.0em"><a href="#sec1">五份報告檢討與疊代記錄</a></li><li style="margin-left:1.1em"><a href="#sec2">一、檢討方法</a></li><li style="margin-left:1.1em"><a href="#sec3">二、發現與處置總表</a></li><li style="margin-left:1.1em"><a href="#sec4">三、查證而未改的項目（理由）</a></li><li style="margin-left:1.1em"><a href="#sec5">四、仍存在的限制（誠實清單）</a></li><li style="margin-left:1.1em"><a href="#sec6">五、結論</a></li><li style="margin-left:1.1em"><a href="#sec7">附記（2026-10-09 傍晚）</a></li></ul></nav>
+<h1 id="sec1">五份報告檢討與疊代記錄</h1>
+<p><strong>檢討基準日：2026-10-09</strong>
+<strong>範圍：2026-10-08 產出之五份研究報告</strong></p>
+<hr />
+<h2 id="sec2">一、檢討方法</h2>
+<p>重讀全部五份 .md 原文 → 依三個維度找問題（<strong>事實錯誤／時效過期／體系一致性</strong>）→ 對所有「會隨時間改變的關鍵事實」做增量網路查證 → 修正後重產全部 HTML（圖片維持 base64 自包含）。</p>
+<h2 id="sec3">二、發現與處置總表</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>報告</th>
+<th>問題</th>
+<th>嚴重度</th>
+<th>處置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>台電第二案例</td>
+<td>2025 稅前盈餘誤寫「約 600 億」，實際為 756 億（稅後 746 億；1 月早期報導 729 億）</td>
+<td>🔴 事實錯誤</td>
+<td>已修正，兩個口徑並陳</td>
+</tr>
+<tr>
+<td>2</td>
+<td>台電第二案例</td>
+<td>「增資 2,500 億」性質錯誤：2,500 億是「穩定供電建設方案」投資電源與電網，<strong>並非增資彌虧</strong></td>
+<td>🔴 事實錯誤</td>
+<td>已修正用途說明</td>
+</tr>
+<tr>
+<td>3</td>
+<td>台電第二案例</td>
+<td>「5 次調漲」未經證實；查證結果為 2025 年 4 月、10 月兩度調漲，2026/4 凍漲（原應漲 1.79% 全數吸收）</td>
+<td>🔴 事實錯誤</td>
+<td>已改為可驗證敘述</td>
+</tr>
+<tr>
+<td>4</td>
+<td>台電第二案例</td>
+<td>累虧「逾 3,000 億」不精確；2025 底實際 3,511 億</td>
+<td>🟡 不精確</td>
+<td>已精確化</td>
+</tr>
+<tr>
+<td>5</td>
+<td>台電第二案例</td>
+<td>全篇無資料來源清單</td>
+<td>🟡 嚴謹度</td>
+<td>已補「資料來源」節，含一項未決標記</td>
+</tr>
+<tr>
+<td>6</td>
+<td>EZ WAY 主報告</td>
+<td>檢討報告期限混為單一口徑：實際有兩個期限（署長 7/29 承諾 → 10/29；財政部 8/6 宣布 → 11/6）</td>
+<td>🟡 不完整</td>
+<td>TL;DR、3.2、第八章、附錄四處已分列</td>
+</tr>
+<tr>
+<td>7</td>
+<td>EZ WAY 主報告</td>
+<td>個保會掛牌狀態停留在 9/12</td>
+<td>🟢 時效</td>
+<td>更新至 2026-10-02 複查（仍為籌備處，延宕近三年）</td>
+</tr>
+<tr>
+<td>8</td>
+<td>EZ WAY 主報告</td>
+<td>未記錄 10/09 複查結果</td>
+<td>🟢 時效</td>
+<td>附錄新增第六項：檢討報告仍未公布、查核未公開、監院公平會仍無立案</td>
+</tr>
+<tr>
+<td>9</td>
+<td>對抗消耗</td>
+<td>「7/26 二十五案」被我懷疑有誤</td>
+<td>⚪ <strong>懷疑被推翻</strong></td>
+<td>查證確認 25 案正確（24 位國民黨立委＋新竹市長高虹安），補註組成與三源複核紀錄</td>
+</tr>
+<tr>
+<td>10</td>
+<td>MBB 彙整</td>
+<td>簡體字殘留「那只会製造」</td>
+<td>🟢 文字</td>
+<td>已改「只會」</td>
+</tr>
+<tr>
+<td>11</td>
+<td>全部五份</td>
+<td>報告間無互相指認，體系性不足</td>
+<td>🟡 體系</td>
+<td>三份分析報告各加「體系位置」註記</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sec4">三、查證而未改的項目（理由）</h2>
+<ul>
+<li><strong>罷免兩波共 32 案全數否決</strong>：Yahoo 新聞（2025-12-07）、端傳媒、聯合報三源一致，維持原文。</li>
+<li><strong>EZ WAY 檢討報告尚未公布</strong>：2026-09 至 10-09 無任何公布新聞，維持「未公布」結論並加複查日期。</li>
+<li><strong>台電 2026 年可能再虧 280 億</strong>：僅見部落格來源（權重 NA），以「非官方估計」標記納入，不作為事實主張。</li>
+</ul>
+<h2 id="sec5">四、仍存在的限制（誠實清單）</h2>
+<ol>
+<li>台電報告的「電價穩定基金暫不提撥、盈餘全數打銷累虧」在本次複查未取得一手公文，保留不確定性標記。</li>
+<li>對抗消耗報告的代理指標局限（事件數≠議程分鐘數、單一案例、時序≠因果）維持原狀，未在本次解決——需要 IVOD 議程資料或十案例對照組，屬下一輪工作。</li>
+<li>主報告 49 組引用中，<sup class="cite">[49]</sup> 學習好網站權重較低，建議後續以判決書或官方訴訟統計替換。</li>
+<li>10/29 與 11/6 兩個期限屆至時需各做一次複查（已寫入主報告附錄）。</li>
+</ol>
+<h2 id="sec6">五、結論</h2>
+<p>本次檢討共處置 11 項問題，其中<strong>事實錯誤 3 項全部集中在台電第二案例</strong>——根因是該報告初版數字來自壓縮前查證筆記的二手轉述，未逐一對回原始報導。這驗證了一條方法論教訓，也應寫入所有後續報告的作業規範：<strong>任何數字在進入報告前，必須對回至少一個可點開的一手來源；筆記轉述只能當作查證線索，不能當作引用依據。</strong></p>
+<h2 id="sec7">附記（2026-10-09 傍晚）</h2>
+<p>本記錄完成後，體系新增兩份文件：《碎片化檢驗框架：多案例擴充報告（v2）》（十案例，整合 <code>case_source/</code> 語料 14 件）與《報告總索引》（8 份報告導航）。兩者尚未經過本檢討程序，列為下一輪檢討對象；v2 中標 ⚠️ 的語料結論（資遣通報口徑地雷、治水三版本數據、軍備採購弊案細節）尤需優先對回一手文件。</p>
+
+
+<footer>產生日期：2026-10-08｜本 HTML 為研究報告之閱讀版本，引用編號對應文末來源對照</footer>
+</main></body></html>

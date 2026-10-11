@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>研究報告總綱｜2026-10-08～10-11</title>
+<style>
+  :root{
+    --ink:#1a2332; --sub:#5a6675; --line:#dfe4ea; --bg:#f6f7f9; --card:#ffffff;
+    --accent:#0f5fa8; --accent-soft:#e8f1fa; --warn:#8a6d1a; --warn-bg:#fdf6e3;
+    --danger:#b3382e; --ok:#2e7d4f;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:"Microsoft JhengHei","PingFang TC","Noto Sans CJK TC",sans-serif;
+       background:var(--bg); color:var(--ink); line-height:1.75; padding:32px 20px;}
+  .wrap{max-width:1080px; margin:0 auto;}
+  header{border-bottom:3px solid var(--accent); padding-bottom:18px; margin-bottom:28px;}
+  h1{font-size:1.7rem; letter-spacing:.02em;}
+  .meta{color:var(--sub); font-size:.9rem; margin-top:6px;}
+  h2{font-size:1.15rem; margin:30px 0 12px; padding-left:10px; border-left:4px solid var(--accent);}
+  h3{font-size:1rem; margin:18px 0 8px;}
+  .card{display:block; background:var(--card); border:1px solid var(--line); border-radius:10px;
+        padding:16px 20px; margin-bottom:12px; text-decoration:none; color:inherit;
+        transition:box-shadow .15s ease, border-color .15s ease;}
+  .card:hover{box-shadow:0 3px 12px rgba(15,95,168,.12); border-color:var(--accent);}
+  .card .t{font-weight:700; color:var(--accent); font-size:1.02rem;}
+  .card .d{color:var(--sub); font-size:.92rem; margin-top:4px;}
+  .card .k{font-size:.92rem; margin-top:8px; padding-top:8px; border-top:1px dashed var(--line); color:var(--ink);}
+  .card .k b{color:var(--accent);}
+  .card .tags{margin-top:8px;}
+  .tag{display:inline-block; font-size:.75rem; padding:1px 9px; border-radius:999px;
+       background:var(--accent-soft); color:var(--accent); margin-right:6px;}
+  .tag.warn{background:var(--warn-bg); color:var(--warn);}
+  .note{background:var(--warn-bg); border:1px solid #eadfae; border-radius:10px;
+        padding:14px 18px; font-size:.9rem; color:#5c4d12; margin-top:26px;}
+  .overview{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent);
+        border-radius:10px; padding:18px 22px; margin-bottom:8px; font-size:.95rem;}
+  .overview .formula{font-size:1.12rem; font-weight:700; color:var(--accent); margin:8px 0;
+        padding:10px 14px; background:var(--accent-soft); border-radius:8px; text-align:center;}
+  .overview .ring{margin:10px 0; padding:10px 14px; background:#fdf2f2; border:1px solid #f0c9c9;
+        border-radius:8px; font-weight:700; color:#8a2a2a; text-align:center;}
+  .topics{display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:12px;}
+  .topic{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 16px;}
+  .topic .tt{font-weight:700; color:var(--ink); font-size:.95rem;}
+  .topic .td{color:var(--sub); font-size:.85rem; margin-top:2px;}
+  .topic .tr{font-size:.8rem; color:var(--accent); margin-top:6px;}
+  table.track{width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line);
+        border-radius:10px; overflow:hidden; font-size:.88rem;}
+  .track th{background:var(--accent-soft); color:var(--accent); font-weight:700; text-align:left;
+        padding:8px 10px; font-size:.82rem; white-space:nowrap;}
+  .track td{padding:8px 10px; border-top:1px solid var(--line); color:var(--sub); vertical-align:top;}
+  .track td.ev{color:var(--ink); font-weight:500;}
+  .mech{display:inline-block; font-size:.78rem; padding:0 8px; border-radius:999px; margin:1px 2px; white-space:nowrap;}
+  .mech.silent{background:#eef0f2; color:#5a6675;}
+  .mech.fund{background:#e8f1fa; color:var(--accent);}
+  .mech.law{background:#f0eafa; color:#6a4fb3;}
+  .mech.cut{background:#fdeee8; color:#c05a1e;}
+  .mech.story{background:#fdf6e3; color:var(--warn);}
+  .mech.def{background:#e8f7ee; color:var(--ok);}
+  .mech.drain{background:#fdf2f2; color:var(--danger);}
+  .st{font-weight:700; white-space:nowrap; font-size:.82rem;}
+  .st.open{color:var(--accent);} .st.risk{color:var(--warn);} .st.done{color:var(--sub);}
+  .phase{width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line);
+        border-radius:10px; overflow:hidden; font-size:.88rem; margin-top:8px;}
+  .phase th{background:#f0eafa; color:#6a4fb3; font-weight:700; text-align:left; padding:8px 10px; font-size:.82rem; white-space:nowrap;}
+  .phase td{padding:8px 10px; border-top:1px solid var(--line); color:var(--sub); vertical-align:top;}
+  .phase td.ph{color:var(--ink); font-weight:500; white-space:nowrap;}
+  .files{font-size:.88rem; color:var(--sub);}
+  .files a{color:var(--accent); text-decoration:none;}
+  .files a:hover{text-decoration:underline;}
+  .files li{margin:3px 0; list-style:none;}
+  footer{margin-top:36px; padding-top:14px; border-top:1px solid var(--line);
+         color:var(--sub); font-size:.82rem; text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>研究報告總綱</h1>
+  <div class="meta">工作目錄：C:\Users\ed249\Documents\kimi\tasks\2026-10-08\20-20-26-0f3511d0 ｜ 彙整日期：2026-10-11 ｜ 全部連結皆為本機相對路徑</div>
+</header>
+
+<div class="overview">
+  <h2 style="margin-top:0; border-left:none; padding-left:0;">總論：核心公式、四環結構與本總綱的用途</h2>
+  <div class="formula">分工＝專案＝流程＝切割 → 不統計不管理＝有做事，不用負責</div>
+  <p>配套生存法則：三不（不知道／不會／忘記了）→ 三零（零決策／零錯誤／零責任）→ 完美晉升高官俸祿。
+  解方為工程化六項（一人一案、I/O 工程化、下游審查上游、文件化＋版本管控、標記未來數據、Postmortem）與破局四招。
+  完整理論見語料層兩份原始 .txt 與應用層《閉環驗證框架 v2》（報告 11）。</p>
+  <div class="ring">四環結構現狀：公告 ✓ → 統計 ✗ → 查核 ✗ → 處分 ✗</div>
+  <p>政府與大型企業在「公告」環節高度成熟（記者會、新聞稿、月報 headline 全合規），
+  但「統計」（全國彙整、流量指標）、「查核」（斷點追到人）、「處分」（單一責任人承擔後果）三環系統性缺位。
+  缺位不來自個別壞人，而來自切割本身——每個環節都有人做合法動作，唯獨責任那一格是空白。</p>
+  <p style="margin-top:10px;"><b>本總綱的四個用途：</b>① 索引下方 11 份研究報告；② 列出全部研究專題（第二節）；③ 長程追蹤各企業、各政府事件，記錄其「MBB 卸責 × 委外碎片化」關係的變化，並標註每個事件將以何種機制「消失結案」（第三節）；④ 以歷史大案為樣本，觀察新聞週期對專案的變化、批評與轉折（第四節）。每次複查後更新，與「三閘判讀儀表板」上的斷點清冊 widget 同步。</p>
+</div>
+
+<h2>二、研究專題總覽（十二條主線）</h2>
+<div class="topics">
+  <div class="topic"><div class="tt">A｜委外與平台壟斷</div><div class="td">EZ WAY 收費爭議、關貿股權、線上委任單一平台、法定替代途徑的實務不可達；<b>專題：潛在壟斷獨家如何被切割式合法維持</b>（見第三節專題）。</div><div class="tr">→ 報告 1、2｜斷點：關務署 10/29、11/6</div></div>
+  <div class="topic"><div class="tt">B｜碎片化檢驗框架</div><div class="td">「委外介面 × 專案切片 × KPI/OKR 錯位」三層框架的提出與十案例驗證。</div><div class="tr">→ 報告 2、4、6</div></div>
+  <div class="topic"><div class="tt">C｜MBB 卸責槽與治理必然性</div><div class="td">MBB（麥肯錫、波士頓、貝恩）作為零決策零錯誤零責任的卸責槽；在 ISO、六標差、平衡計分卡制度演化的治理必然性。</div><div class="tr">→ 報告 5</div></div>
+  <div class="topic"><div class="tt">D｜閉環驗證與三鏈</div><div class="td">MBB 偽 8D 紀律、三不三零金句、三鏈驗證（金句盲投／碗外雙客戶／Trimble root cause 外推）；2026-10 十案例複驗與「主動型偽 8D」擴充。</div><div class="tr">→ 報告 9、11</div></div>
+  <div class="topic"><div class="tt">E｜行政—立法對抗與監督消耗</div><div class="td">覆議、不副署、人事否決等對抗行為的計數與監督資源消耗的量化檢驗。</div><div class="tr">→ 報告 3、10</div></div>
+  <div class="topic"><div class="tt">F｜國防採購與軍備</div><div class="td">F-16V 交機延期修法切片、彈藥採購弊案、國艦國造、監院糾正無後續；<b>潛艦國造海鯤艦</b>：海測屢延、液壓故障爆料、台船「為保密不再逐一回應」；<b>福麥炸藥採購案</b>：室內裝修公司得標國防部 5.9 億炸藥案（登記地為旅館），2025/12 告發後無公開進度。</div><div class="tr">→ 報告 6、10｜斷點：特別條例修法審查、海鯤艦交艦、福麥案偵辦</div></div>
+  <div class="topic"><div class="tt">G｜食安與供應鏈</div><div class="td">中聯毒油「失速 48 天」、熱損粒標準 0.5%→5% 改文件不改製程、檢驗鏈資訊斷鏈。</div><div class="tr">→ 報告 10｜斷點：一審判決＋食安修法</div></div>
+  <div class="topic"><div class="tt">H｜勞動統計與資遣</div><div class="td">資遣通報（流量）無全國彙整、減班休息（存量）定期公布、黑數坦承與定義缺口。</div><div class="tr">→ 報告 6、10｜斷點：勞動部 3 個月報告</div></div>
+  <div class="topic"><div class="tt">I｜個資治理</div><div class="td">個保會組織法卡立院協商、兩公約國家報告、台日歐 GDPR 對照。</div><div class="tr">→ 報告 10｜斷點：黨團協商（無定期）</div></div>
+  <div class="topic"><div class="tt">J｜國營財務與敘事</div><div class="td">台電累虧 3,764 億、應漲 12.83% 凍漲、711 億撥補政績敘事、戰爭因素歸因。</div><div class="tr">→ 報告 4、10｜斷點：12 月第三次審議會</div></div>
+  <div class="topic"><div class="tt">K｜跨國科技壟斷與反壟斷武器化</div><div class="td">EDA 雙頭壟斷（Synopsys、Cadence）；新思 350 億美元併購 Ansys，中國 2025/6 暫停反壟斷審查以報復美國 EDA 出口管制——反壟斷從市場工具變國家武器；主線 A 壟斷專題的國際對照。</div><div class="tr">→ 與主線 A 對照｜斷點：各國監管裁定</div></div>
+  <div class="topic"><div class="tt">L｜全球軍購潮與軍火資本流動</div><div class="td">印度穩居全球第二軍購國（2026–2029 預測 456.5 億美元進口），2026/2 批准 3.6 兆盧比含 114 架陣風；台灣列入全球武器進口前十（181.1 億美元）——軍火資本流與 AI 資本主線交會。</div><div class="tr">→ 與主線 F、AI 資本流動性看板對照</div></div>
+</div>
+
+<h2>三、事件長程追蹤：如何消失結案</h2>
+<p style="font-size:.9rem; color:var(--sub); margin-bottom:10px;">
+本表追蹤各企業、各政府事件的長程發展。「消失結案」指事件在無人對結構負責的情況下被關掉的典型機制，共七種，以標籤標註：
+<span class="mech silent">靜默結案</span>無新聞＝無事件、期限靜默通過｜
+<span class="mech fund">撥補結案</span>錢蓋過結構問題｜
+<span class="mech law">修法結案</span>改法律定義使未達標不再算錯｜
+<span class="mech cut">切割結案</span>起訴底層個人、系統倖存｜
+<span class="mech story">敘事結案</span>政績 headline 覆蓋事實帳｜
+<span class="mech def">定義結案</span>改統計口徑讓數字變小｜
+<span class="mech drain">消耗結案</span>對抗拖垮監督資源。</p>
+<p style="font-size:.85rem; color:var(--sub); margin-bottom:8px;"><b>階段模型 S1–S8</b>（由陳水扁案 21 年、拉法葉案 35 年兩樣本拆解歸納；各案「狀態」右側標示目前所處階段）：<b>S1</b> 潛伏進行（制度運轉、問題未曝光）→ <b>S2</b> 爆發（成為輿論焦點）→ <b>S3</b> 高峰對質（調查／審理／憲政對抗高峰）→ <b>S4</b> 制度回應（承諾、修法、複查、期限設定）→ <b>S5</b> 疲勞靜默（無期限、無進度、新聞疲勞、凍結）→ <b>S6</b> 切割處分（個案承責、解約停權、「已處理」敘事）→ <b>S7</b> 敘事逆轉結案（錢回來／無罪／公司轉型，責任問題消失）→ <b>S8</b> 長程遺留（選舉週期重燃、同一供應鏈再生意化）。<b>卸責槽的活動期在 S4→S7</b>：回應形式化、靜默、切割、敘事接力發生於這四個階段。</p>
+<table class="track" style="font-size:.82rem">
+  <thead>
+    <tr><th>案子開始</th><th>爆發</th><th>至今</th><th>事件</th><th>發生單位</th><th>上一級單位</th><th>類別</th><th>狀態</th><th>階段</th><th>斷點／期限</th><th>消失結案機制（觀察中）</th><th>報告</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="num">2020/4</td><td class="num">2026/7/29</td><td class="num">約 6.5 年</td><td class="ev">EZ WAY 收費與檢討報告</td><td>關貿網路（6183）</td><td>財政部（官股）／關務署</td><td>政府持股企業</td><td class="st open">進行中</td><td><b>S4</b> 制度回應・期限在望</td><td>10/29、11/6</td><td><span class="mech silent">靜默結案</span>檢討報告形式化、級距微調、無替代平台即過關</td><td>1、11</td></tr>
+    <tr><td class="num">2022</td><td class="num">2023</td><td class="num">約 4 年</td><td class="ev">台電累虧與電價公式</td><td>台灣電力公司</td><td>經濟部</td><td>國營事業</td><td class="st open">12 月審議</td><td><b>S7</b> 敘事逆轉（撥補蓋公式）</td><td>12 月第三次審議會</td><td><span class="mech fund">撥補結案</span><span class="mech story">敘事結案</span>711 億填平＋戰爭因素歸因，公式問題消失</td><td>4、10</td></tr>
+    <tr><td class="num">長期制度</td><td class="num">2026 中</td><td class="num">制度性</td><td class="ev">資遣通報黑數</td><td>勞動部勞動力發展署</td><td>行政院</td><td>部會統計</td><td class="st open">3 個月報告</td><td><b>S4</b> 制度回應・等報告</td><td>立院提案後 3 個月</td><td><span class="mech def">定義結案</span>口徑微修、流量指標仍無全國彙整</td><td>6、10</td></tr>
+    <tr><td class="num">2026/4/4</td><td class="num">2026/7/1</td><td class="num">約 6 個月</td><td class="ev">中聯毒油食安案</td><td>中聯油脂／食藥署</td><td>衛福部</td><td>企業＋監管</td><td class="st open">一審中</td><td><b>S4</b> 制度回應・修法排審</td><td>一審判決＋食安修法</td><td><span class="mech cut">切割結案</span>15 人被起訴，「停止鍵」制度空白倖存</td><td>10</td></tr>
+    <tr><td class="num">2019</td><td class="num">2026</td><td class="num">約 7 年</td><td class="ev">F-16V 交機延期</td><td>空軍司令部／漢翔</td><td>國防部</td><td>國防採購</td><td class="st risk">修法中</td><td><b>S4</b> 修法切片中</td><td>特別條例修法審查</td><td><span class="mech law">修法結案</span>交不出貨就延法律期限</td><td>6、10</td></tr>
+    <tr><td class="num">2016</td><td class="num">2025/4</td><td class="num">約 10 年</td><td class="ev">潛艦國造海鯤艦</td><td>台船／海軍司令部</td><td>國防部</td><td>國防採購</td><td class="st risk">交艦無期程</td><td><b>S5</b> 疲勞靜默（S6 罰款敘事已鋪）</td><td>交艦時程（海軍不設時間表）</td><td><span class="mech silent">靜默結案</span><span class="mech story">敘事結案</span>台船「為保密不再逐一回應」＝資訊斷鏈；測試順利敘事 vs 液壓故障爆料</td><td>6、10</td></tr>
+    <tr><td class="num">—</td><td class="num">2026/9 前後</td><td class="num">約 1 個月</td><td class="ev">徐佳青濫用公務資源案</td><td>僑務委員會</td><td>行政院</td><td>部會首長</td><td class="st open">他字案偵辦</td><td><b>S6</b> 切割處分・他字案靜置</td><td>北檢偵辦（無定期）</td><td><span class="mech cut">切割結案</span>10/7 請辭止血、個人承責，任命與監督鏈不進調查</td><td>—</td></tr>
+    <tr><td class="num">2002</td><td class="num">2026/6</td><td class="num">案齡 24 年</td><td class="ev">吳乃仁案 1.7 億追償</td><td>台灣糖業公司</td><td>經濟部（行政院核定）</td><td>國營事業／政治人物</td><td class="st risk">靜默觀察</td><td><b>S5</b> 靜默（預警 S8 重燃）</td><td>7/20 清償計畫承諾（已無聲）</td><td><span class="mech silent">靜默結案</span><span class="mech cut">切割結案</span>管收 12 天＝「已處理」敘事，撤回追償的故意不作為無人具名</td><td>語料</td></tr>
+    <tr><td class="num">2023/5</td><td class="num">2023/5</td><td class="num">約 3.5 年</td><td class="ev">個保會組織法</td><td>行政院（籌設）／立法院</td><td>—</td><td>憲政層級组织</td><td class="st risk">卡協商</td><td><b>S5</b> 疲勞靜默</td><td>黨團協商（無定期）</td><td><span class="mech silent">靜默結案</span>無定期＝無期限＝無進度</td><td>10</td></tr>
+    <tr><td class="num">2024/5/20</td><td class="num">2024/5</td><td class="num">約 2.5 年</td><td class="ev">行政—立法憲政對抗</td><td>行政院／總統府</td><td>—</td><td>憲政運作</td><td class="st open">持續計數</td><td><b>S3</b> 高峰慢性化</td><td>每次覆議／不副署</td><td><span class="mech drain">消耗結案</span>監督資源在對抗中耗盡</td><td>3</td></tr>
+    <tr><td class="num">2025 底</td><td class="num">2025/12</td><td class="num">約 10 個月</td><td class="ev">福麥炸藥採購案（室內裝修得標）</td><td>國防部軍備局</td><td>國防部</td><td>國防採購</td><td class="st risk">告發後無聲</td><td><b>S6→S5</b> 處分敘事完成、偵辦靜默</td><td>北檢偵辦（無公開進度）</td><td><span class="mech cut">切割結案</span><span class="mech law">修法結案</span>室內裝修公司得標 5.9 億炸藥案，顧立雄「20 年都是同樣規定」＝制度無人負責；解約停權＝「已處理」敘事</td><td>6、10</td></tr>
+    <tr><td class="num">2021</td><td class="num">2025</td><td class="num">約 4 年</td><td class="ev">國艦國造／彈藥採購弊案</td><td>國防部軍備局／中科院</td><td>國防部</td><td>國防採購</td><td class="st done">糾正後無聲</td><td><b>S7</b> 已敘事結案</td><td>—</td><td><span class="mech cut">切割結案</span>糾正＋解約停權，制度面無人負責</td><td>6</td></tr>
+    <tr><td class="num">2022/6</td><td class="num">2022/6</td><td class="num">約 4 年</td><td class="ev">數位中介法</td><td>數位發展部</td><td>行政院</td><td>法制</td><td class="st done">暫緩擱置</td><td><b>S7</b> 擱置結案</td><td>—</td><td><span class="mech silent">靜默結案</span>退回未完、無重啓時程</td><td>6</td></tr>
+    <tr><td class="num">2021/5</td><td class="num">2021/7</td><td class="num">約 5 年</td><td class="ev">高端疫苗採購</td><td>衛福部（疾管署）</td><td>行政院</td><td>採購（參照）</td><td class="st done">敘事逆轉</td><td><b>S8</b> 遺留重燃期</td><td>—</td><td><span class="mech silent">靜默結案</span>63 案簽結、合約保密爭議消散；<b>2026/8 腸病毒疫苗出口越南</b>——弊案靜默、公司轉型成功，時間結案的企業版</td><td>6</td></tr>
+    <tr><td class="num">2023/3</td><td class="num">2023/9</td><td class="num">已結案</td><td class="ev">進口雞蛋（對照組）</td><td>農業部進口蛋專案辦公室</td><td>行政院</td><td>專案（對照）</td><td class="st done">已結案</td><td><b>S1–S7</b> 對照組走完全程</td><td>—</td><td>專案辦公室解散＝責任終點；反向證明有單一負責人時責任可追</td><td>6</td></tr>
+  </tbody>
+</table>
+<h3>專題：EZ WAY 潛在壟斷獨家——壟斷如何被「切割式合法」維持</h3>
+<p style="font-size:.9rem; color:var(--sub); margin-bottom:8px;">本專題回答：一個未被法律指定、未被政府「委託」的民營 App，如何取得跨境電商委任市場的實質獨家地位。核心命題：<b>壟斷不是哪一個決策造成的，而是三段合法論述在界面縫隙中接力成立——這正是委外碎片化卸責的市場版。</b></p>
+<table class="track">
+  <thead><tr><th>壟斷支柱</th><th>事實</th><th>來源／查證</th></tr></thead>
+  <tbody>
+    <tr><td class="ev">① 需求剛性</td><td>2026/3 起快遞貨物<b>全面實施預先確認委任</b>，實名委任成為跨境網購必經程序；每月約 <b>400 多萬份</b>進口快遞簡易申報單</td><td>關務署 2026-08 記者會與書面說明 ✅</td></tr>
+    <tr><td class="ev">② 供給唯一</td><td>線上委任 App <b>全台僅 EZ WAY 一款</b>——關務署自己官方貼文承認，無第二家具有同等功能與整合程度的服務（單一窗口＋自然人憑證為部分功能、非原流程可用）</td><td>關務署官方貼文＋DHL 官網流程對照 ✅</td></tr>
+    <tr><td class="ev">③ 平台預設綁定</td><td>關務署書面承認「實務上跨境電商平臺<b>多預設民眾已註冊 EZ Way</b>」，並承認有民眾質疑「電商系統直接綁定、報關業者不受理紙本委任」</td><td>關務署官方補充說明（web.customs.gov.tw）✅</td></tr>
+    <tr><td class="ev">④ 政府持股＋經營影響</td><td>關貿（6183）為政府投資持股公司（財政部等官股），董監事與關務署人事鏈高度重疊；以「民營」身分主張收費屬市場機制</td><td>公開資訊觀測站 ✅；財政部持股 36.11% ⚠️ 待年報確認</td></tr>
+    <tr><td class="ev">⑤ 替代途徑虛位化</td><td>法規明定線上與紙本委任「得擇一」，但紙本在淘寶／蝦皮／集運既定流程中不可直接選用；單一窗口長期委任需自然人憑證與另行註冊，無證據顯示可在原交易流程使用</td><td>法規 ✅／實務不可達 ✅（PTT、DHL 流程佐證）</td></tr>
+  </tbody>
+</table>
+<p style="font-size:.92rem; margin-top:10px;">
+<b>三段合法論述的接力（壟斷的卸責結構）：</b><br>
+關務署：「非海關委託建置，未強制使用」→ 關貿：「自行投資、級距收費、市場機制」→ 平台／報關業者：「流程需要、紙本不受理」。
+每一段的論述都合法，合起來就是獨家壟斷——主詞在接力中被蒸發，與吳乃仁案「誰放的人」是同一手術。
+<b>壟斷維持的關鍵不在市佔，而在「沒有人被要求負責的空白」：</b>公平會未啟動市場界定、關務署不承認委託關係、關貿不承認獨家地位——三個機關各有不管的理由，壟斷在縫隙中自我維持。</p>
+<p style="font-size:.92rem;">
+<b>複查錨點：</b>10/29（關務署檢討進度）、11/6（檢討報告到期）——檢驗「靜默結案 vs 開放第二家」的分岔點；另追公平會是否出現任何市場界定紀錄（目前無）。</p>
+<p style="font-size:.85rem; color:var(--sub); margin-top:8px;">更新方式：於任何對話視窗說「複查斷點清冊」，即複查新聞、更新本表與儀表板 widget、以日期版本保存快照。下次建議複查：2026-10-29（關務署期限）前。</p>
+
+<h2>四、歷史案例長程觀察：新聞週期如何改變一個專案</h2>
+<p style="font-size:.9rem; color:var(--sub);">歷史大案是「消失結案」的完整樣本：歷經爆發、高峰、疲勞、轉折、消退的完整新聞週期，可觀察敘事框架如何被切換、批評聲音如何起伏、以及案子最終以何種形態「不在場結束」。本節為分析模板，第一個樣本為陳水扁貪污案（2005～迄今，21 年）。</p>
+
+<h3>樣本一：陳水扁貪污案——21 年新聞週期與五次轉折</h3>
+<table class="phase">
+  <thead><tr><th>時期</th><th>新聞週期主軸</th><th>轉折點</th><th>批評聲音</th></tr></thead>
+  <tbody>
+    <tr><td class="ph">爆發期<br>2005–2006</td><td>國務機要費案曝光，發票與機密費流向成為全國焦點；紅衫軍百萬倒扁</td><td>2006/7 媒體揭露吳淑珍發票問題，案件從政治攻防轉為司法案件</td><td>藍營要求辭職下台；綠營指控政治迫害</td></tr>
+    <tr><td class="ph">審理高峰<br>2008–2011</td><td>卸任即收押；一審無期徒刑、二審改 20 年；龍潭案、國務機要費案相繼定讞，合併執行 20 年</td><td>2008/11 收押打破卸任元首司法慣例；2010 起判決陸續定讞</td><td>羈押期間過長、押人取供的司法人權批評開始浮現</td></tr>
+    <tr><td class="ph">轉折一<br>2013</td><td>焦點從「貪污事實」轉向「健康與人權」；移監培德後健康惡化報導增加</td><td>人道敘事取代貪污敘事成為新聞主軸——框架第一次切換</td><td>「司法疲勞」與「政治追殺」兩種批評並存</td></tr>
+    <tr><td class="ph">轉折二<br>2015</td><td>保外醫治核准，事實上離開監獄；中監訂「5 不原則」（不進競選場、不上台、不演講、不談政治、不接受採訪）</td><td>案件從「服刑中」轉為「監外執行無限期」——處分環節實質消失</td><td>批評：5 不原則日後屢被無視，司法公平受質疑</td></tr>
+    <tr><td class="ph">轉折三<br>2016</td><td>政黨輪替；因病停止審理，未結案件凍結</td><td>司法程序結構性暫停——查核環節凍結，案子進入「低度維持」狀態</td><td>批評：停審無期限，等於未定罪部分永不面對</td></tr>
+    <tr><td class="ph">消退期<br>2016–2023</td><td>新聞週期轉為政治活動（一邊一國行動黨、輔選）；國務機要費案 2022/7 更一審改判無罪，2023/11 最高法院駁回上訴無罪定讞</td><td>部分罪名「無罪結案」——切割結案的司法版：法律層面個案了結，貪污的整體敘事已被遺忘</td><td>批評音量降到最低；無罪定讞幾無新聞週期波瀾</td></tr>
+    <tr><td class="ph">重燃期<br>2024–迄今</td><td>特赦議題每逢選舉循環重燃；2025/12 傳出將主持電視節目向賴清德測水溫；2026/2 賴清德首次特赦他人（林劉龍子案）再點議題；法律界普遍認定特赦扁是死胡同（免刑不除罪、在審案件特赦無意義）</td><td>案件從「司法案件」徹底轉型為「政治籌碼」——議題工具化</td><td>批評：保外醫治紅線形同虛設、特赦破壞司法公平</td></tr>
+  </tbody>
+</table>
+
+<h3>陳水扁案的長程觀察結論（對本研究框架的意義）</h3>
+<p style="font-size:.92rem;">
+1. <b>敘事框架切換是轉折的本質：</b>每一次轉折（貪污→人權→健康→和解籌碼）都是一次成功的框架替換，批評聲音始終存在但音量被新聞週期結構性調低。<br>
+2. <b>複合結案機制：</b>本案同時動用了<span class="mech cut">切割結案</span>（幕僚與家人承責）、<span class="mech silent">靜默結案</span>（停審無期限）、<span class="mech story">敘事結案</span>（保外醫治的人道敘事）、潛在的<span class="mech law">修法／特赦結案</span>——歷史大案從不靠單一機制消失，而是機制接力。<br>
+3. <b>凍結即結案：</b>「停止審理」是司法版的裝死——程序不死不活，監督者無對象可施力，21 年後社會已換了兩代人。<br>
+4. <b>選舉週期驅動：</b>特赦議題的重燃時點全部落在選舉前後，證明議題的存續由政治需求而非案件本身決定。<br>
+5. <b>對當前事件的映射：</b>中聯案（停產鍵無主人→凍結式結案）、EZ WAY（期限靜默→靜默結案）正在重演同一套機制，差別只在時間尺度——陳水扁案是 21 年版的完整演示。</p>
+
+<h3>樣本二：拉法葉艦購案——35 年，錢追回來了，責任沒有</h3>
+<table class="phase">
+  <thead><tr><th>時期</th><th>新聞週期主軸</th><th>轉折點</th><th>批評聲音</th></tr></thead>
+  <tbody>
+    <tr><td class="ph">爆發期<br>1993–1997</td><td>1991/8/31 訂約採購 6 艘拉法葉級（康定級）艦；1993/12 海軍上校尹清楓失蹤、遺體於宜蘭外海被發現，軍購黑幕成為全國焦點</td><td>尹清楓命案把「佣金疑雲」從財務問題升級為命案——這是本案永遠無法被「結案敘事」完全蓋過的錨點</td><td>成交價過高、排除南韓級過程可疑；軍方封口質疑</td></tr>
+    <tr><td class="ph">國際並行期<br>1997–2003</td><td>法國法院審理佣金案（法國官員被判刑、法方調查期間 6 條人命）；2002 法方拒絕司法互助；台灣司法無能為力，新聞疲勞開始</td><td>1997 法國開審——正義在別人的法院進行，本國司法只能旁觀</td><td>批評：我國對法方毫無談判籌碼，司法主權受制于外交</td></tr>
+    <tr><td class="ph">轉折一<br>2000–2001</td><td>2000/5 監察院成立專案小組（康寧祥等 5 人）；2001/7 古登美發現訂約 10 年求償時效只剩 1 個多月，堅持行文海軍立即提仲裁</td><td>整案唯一的體制逆轉點——靠個別監委的個人警覺，不是制度；差一個月國庫求償權消滅</td><td>批評：若當時不是古登美，全案就靜默消失——事前監督在哪裡？</td></tr>
+    <tr><td class="ph">追償勝訴期<br>2010–2011</td><td>2003 瑞士同意司法互助、2005 汪傳浦家族佣金帳冊運抵台北；2010/5 國際商會仲裁法庭判 Thales 違反排佣條款、須付 8.75 億美元；2011/6 巴黎上訴法院駁回上訴、7/12 履行</td><td>「追回 270.8 億元入國庫」成為完美的結案敘事——錢回來了，案子「結了」</td><td>批評被敘事淹沒：佣金為何能收、誰批准的，仍無人回答</td></tr>
+    <tr><td class="ph">刑事熄滅期<br>2015</td><td>軍火商汪傳浦 2015/1 病逝倫敦，北檢 5 月處分不起訴、撤銷通緝；主事軍官郭力恆涉收賄判刑 20 年定讞；2023 法務部與瑞士資產分享各 43 億元</td><td>關鍵被告死亡＝不起訴；活著的責任由單一軍官承擔——切割結案完成</td><td>尹清楓命案至今無人以殺人罪定罪——懸案成為背景噪音</td></tr>
+    <tr><td class="ph">再生意化期<br>2022–2030</td><td>2022 起斥資 431.6 億元為 6 艘康定級性能升級；2024/2 與法方簽署 24 億元戰系零附件案；首艦承德號 2025 海試、2030 全數完成</td><td>佣金案教訓未轉化為任何公開的採購制度改革文件，同一供應鏈重新往來，新聞幾無質疑</td><td>批評音量趨近零——35 年前的事，已被視為「另一個時代」</td></tr>
+  </tbody>
+</table>
+
+<h3>拉法葉案的長程觀察結論（對本研究框架的意義）</h3>
+<p style="font-size:.92rem;">
+1. <b>錢回來 ≠ 責任回來：</b>270.8 億入國庫是最完美的<span class="mech story">敘事結案</span>——「國庫獲償」讓全民感到正義已償，但決策鏈（誰排除南韓級、誰核定成交價、誰放行佣金結構）從未被追責。<br>
+2. <b>死亡與時間是最有效的卸責槽：</b>汪傳浦病逝→不起訴；尹清楓被殺→無人定罪。35 年後所有具名責任人都已退出舞台——時間本身就是切割機。<br>
+3. <b>唯一逆轉點靠個人不靠制度：</b>古登美一人救了 10 年時效，印證語料核心命題——體制不自統計、不自查核，只能等個人英雄；而個人英雄不可複製、不可制度化的那一刻，卸責槽就重新生效。<br>
+4. <b>切割結案的軍購版：</b>單一軍官（郭力恆）判刑 20 年承擔全部刑事責任，海軍武獲制度、事前監督、政務決策鏈無人檢討——錯在單層程序追得到人，錯在空白無人可追。<br>
+5. <b>沒有 Postmortem 的組織：</b>2024 年再次對法採購 24 億，沒有任何公開文件記錄「拉法葉案如何改變了我們的採購 SOP」——學習中斷，與 MBB 語料「無 Postmortem→貳過」完全對應。<br>
+6. <b>35 年新聞週期曲線：</b>爆發→疲勞→勝訴煙火→靜默→再生意化無波瀾。懸而未破的命案是唯一的常設錨點，但音量已低到不再是「新聞」——這就是「長程發展如何消失結案」的完整標本。</p>
+
+<h3>候選歷史案例（待加入同模板觀察）</h3>
+<p style="font-size:.9rem; color:var(--sub);">博達案（2004 虛增營收掏空）｜力霸案（2007 王令麟、亞太固網）｜十信案（1985 蔡辰洲、擠兌风暴）｜八掌溪事件（2000 官僚卸責原型）｜二次金改案（陳水扁案子案）｜慶富案（2017 獵雷艦詐貸）。說「加入某案」即套用本節模板產出觀察分析。</p>
+
+<h2>五、核心研究報告（12 份）</h2>
+
+<a class="card" href="EZ_WAY_關貿爭議完整研究報告_20261008.html">
+  <div class="t">1. EZ WAY 易利委與關貿網路爭議：完整事實研究報告</div>
+  <div class="d">主報告。整合舊研究語料、八輪公開查證、關務署書面說明與全國法規資料庫，覆蓋股權結構、收費爭議、法定委任途徑、平台實務落差與監督時程（10/29、11/6 兩期限）。</div>
+  <div class="k"><b>核心結論：</b>法律未指定 EZ WAY，但平台實務流程形成實質強制；「法律沒有強制」不能否定交易流程中的實際強制。</div>
+  <div class="tags"><span class="tag">主報告</span><span class="tag">八輪查證</span><span class="tag">法源對照</span></div>
+</a>
+
+<a class="card" href="委外與責任碎片化分析_20261008.html">
+  <div class="t">2. 委外、專案分工與責任碎片化：從 EZ WAY 案看 KPI 卸責結構</div>
+  <div class="d">理論骨架報告。提出「委外介面 × 專案切片 × KPI/OKR 錯位」三層檢驗框架，說明企業委外、政府委外如何透過組織分工切割責任、碎片化 KPI、消除單一負責人。</div>
+  <div class="k"><b>核心結論：</b>委外介面是責任結算點，專案切片讓斷點不在任何職掌表上，KPI 錯位讓報表永遠是好消息。</div>
+  <div class="tags"><span class="tag">三層框架</span><span class="tag">結構分析</span></div>
+</a>
+
+<a class="card" href="對抗消耗監督資源_初步量化分析.html">
+  <div class="t">3. 「對抗消耗監督資源」假設：初步量化檢驗</div>
+  <div class="d">量化備忘錄。以代理指標（議程、人事、法案杯葛等）檢驗行政—立法對抗是否系統性消耗監督資源；明確標註為代理指標研究，非議程分鐘數實測。</div>
+  <div class="k"><b>核心結論：</b>多事件並發後已不宜稱「單一案件」；對抗模式有重複行為證據，但量化仍屬代理指標層級。</div>
+  <div class="tags"><span class="tag">量化檢驗</span><span class="tag warn">代理指標</span></div>
+</a>
+
+<a class="card" href="碎片化框架第二案例_台電虧損_20261008.html">
+  <div class="t">4. 碎片化檢驗框架第二案例：台電虧損</div>
+  <div class="d">框架通用性驗證（案例一）。把三層框架移植到台電累虧案——經濟部、電價審議會、立法院、台電四方都有正式角色、無單一壞人，正是檢驗「碎片化」變數的最佳場域。</div>
+  <div class="k"><b>核心結論：</b>電價公式有明文，但「何時漲、漲多少」的完整決策在四方之間漂移，無單一負責人。</div>
+  <div class="tags"><span class="tag">框架驗證</span><span class="tag">台電</span></div>
+</a>
+
+<a class="card" href="MBB卸責槽_治理必然性彙整_20261008.html">
+  <div class="t">5. MBB 卸責槽與治理必然性——彙整報告</div>
+  <div class="d">彙整 D:\C-moved\Downloads 中 12 件 MBB 語料（工具書 v2.2、8D 三鏈驗證、系統性卸責、審計部、吳乃仁案解剖等）。核心命題：MBB 是「零決策、零錯誤、零責任」的卸責槽，並追溯其在 ISO、六標差、平衡計分卡制度發展下的治理必然性。</div>
+  <div class="k"><b>核心結論：</b>MBB 提供建議不負落地結果，高管購買的是免責服務；卸責槽是制度演化的必然產物，非個人道德問題。</div>
+  <div class="tags"><span class="tag">MBB</span><span class="tag">卸責槽</span><span class="tag">治理必然性</span></div>
+</a>
+
+<a class="card" href="碎片化框架多案例擴充_20261009.html">
+  <div class="t">6. 碎片化檢驗框架：多案例擴充報告（v2）</div>
+  <div class="d">集大成案例庫。對 EZ WAY、台電、勞動部資遣通報、公務員出差、數發部預算、治水、前瞻、國防採購（國艦國造＋彈藥採購弊案）、高端疫苗三期、進口雞蛋（對照組）共十案例逐一套用三層檢驗，並整合 case_source/ 本機語料；每案標註 ✅／⚠️／❓ 查證狀態，v2 已把兩個資訊缺口案例升級為語料部分查證。</div>
+  <div class="k"><b>核心結論：</b>十案例中九例三層框架全命中；唯一對照組（進口雞蛋專案有專責辦公室）反向證明「單一負責人存在時責任可追」。</div>
+  <div class="tags"><span class="tag">v2 最新</span><span class="tag">十案例</span><span class="tag warn">含未查證標註</span></div>
+</a>
+
+<a class="card" href="檢討疊代記錄_20261009.html">
+  <div class="t">7. 五份報告檢討與疊代記錄</div>
+  <div class="d">後設報告。檢討 10-08 產出之五份報告的方法、證據強度與推論邊界，記錄 v1→v2 的疊代理由，是理解全套報告可信度分層的入口。</div>
+  <div class="k"><b>核心結論：</b>報告自身也接受碎片化檢驗——每份報告的查證等級與推論邊界必須顯性標註，否則分析卸責的報告自己也成為卸責工具。</div>
+  <div class="tags"><span class="tag">後設檢討</span><span class="tag">可信度分層</span></div>
+</a>
+
+<a class="card" href="AI心路歷程_完整版_2026-10-07.html">
+  <div class="t">8. AI 心路歷程（完整版，2026-10-07）</div>
+  <div class="d">使用者提供的背景文件（非本次產出），為整輪研究的問題意識與思考脈絡來源。</div>
+  <div class="k"><b>核心結論：</b>整輪研究的問題意識來源——「不能只證明法律允許其他方法，就宣稱人民實際有其他選擇」。</div>
+  <div class="tags"><span class="tag">背景語料</span><span class="tag warn">使用者提供</span></div>
+</a>
+
+<a class="card" href="相關報告盤點與彙整_20261011.html">
+  <div class="t">9. 相關報告盤點與彙整（2026-10-11）</div>
+  <div class="d">盤點 D:\C-moved\Downloads 與 C:\Users\ed249\Documents 中與本體系相關的全部檔案：50 件已複製進 related_reports/（分 7 組），大型檔與原始語料庫以路徑索引；含核心公式原始語料、三鏈驗證完整版等三個體系級增量發現。</div>
+  <div class="k"><b>核心結論：</b>語料層（兩份閉環驗證原始 .txt、12 件 MBB 語料）已就定位，是本次 v2 複驗與例證研究的出處基礎。</div>
+  <div class="tags"><span class="tag">盤點彙整</span><span class="tag">50 件複製</span><span class="tag">路徑索引</span></div>
+</a>
+
+<a class="card" href="委外碎片化xMBB卸責槽_例證研究_長程稽核_20261011.html">
+  <div class="t">10. 委外碎片化 × MBB 卸責槽：關係例證研究與長程稽核管理（2026-10-11）</div>
+  <div class="d">跨體系焊接報告。第一節為七事件線最新狀態複查（台電 711 億撥補與 12.83% 凍漲、中聯毒油起訴與失速 48 天、F-16V 修法切片等）；第二節建立三層框架與 MBB 術語的六組對照例證；第三節提出長程稽核管理制度（斷點清冊、三鏈政府版、期限驅動複查、三個結果指標）。</div>
+  <div class="k"><b>核心結論：</b>七組對照全部命中；「錯在單層程序追得到人（中聯 15 人被起訴），錯在空白無人可追（台電、EZ WAY）」——對照組命題成立。</div>
+  <div class="tags"><span class="tag">v3 最新</span><span class="tag">例證研究</span><span class="tag">長程稽核</span></div>
+</a>
+
+<a class="card" href="閉環驗證框架v2_十案例複驗_20261011.html">
+  <div class="t">11. 閉環驗證框架 v2：MBB 8D 紀律的十案例複驗（2026-10-11）</div>
+  <div class="d">理論應用層報告。不改原始語料，以 2026-09～10 最新查證案例逐格複驗「三不三零」與 MBB 偽 8D：十格金句例證全命中、偽 8D 八格全找到政府版對應物；新增「主動型偽 8D」擴充格（中聯改寫文件、卓榮泰定調敘事），並觀察到病徵 2 從「文件缺失」演化為「文件完備、決策空心」。</div>
+  <div class="k"><b>核心結論：</b>切割製造空白，空白容納三不，三不養成三零，三零換得晉升；能打斷這條鏈的只有統計與管理，體制不自統計處即由體制外長程稽核替代。</div>
+  <div class="tags"><span class="tag">v2 複驗</span><span class="tag">閉環驗證</span><span class="tag">理論應用層</span></div>
+</a>
+
+<a class="card" href="吳乃仁案_責任解剖_20261011.html">
+  <div class="t">12. 吳乃仁案：從「賤賣」到「不追賠」的責任解剖（語料整理，2026-10-11）</div>
+  <div class="d">案例解剖報告。語料層兩份文件一字未改轉為閱讀版：2002 台糖賤賣土地 → 2014 背信定讞 → 2026/6 管收 12 天、台糖撤回 1.7 億追償聲請。核心分析：三段各自合法（台糖應庭訊→經濟部未通報→法院依撤回），「誰放的人」主詞蒸發；附錄制度裂縫報告——管收工具化、國營決策無上級核准、刑事民事二十年斷層僅追回 500–700 萬、五種視角五個盲點。</div>
+  <div class="k"><b>核心結論：</b>Root cause 是人不是結構——2002 故意作為（定讞）、2026 故意不作為（撤回那張狀就是「選擇不為」的落款）；填「結構」進 root cause 就是簽下貳過同意書。</div>
+  <div class="tags"><span class="tag">語料整理</span><span class="tag">案例解剖</span><span class="tag">斷點清冊 10 號線</span></div>
+</a>
+
+<h2>六、配套素材</h2>
+<ul class="files">
+  <li>📊 圖表 5 張：<a href="chart1_timeline.png">chart1 時間軸</a>｜<a href="chart2_ownership.png">chart2 股權</a>｜<a href="chart3_confrontation.png">chart3 對抗</a>｜<a href="chart4_agenda.png">chart4 議程</a>｜<a href="chart5_responsibility.png">chart5 責任</a></li>
+  <li>📉 階段甘特圖：<a href="S1-S8階段甘特圖_20261011.html">S1–S8 階段甘特圖</a>（2026-10-11，X 軸年月／Y 軸 17 條事件線／上軸 S1–S8 模型帶；產生器 <a href="gen_gantt.py">gen_gantt.py</a>）</li>
+  <li>📁 語料庫：<a href="related_reports/">related_reports/</a>（50 件本次盤點複製，見報告 9）｜<a href="case_source/">case_source/</a>（14 件，治水與資遣等）｜<a href="mbb_source/">mbb_source/</a>｜<a href="old_reports/">old_reports/</a>（舊研究報告）｜<a href="old_ezway_extract/">old_ezway_extract/</a></li>
+  <li>📄 原始檔：記事20261007.csv（3.8 MB，記事匯出）</li>
+  <li>🛠 產生器：<a href="make_html.py">make_html.py</a>（md→HTML 轉換腳本，新增報告後在腳尾加 convert() 再執行）</li>
+  <li>📋 即時狀態：「三閘判讀儀表板」→「斷點清冊：長程稽核狀態表」widget（與本總綱第三節同步更新）</li>
+</ul>
+
+<div class="note">
+  <strong>查證分層提醒：</strong>各報告內已以 ✅ 已查證／⚠️ 部分查證／❓ 資訊缺口 標註證據強度。
+  帶 ⚠️ 或 ❓ 的條目（如財政部持股 36.11%、汎宇建置意願、公視「七成」統計、4.3 元合計口徑）在回一手文件前不應引用為定論。
+  第四節陳水扁案 2022 無罪定讞前之時序為公開判決紀錄；2024–2026 狀態已核對 2025-12～2026-02 公開報導。
+  待複查期限：關務署 10/29 檢討進度、11/6 檢討報告到期；台電 12 月第三次審議會；勞動部 3 個月書面報告（提案日起算）。
+  第三節「消失結案機制」欄為研究假說的觀察標註，非對未來事實的斷言；結案路徑以實際新聞複查修正。
+</div>
+
+<footer>本總綱為本機靜態檔案，任何對話視窗、任何側邊聊天皆可開啟。最後更新：2026-10-11（研究主線擴至十二條；追蹤表新增潛艦國造海鯤艦〔靜默＋敘事結案〕、福麥案、高端敘事逆轉；追蹤表欄位新增「案子開始／爆發／至今」「發生單位／上一級單位」及「階段」（S1–S8 階段模型，由陳水扁、拉法葉兩樣本拆解），共 12 欄；新增「S1–S8 階段甘特圖」（配套素材，17 條事件線含 2 歷史樣本）；報告體系收納第 12 份：吳乃仁案責任解剖語料整理）。</footer>
+
+</div>
+</body>
+</html>

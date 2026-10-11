@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>碎片化檢驗框架：多案例擴充報告（2026-10-09）</title><style>
+:root { --ink:#1c2833; --accent:#1F618D; --red:#B03A2E; --line:#d5dbdb; }
+* { box-sizing: border-box; }
+body { font-family: "Microsoft JhengHei","Noto Sans CJK TC",sans-serif; color:var(--ink);
+       line-height:1.85; margin:0; background:#f7f8fa; }
+main { max-width:960px; margin:0 auto; padding:48px 28px 80px; background:#fff;
+       box-shadow:0 0 24px rgba(0,0,0,.06); }
+h1 { font-size:1.65rem; border-bottom:4px solid var(--accent); padding-bottom:.4em; line-height:1.5;}
+h2 { font-size:1.3rem; margin-top:2.2em; border-left:6px solid var(--accent); padding-left:.55em; }
+h3 { font-size:1.12rem; margin-top:1.8em; color:var(--accent); }
+p  { margin:1em 0; text-align:justify; }
+strong { color:#111; }
+table { border-collapse:collapse; width:100%; margin:1.4em 0; font-size:.92rem; }
+th,td { border:1px solid var(--line); padding:.5em .7em; vertical-align:top; }
+th { background:#eef3f7; }
+tr:nth-child(even) td { background:#fafcfd; }
+blockquote { border-left:4px solid var(--red); background:#fdf6f5; margin:1.2em 0;
+             padding:.6em 1.1em; color:#4d3b39; }
+img { max-width:100%; height:auto; display:block; margin:1.4em auto;
+      border:1px solid var(--line); border-radius:6px; }
+hr { border:none; border-top:2px solid var(--line); margin:2.4em 0; }
+sup.cite { color:var(--red); font-size:.72em; }
+nav.toc { background:#f2f6f9; border:1px solid var(--line); border-radius:8px;
+          padding:1em 1.4em; margin:1.6em 0; font-size:.92rem; }
+nav.toc ul { margin:.3em 0; padding-left:1.2em; }
+nav.toc a { color:var(--accent); text-decoration:none; }
+nav.toc a:hover { text-decoration:underline; }
+details.sources { margin-top:3em; background:#fbfbf6; border:1px solid var(--line);
+                  border-radius:8px; padding:1em 1.4em; font-size:.88rem; }
+details.sources ol li { margin:.35em 0; }
+details.sources a { color:var(--accent); word-break:break-all; }
+footer { text-align:center; color:#888; font-size:.8rem; margin-top:3em; }
+code { background:#f0f2f4; padding:.1em .35em; border-radius:4px; }
+</style></head>
+<body><main>
+<nav class="toc"><strong>目錄</strong><ul><li style="margin-left:0.0em"><a href="#sec1">碎片化檢驗框架：多案例擴充報告（v2）</a></li><li style="margin-left:1.1em"><a href="#sec2">一、十案例速覽</a></li><li style="margin-left:1.1em"><a href="#sec3">二、各案例三層檢驗（v2 升級部分）</a></li><li style="margin-left:1.1em"><a href="#sec10">三、十案例綜合矩陣（v2）</a></li><li style="margin-left:1.1em"><a href="#sec11">四、跨案例結論（v2 修訂）</a></li></ul></nav>
+<h1 id="sec1">碎片化檢驗框架：多案例擴充報告（v2）</h1>
+<p><strong>日期：2026-10-09｜v2 整合本機案例語料（<code>case_source/</code>，取自 <code>D:\C-moved\Downloads\治水\</code> 與資遣統計檔）</strong>
+<strong>方法：對每一案例套用三層檢驗（委外介面 × 專案切片 × KPI/OKR 錯位）。查證狀態：✅ 已查證／⚠️ 部分查證（含使用者語料已建構證據）／❓ 資訊缺口。v1 標為 ❓ 的兩案（出差、數發部）因使用者語料到位，升級為 ⚠️。</strong></p>
+<hr />
+<h2 id="sec2">一、十案例速覽</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>案例</th>
+<th>完整問題（應有的 O）</th>
+<th>v1 狀態</th>
+<th>v2 狀態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>EZ WAY 線上委任</td>
+<td>消費者有實質可選的委任途徑</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>2</td>
+<td>台電虧損</td>
+<td>電力部門長期財務永續</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>3</td>
+<td>勞動部資遣通報</td>
+<td>大規模資遣被即時掌握、勞工被即時保護</td>
+<td>⚠️</td>
+<td>⚠️⬆（有數字了，結構問題更精確）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>公務員出差預算 vs 實際開銷</td>
+<td>預算與實支可公開勾稽</td>
+<td>❓</td>
+<td>⚠️⬆（缺口已被語料證實）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>數發部預算與實際報銷核校</td>
+<td>數位建設經費可被監督</td>
+<td>❓</td>
+<td>⚠️⬆（語料含 111–114 預算表）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>治水預算</td>
+<td>投入可對應到具體治水成效</td>
+<td>⚠️</td>
+<td>⚠️⬆（語料含三版本數據對照）</td>
+</tr>
+<tr>
+<td>7</td>
+<td>前瞻計畫</td>
+<td>8,400 億轉化為可驗證成果</td>
+<td>⚠️</td>
+<td>⚠️</td>
+</tr>
+<tr>
+<td>8</td>
+<td>國艦國造／軍備採購</td>
+<td>巨額國防投資可被有效監督</td>
+<td>✅</td>
+<td>✅⬆（新增彈藥採購弊案切片）</td>
+</tr>
+<tr>
+<td>9</td>
+<td>高端疫苗三期</td>
+<td>緊急授權疫苗的保護力證據</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>10</td>
+<td>進口雞蛋專案</td>
+<td>緊急採購合規、無浪費</td>
+<td>✅</td>
+<td>✅（對照組）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="sec3">二、各案例三層檢驗（v2 升級部分）</h2>
+<h3 id="sec4">案例 3：勞動部資遣通報 ⚠️⬆（語料：減班休息不是資遣人數.txt、perplexity claude 資遣人數統計_20260812.docx、資遣通報 CSV/PDF）</h3>
+<p>v1 只能說「查無統計」。v2 語料補上了關鍵事實，且顯示問題比「沒公布」更精細：</p>
+<ul>
+<li><strong>資遣通報其實有月報</strong>（勞動部勞動力發展署資遣通報系統），但<strong>headline 敘事與表內事實背離</strong>：115 年 4 月全國資遣通報 <strong>13,112 人（年增 +5.04%）</strong>、失業給付初次認定 <strong>8,881 件（年增 +17.71%）</strong>、減班休息 3,632 人（年增 +60.28%）——月報五段 headline 全是「就業市場持續穩定、持續改善、失業率創低」，資遣與失業認定雙升的表 3 只被允許寫「應持續追蹤」。這正是「敘事帳蓋著事實帳」的兩本帳結構。</li>
+<li><strong>口徑地雷被裸投揪出</strong>：官方統計查詢網的 a05006901 序列宣稱「全國資遣通報 114 年 37,204 人」，與月報年化約 15 萬、臺中市單年 23,183 人（創該市序列新高）無法相容（若 37,204 是全國，臺中一市就占 62%）——兩個「官方資遣通報人數」差約 4 倍、定義未證實，<strong>不可合併使用</strong>。</li>
+<li><strong>減班休息被框架為裁員指標的替代品</strong>：官方定期公布的是「存量」減班統計（2026-08-17 為 181 家、2,406 人），而資遣通報這個「流量」指標無定期彙整公布——用不相干的指標回答裁員問題，正是「指標替代」卸責機制（《委外與責任碎片化分析》第四節的企業版同款）。</li>
+<li><strong>三層判定</strong>：介面——勞動部（統計）↔ 地方勞工局（通報與裁罰）無對帳；切片——個別資遣通報、大量解僱通報、失業給付申請三系統平行；KPI——對外 KPI 是穩定敘事，「資遣通報彙整公布」不是任何人的指標。</li>
+</ul>
+<h3 id="sec5">案例 4：公務員出差預算 vs 實際開銷 ⚠️⬆（語料：公務員出差.txt）</h3>
+<p>使用者語料確認了 v1 的缺口判斷，並給出精確的制度描述：</p>
+<ul>
+<li><strong>主計總處沒有也不做全國加總</strong>：只有「中央政府各主管機關因公派員出國考察費用執行情形資訊查詢平台」，功能是<strong>連結</strong>各部會自行公布的月表，不是接收標準化資料後產製全國統計。想回答「中央政府總共花多少、誰最高、執行率如何比較」，需自行逐一下載清理。</li>
+<li><strong>閉環斷裂的精確表述</strong>：「公告沒有被接上統計；統計沒有被接上查核；查核沒有必然接上處分。結果是透明化停在敘事層，閉環監察未被制度化。」審計部過去確曾指出地方政府未定期稽核出國報告建議事項、未追蹤改進成果——「報告公開」與「成果驗證」不等價有官方案例。</li>
+<li><strong>責任鏈</strong>：花錢的第一責任者是支出機關首長，但責任通常要經審計查明具體違失後才啟動；公告是機關自編自報，無強制中央交叉核對。<strong>兩套未接合的帳</strong>（預算決算內部帳 vs 分散事後公開帳）無共同識別碼與統一欄位。</li>
+<li><strong>人民自行統計的法律效果</strong>：只能建立可重現的事實基礎、找出異常、提交法定機關——不能命令停止、不能退錢、不能處分。這與《系統性卸責》定義完全吻合：民間整理填的是缺口，不能取代責任。</li>
+</ul>
+<h3 id="sec6">案例 5：數發部預算與實際報銷 ⚠️⬆（語料：QWen 數發部 110–114、數位政策的皇帝新衣.txt）</h3>
+<ul>
+<li><strong>數據斷層是制度性的</strong>：數發部 111 年 8 月 27 日才成立，「過去十年」的數位預算實體上不存在——改制前的預算散在行政院資安處、NCC、經濟部、國發會，<strong>沒有任何官方平台提供改制前後口徑對接</strong>。語料實際拼出的 111–114 序列：111 年約 24.3 億（部分月份）；112 年公務預算 55.61 億／決算 52.43 億（約 94.3%，若加計前瞻特別預算又是另一組數字）；113 年 71.01 億（審計中）；114 年原編 86.59 億、遭立法院刪減約 35.82 億（幅度達 4 成）。</li>
+<li><strong>「公務預算 vs 特別預算」的迷宮</strong>：同一部會兩套帳並行（112 年決算 52.43 億 vs 前瞻特別決算另有一組 11.5 億），一般民眾無從加總——口徑不一致、資料分散、格式不統一、時間落後、缺乏機器可讀性、責任鏈斷裂，語料的六大問題點與 v1 的框架完全一致。</li>
+<li><strong>「不能統一政府數據的數位發展部，高談 AI 與 M-token 能力」</strong>：語料的 GIGO 悖論——在口徑不一、無主數據、無防竄改驗證的資料泥淖上疊加 AI，只會加速製造「系統性幻覺」與「高級話術」；解方是先治理後 AI（無合格數據燃料即凍結 AI 預算）、數據責任鏈與 SHA256 驗證、把 AI 定位為獨立稽核者而非公關寫手。</li>
+</ul>
+<h3 id="sec7">案例 6：治水預算 ⚠️⬆（語料：perplexity 治水、GROK 驗證結論、賴清德治水2）</h3>
+<p>v1 只有執行率口徑爭議；v2 語料完成了更細的三層解剖，且<strong>自我審查也到位</strong>（QWen 對 Perplexity 報告的學術級批判指出其時間跨度不對等比較與指標錯置）：</p>
+<ul>
+<li><strong>數據三版本隨政治場合調整</strong>：同一「大台北治水經費」在 2018-08-30（823 水災後）是「1600 億對中南部 1870 億」、2025-01-19 是「1600 億對南高 371 億」、2026-08-24（南台灣豪雨後）是「1982–2013 北北基 1,649.59 億、占全國同期 59%」——對比基準隨場合切換，且<strong>只有新聞稿、無原始報表</strong>，媒體互相引用形成無責任傳播。</li>
+<li><strong>定義不一致有實證</strong>：「治水預算」在經濟部（特別＋公務）、水利署（特別）、審計部（特別＋公務＋基金）三個定義；「執行率」三種算法。同一位官員（曾文生）說「南高 371 億」與水利署「南高 744 億」的差異，就是定義差。</li>
+<li><strong>但也有必須誠實記錄的反面事實</strong>（GROK 驗證）：大台北防洪標準 200 年重現期 vs 多數縣市管排水 10 年／25 年重現期是工程上真實的歷史優先序差異；2014–2026 區間中南部新增預算確實較多——「中南部拿比較多」在近幾年是事實。所以本案的精確指控不是「錢都去了北部」，而是「<strong>沒有一個統一口徑、可追溯原始報表的官方數據集，讓任何一方的主張可以被檢驗</strong>」——治水之爭淪為敘事之爭，正是因為勾稽基礎不存在。</li>
+</ul>
+<h3 id="sec8">案例 8：軍備採購 ✅⬆（語料：軍火採購.txt——新增彈藥採購弊案切片）</h3>
+<p>v1 只處理國艦國造的機密界線；v2 語料補上「百工百業採購國防軍備」的具體切片，這是 2025 底–2026 台灣政壇的重大案件群：</p>
+<ul>
+<li><strong>福麥國際炸藥案</strong>：台南室內裝修公司（資本額 1,900 萬）2025 年底標下國防部 <strong>5.9 億元 RDX 高能炸藥案</strong>及中科院 1.2 億炸藥案，2026-07 因無法取得原產國（印度）輸出許可違約，軍備局解約、沒入履約保證金與罰款共 8,398 萬、列不良廠商停權；<strong>監察院糾正國防部</strong>迷信最低標、未實質審查軍工背景。</li>
+<li><strong>禾亞子彈案</strong>：軍備局 2026-01 以 4,550 萬元採購 350 萬發 9mm 手槍彈，得標廠商本業為菸酒食品五金批發，投標前半年才變更營業項目新增「槍砲彈藥輸出入」；在野黨質疑兵工廠自製更便宜卻外包。衍生：鞋商大石國際得標步槍彈底火、茶葉行得標國防伺服器相關標案。</li>
+<li><strong>三層檢驗</strong>：介面——軍方以「最低標＋資本額不代表履約能力」切割專業資格責任；切片——資格審查、招標、履約、驗收各段各自「依法」；KPI——「決標率」「履約防禦機制（未交貨不付款）」達標，而「高敏感軍資為何以外行廠商最低標招標」的制度設計責任無人承擔。結局：個案層責任已發動（解約、停權、監院糾正），但**「最低標制度適用邊界」這個制度問題的答案沒有人負責回答**。</li>
+<li><strong>語料的 λ 同構分析值得收錄</strong>：使用者把 BU10「商規 LCD 組軍規平板、委外無 ISO 工廠」與軍品採購抽象為同一函數 Fulfillment=f(R,S,Q,T,M)（需求規格、供應能力、資格品質、時間物理約束、採購機制），並以北京理工《系統仿真學報》的戰時無人機動員模擬（資金 60%→140% 達標率僅 54.9%→62.3%，硬上限 63.4%）作第三個實例——三案同構：<strong>規格高於能力、資格不足、時間是硬約束時，機制設計（最低標 vs 關鍵供應商管理）決定風險暴露</strong>。企業版與政府版的卸責語法在這裡完全同構。</li>
+</ul>
+<h3 id="sec9">其餘案例（1、2、7、9、10）維持 v1 結論</h3>
+<p>見 v1 各節：EZ WAY（主報告）、台電（第二案例報告，數字已於 10-09 修正）、前瞻（8,400 億實現率 90.88% 是支出指標非成果指標）、高端（免疫橋接型三期已發表但無傳統 VE 數字）、雞蛋（對照組，糾正＋彈劾＋偵辦）。</p>
+<hr />
+<h2 id="sec10">三、十案例綜合矩陣（v2）</h2>
+<table>
+<thead>
+<tr>
+<th>案例</th>
+<th>委外介面（責任換手點）</th>
+<th>切片斷點</th>
+<th>OKR 無主人？</th>
+<th>碎片化等級</th>
+<th>追責現況</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EZ WAY</td>
+<td>政府↔持股公司，無契約</td>
+<td>建置/收費/監管/檢討</td>
+<td>是</td>
+<td>高</td>
+<td>無人負責，雙期限延宕中</td>
+</tr>
+<tr>
+<td>台電</td>
+<td>經濟部↔台電↔審議會↔立院</td>
+<td>燃料/定價/審議/撥補/打銷</td>
+<td>是</td>
+<td>高</td>
+<td>無人負責</td>
+</tr>
+<tr>
+<td>資遣通報</td>
+<td>勞動部↔地方勞工局</td>
+<td>通報/裁罰/給付三系統＋headline 與表3 分離</td>
+<td>是</td>
+<td>中高</td>
+<td>月報存在但事實帳無 headline；口徑地雷未排除</td>
+</tr>
+<tr>
+<td>出差開銷</td>
+<td>主計（平台）↔各機關（自報）</td>
+<td>計畫/報銷/成果三流程</td>
+<td>是</td>
+<td>中</td>
+<td>閉環三斷點：統計、查核、處分</td>
+</tr>
+<tr>
+<td>數發部</td>
+<td>公務預算↔特別預算雙帳</td>
+<td>規劃/採購/驗收/成效＋改制斷層</td>
+<td>是</td>
+<td>中</td>
+<td>114 年被刪 4 成預算但無人回答制度問題</td>
+</tr>
+<tr>
+<td>治水</td>
+<td>經濟部↔水利署↔審計部（三定義）</td>
+<td>編列/發包/完工/成效</td>
+<td>是</td>
+<td>高</td>
+<td>數據三版本無人對帳；敘事之爭取代數據之爭</td>
+</tr>
+<tr>
+<td>前瞻</td>
+<td>行政院↔各部會↔縣市</td>
+<td>五大建設各自成案</td>
+<td>是</td>
+<td>高</td>
+<td>監察院糾正但未追到人</td>
+</tr>
+<tr>
+<td>國防採購</td>
+<td>軍備局↔最低標廠商</td>
+<td>資格/招標/履約/驗收</td>
+<td>部分是</td>
+<td>中</td>
+<td>個案解約停權＋監院糾正；制度責任無人承擔</td>
+</tr>
+<tr>
+<td>高端 COVID</td>
+<td>食藥署↔審查會↔廠商</td>
+<td>EUA/橋接三期/效力驗證</td>
+<td>是</td>
+<td>中</td>
+<td>無人為「無 VE 數字」負責</td>
+</tr>
+<tr>
+<td>雞蛋</td>
+<td>農業部→畜產會→超思</td>
+<td>單層委託</td>
+<td>否</td>
+<td>低</td>
+<td><strong>糾正＋彈劾＋偵辦（對照組）</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="sec11">四、跨案例結論（v2 修訂）</h2>
+<p><strong>1. 框架通過壓力測試，且語料升級後更精細。</strong> 十案九案成立；雞蛋案對照組地位不變。v2 的增量發現是：<strong>「資訊缺口」可以細分為三種</strong>——(a) 完全無數據（v1 的出差案）；(b) 有數據但無彙整與對帳（治水三定義、出差無加總）；(c) <strong>有數據、有彙整，但敘事層與事實層分離</strong>（資遣月報 headline 蓋表 3、執行率 92.35% 蓋實現率）。第三種是最高級的卸責形態，因為它對「資訊不足」的指控免疫——資料明明都在，只是不被放進該放的位置。</p>
+<p><strong>2. 口徑武器化是共通攻擊面。</strong> 資遣（a05006901 差 4 倍）、治水（三機關三定義）、數發部（公務 vs 特別雙帳）、前瞻（執行率 vs 實現率）——四案都出現「同一對象存在兩個以上官方數字且無人負責讓它們對帳」。MBB 語言：這是 claimed culture 的<strong>多版本化</strong>——書面表面不只存在落差，還主動繁殖版本，使任何質疑都可以被「你引用的是另一個口徑」化解。</p>
+<p><strong>3. 責任追到的案子（雞蛋、彈藥採購）共同點：制度介面薄。</strong> 彈藥案能走到解約、停權、監院糾正，雞蛋案能走到彈劾，因為這兩案違反的是<strong>單層、標準、有明確資格要求的程序</strong>——錯了就錯在具體的人。而斷點無主人的案子，違反的都不是程序，而是「沒有人被要求負責的空白」。這再次確認：對治方向是把空白做成職位（斷點清冊立法），而不是在既有程序裡加更多 KPI。</p>
+<hr />
+<p><strong>語料來源</strong>：本報告 v2 整合之使用者研究檔案位於 <code>case_source/</code>：減班休息不是資遣人數.txt、perplexity claude 資遣人數統計_20260812.docx、事業單位資遣通報家數及人數 CSV、各縣市資遣通報人數歷年趨勢 PDF、公務員出差.txt、QWen 數發部 110–114.txt、數位政策的皇帝新衣.txt、perplexity 治水.txt、GROK驗證結論.txt、賴清德治水2.txt、軍火採購.txt。其中語料自帶的「⚠ 請驗證」標記已保留——語料中的 AI 驗證結論（如口徑地雷、GROK 交叉驗證）屬二手分析，正式引用前應對回一手文件（勞動部月報、水利署新聞稿、監察院糾正文）。</p>
+<p><strong>體系位置</strong>：本報告是《委外與責任碎片化分析》三層框架的完整案例庫；案例 1（EZ WAY）對應主報告《EZ_WAY_關貿爭議完整研究報告》，案例 2（台電）對應《碎片化框架第二案例_台電虧損》（數字已於 2026-10-09 複查修正，引用以該版為準）；框架的企業側鑑識語言（claimed culture vs. real culture、口徑多版本化即 claimed culture 的繁殖）見《MBB卸責槽_治理必然性彙整》；可信度分層與修正歷程見《檢討疊代記錄_20261009》。</p>
+<p><strong>免責聲明</strong>：本報告為公開資料與私人研究語料之查證彙整。⚠️ 標記案例的具體指控未經司法證實；其性質是資訊透明度與制度設計問題之陳述，非對任何機關或個人之違法認定。</p>
+
+
+<footer>產生日期：2026-10-08｜本 HTML 為研究報告之閱讀版本，引用編號對應文末來源對照</footer>
+</main></body></html>
