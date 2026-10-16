@@ -1,0 +1,183 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>新聞鑑識雙案複驗：海鯤號 × 徐佳青（2026-10-12）</title>
+<style>
+:root{
+  --bg:#ECEAE4; --surface:#FBFAF7; --surface2:#F3F1EB;
+  --fg:#1C2420; --muted:#5E6862; --faint:#8A938C;
+  --line:#D7D2C8; --line2:#C6C0B4;
+  --accent:#0E7C6B; --accent-soft:#E0EEEA;
+  --debit:#AE352B; --debit-soft:#F6E6E3;
+  --credit:#9A6410; --credit-soft:#F6ECD9;
+  --mine:#B3382E;
+  --ff-cjk:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --ff-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121613; --surface:#1A201C; --surface2:#20271F;
+  --fg:#E9E7E1; --muted:#9BA49C; --faint:#6E776F;
+  --line:#2C332D; --line2:#394038;
+  --accent:#43A08E; --accent-soft:#17241F;
+  --debit:#E07264; --debit-soft:#2A1A18;
+  --credit:#D9A449; --credit-soft:#271F13;
+  --mine:#E07264; color-scheme:dark;
+}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--ff-cjk);line-height:1.72;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding-block:40px 80px;padding-inline:20px}
+h1,h2,h3{text-wrap:balance;line-height:1.28}
+section{margin-top:50px}
+.eyebrow{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);display:inline-block}
+.hero{border:1px solid var(--line2);border-radius:16px;background:var(--surface);padding:32px 30px}
+.hero .kick{font-family:var(--ff-mono);font-size:12px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:12px}
+.hero h1{font-size:clamp(24px,4.4vw,38px);font-weight:800;letter-spacing:-.01em;margin:0}
+.hero h1 .en{font-family:var(--ff-mono);font-weight:600;font-size:.46em;letter-spacing:0;color:var(--muted);display:block;margin-top:8px}
+.spine{margin-top:18px;font-size:clamp(15px,2.2vw,18px);font-weight:600;line-height:1.55;border-left:3px solid var(--accent);padding-left:16px}
+.hero-meta{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:12.5px;color:var(--muted);font-family:var(--ff-mono);border-top:1px solid var(--line);padding-top:14px}
+h2.sec{font-size:22px;margin:0 0 4px}
+.lead{font-size:14.5px;color:var(--muted);max-width:66ch;margin:0 0 14px}
+.lead b{color:var(--fg)}
+
+.case{border:1px solid var(--line2);border-radius:14px;background:var(--surface);padding:22px 24px;margin-top:16px}
+.case h3{margin:0 0 4px;font-size:18px}
+.case .src{font-family:var(--ff-mono);font-size:11.5px;color:var(--faint);margin-bottom:12px}
+.lay{margin:10px 0 0;display:grid;gap:7px}
+.lay .row{display:grid;grid-template-columns:64px 1fr;gap:12px;font-size:13px;border-bottom:1px dashed var(--line);padding-bottom:7px}
+.lay .row:last-child{border-bottom:none;padding-bottom:0}
+.lay .lv{font-family:var(--ff-mono);font-weight:700;font-size:11px;padding-top:2px}
+.lv.l1{color:var(--accent)} .lv.l2{color:var(--credit)} .lv.l3{color:var(--debit)}
+.verdict{border-radius:12px;padding:16px 20px;margin-top:14px;font-size:14.5px;font-weight:600;line-height:1.6}
+.verdict.gold{border:1.5px solid var(--credit);background:var(--credit-soft)}
+.verdict.gold b{color:var(--credit)}
+.verdict.still{border:1px solid var(--line2);background:var(--surface2);color:var(--muted);font-weight:500}
+.verdict.still b{color:var(--fg)}
+.anchor{margin-top:10px;border:1px dashed var(--line2);border-radius:10px;padding:10px 14px;font-size:12.5px;color:var(--muted)}
+.anchor b{color:var(--mine)}
+.tag{display:inline-block;font-family:var(--ff-mono);font-size:10.5px;font-weight:700;padding:1px 8px;border-radius:5px;margin-right:4px}
+.tag.ok{background:var(--accent-soft);color:var(--accent)}
+.tag.warn{background:var(--credit-soft);color:var(--credit)}
+.tag.bad{background:var(--debit-soft);color:var(--debit)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+@media(max-width:720px){.grid2{grid-template-columns:1fr}}
+.mini{border:1px solid var(--line);border-radius:11px;background:var(--surface2);padding:14px 16px;font-size:13px}
+.mini h4{margin:0 0 6px;font-size:13.5px}
+.mini p{margin:.3em 0;color:var(--muted)}
+.mini p b{color:var(--fg)}
+.num{font-family:var(--ff-mono);font-weight:700;font-size:22px;color:var(--credit)}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:14px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:12.8px}
+thead th{background:var(--surface2);text-align:left;padding:10px 12px;font-size:11px;font-family:var(--ff-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line2);white-space:nowrap}
+tbody td{padding:9px 12px;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:hover{background:var(--surface2)}
+
+.punch{margin-top:22px;border:1.5px solid var(--mine);border-radius:14px;background:linear-gradient(180deg,var(--debit-soft),var(--surface));padding:22px 26px}
+.punch .q{font-size:clamp(15px,2.4vw,19px);font-weight:700;line-height:1.55}
+.punch p{margin:10px 0 0;font-size:13.5px;color:var(--muted)}
+.note{margin-top:30px;border:1px solid var(--line);background:var(--surface2);border-radius:11px;padding:15px 18px;font-size:12px;color:var(--muted);line-height:1.75}
+.note b{color:var(--fg)}
+.sig{margin-top:20px;font-family:var(--ff-mono);font-size:11.5px;color:var(--faint);text-align:center;letter-spacing:.05em}
+</style></head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kick">news-forensics v1.6 · 雙案複驗 · 與研究報告總綱對接</div>
+  <h1>新聞鑑識雙案複驗：海鯤號 × 徐佳青<span class="en">TWO CASES UNDER THE LENS — paperwork without result, and resignation as a fake verdict</span></h1>
+  <div class="spine">同一條脊椎——<b>主詞替代</b>：一則電視新聞讓「不回答」穿上「回應」的衣服（書面錯誤紀錄）；一頁搜尋結果讓「辭職」冒充「結案」（洗版換主角）。兩案合起來，正是相層兩種失效模式＋行層三向閘兩個端點的完整演示。</div>
+  <div class="hero-meta">
+    <span>引擎：news-forensics v1.6（已安裝為本地 skill）</span>
+    <span>證物：自由時報 2026/10/10 16:56 報導全文｜徐佳青 Google SERP 存檔 1.4 MB</span>
+    <span>跨案校準來源：Session 檢討報告（2026-10-11→12）</span>
+  </div>
+</header>
+
+<!-- ════ 案一 海鯤號 ════ -->
+<section>
+  <div class="eyebrow">案一 · 電視／單篇</div>
+  <h2 class="sec">海鯤號「聾了」：自由時報把非回應標成「回應」</h2>
+
+  <div class="case">
+    <h3>事實分層（L1／L2／L3）</h3>
+    <div class="lay">
+      <div class="row"><span class="lv l1">L1 可查證</span><span>郭璽（前海軍顧問）日前表示：海鯤號因 IPMS 出問題，側掃聲納無法與戰鬥系統連結，形容「海鯤號聾了」✅（具名、時間明確）；台船董事長陳政宏 10/9 在公視「尖鋒對話」以高鐵為例回應✅（行程屬實）；紀東昀（台灣安全發展協會理事長）稱更換 IPMS 猶如換掉神經腦幹✅（具名）。</span></div>
+      <div class="row"><span class="lv l2">L2 當事人說法</span><span>陳政宏「不會針對任何特定裝備評論，測試有些順利、有些還不夠好，未必本身有問題，而是連接的裝備搭配不夠好」⚠️——這是<b>本案唯一被要求回答的問題（IPMS 是否故障）的正面迴避</b>，報導如實登出。</span></div>
+      <div class="row"><span class="lv l3">L3 記者框架</span><span>標題「台船董座<b>舉高鐵為例回應</b>」——「回應」二字是框架：把一個「以他案類比規避本案」的動作，貼上「已回應」的標籤。全篇 L1 沒有碰到主題本身（IPMS 到底有沒有問題、要不要換），主題全部是 L2 嘴仗。<b>「讀起來在談潛艦，其實在談高鐵。」</b></span></div>
+    </div>
+
+    <h3 style="margin-top:18px">相層 · 主詞歸位閘</h3>
+    <div class="lay">
+      <div class="row"><span class="lv">橫向轉嫁</span><span>出面者陳政宏＝賣方（台船）<b>新任</b>董座（2025/10 甫上任）——既非買方當責（該給交艦日期的是海軍／國防部），也非這十年決策的拍板者。一個剛到任的供應商董座，用 20 年前的台灣高鐵，替一艘他沒參與決策的潛艦緩頰＝<b>空椅子裡的空椅子</b>（v1.3「空椅子越深」校準案）。</span></div>
+      <div class="row"><span class="lv">在場缺答</span><span>相層失效模式一：主詞在、答案不在。出面被當成「已回應」。他案（高鐵）替本案（IPMS）。</span></div>
+    </div>
+
+    <h3 style="margin-top:18px">行層 · 三向閘判定</h3>
+    <div class="lay">
+      <div class="row"><span class="lv">判定</span><span><b>書面錯誤紀錄</b>——媒體記錄了書面，但把非回應貼上「回應」標籤登出，<b>不追問、無結果</b>。真正在逼的是消息源郭璽，不是報社（v1.2 修正：追問者須是媒體本身才算逼）。</span></div>
+      <div class="row"><span class="lv">空椅子</span><span>該具名認領的格子：海軍司令／國防部長對「交艦日期＋IPMS 狀態」。全案無人具名——連罰款 6,000 萬都是對台船（賣方）而非決策鏈。</span></div>
+    </div>
+
+    <div class="verdict still"><b>收尾紀律（書面無果 → 默默不結論）：</b>書面有（高鐵類比被登出）、結果無（IPMS 問題未答）、椅子空（海軍／國防部不在畫面）。不替它質疑、不替它斷案。</div>
+    <div class="anchor"><b>可證偽錨：</b>到 2026-12-31，若海軍或國防部<b>具名</b>給出交艦日期或 IPMS 狀態說明＝空椅子有人坐回，本判定修正；若仍是台船代打、官方無日期＝書面錯誤紀錄繼續、椅子仍空＝判定確認。</div>
+  </div>
+</section>
+
+<!-- ════ 案二 徐佳青 ════ -->
+<section>
+  <div class="eyebrow">案二 · SERP／群組媒體</div>
+  <h2 class="sec">徐佳青 SERP：辭職被洗成結案，而媒體沒有結案權</h2>
+
+  <div class="case">
+    <h3>主詞偏移：根案 vs 外案</h3>
+    <div class="lay">
+      <div class="row"><span class="lv l1">根案</span><span>駐日內瓦處長<b>李冠德霸凌案</b>（基層檢舉、政風未查）＋徐佳青<b>濫用公務資源案</b>（帶家人公費出訪、監院認定東沙營違反《利益衝突迴避法》⚠️待回一手）。該被保護的是基層、該被追責的是任命與監督鏈。</span></div>
+      <div class="row"><span class="lv l3">外案</span><span>「徐佳青特權」——每晚 18 萬房費、五年 2,300 萬公帑、47 次出國 526 天（民眾黨團數字⚠️）、哽咽請辭 10/7。SERP 實際在燒的主角。</span></div>
+      <div class="row"><span class="lv">陷阱</span><span><b>雙重身分</b>：徐佳青既是根案的被指控者、又是外案的熱議主角。她以外案身分辭職，被洗成「根案已處理」。標題語料自證：「霸凌案<b>扯出／燒到／外案</b>徐佳青」＝報導自己承認主角是側噴。</span></div>
+    </div>
+
+    <h3 style="margin-top:18px">SERP 覆蓋形狀計量（本檔實測）</h3>
+    <div class="grid2">
+      <div class="mini"><h4>筆數 × 框架</h4><p>可見字串去重 <span class="num">36</span> 則與本案相關；含「辭職／下台」語 <span class="num">10</span>、含「霸凌／查辦」語 <span class="num">11</span>——但「霸凌」類標題多數以「扯出／燒到／外案」動詞<b>掛在徐佳青名下</b>，主詞已被換走。</p></div>
+      <div class="mini"><h4>消息源集中度</h4><p>主要消息源集中於<b>單一揭發者</b>（陳智菡／民眾黨團，「掌握完整資料」）、標題動詞高度一致（扯出／燒到／外案／請什麼）——框架一致度高。時間窗：存檔未含發布時間戳 ❓（靜態存檔限制，待回 SERP 實時頁補量）。</p></div>
+    </div>
+
+    <h3 style="margin-top:18px">行層 · 三向閘判定</h3>
+    <div class="lay">
+      <div class="row"><span class="lv">判定</span><span><b>放（填假終點）</b>——一群媒體用 SEO 記錄書面，替「主題的一階主管」解釋「主角已辭職＝不用回答」。辭職被冒充為結案。</span></div>
+      <div class="row"><span class="lv">權責鎖</span><span>一群媒體不是當事人的一階主管，<b>沒有結案權</b>。媒體宣布的結案是假的——真正該認領的（霸凌案調查：外交部／僑委會政風；任命監督鏈：行政院）從未具名出現，<b>空椅子還在</b>。只問可查的權責歸屬，不碰媒體動機。</span></div>
+      <div class="row"><span class="lv">換帳</span><span>體層第三種操作實例：用「花錢／特權」的帳（外案），蓋掉「霸凌／瀆職」的帳（根案）。連「該查還是要查」的聲音都被歸進黨派互咬的框架裡。</span></div>
+      <div class="row"><span class="lv">誰消失了</span><span>日內瓦的基層——原始事件裡該被保護的主體，在整波覆蓋裡幾乎沒有名字。<b>受害者消失是體層最冷的讀數。</b></span></div>
+    </div>
+
+    <div class="verdict gold"><b>黃金斷案 · 出門版（媒體在放 → 斷假結案）：</b>這不是一則「首長特權」的新聞，是一次「辭職冒充結案」的現場——一群沒有結案權的媒體用搜尋頁宣布「已辭職＝不用回答」，而真正該回答的霸凌案調查與任命責任，從未有人具名認領。</div>
+    <div class="anchor"><b>可證偽錨：</b>到 2027-01-31，若李冠德霸凌案或濫用資源案有<b>具名</b>進度（承辦檢察官起訴／行政院具名調查報告／政風具名結論）＝有人認領，本斷案修正；若公開資訊仍停在「已辭職」敘事、無具名進度＝假結案成立，斷案確認。</div>
+  </div>
+</section>
+
+<!-- ════ 對接總綱 ════ -->
+<section>
+  <div class="eyebrow">對接 · 研究報告總綱</div>
+  <h2 class="sec">兩案在 S1–S8 與 T1/T2 座標上的位置</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>案件</th><th>S 階段</th><th>T1/T2</th><th>媒體三向</th><th>總綱追蹤表對應</th></tr></thead>
+    <tbody>
+      <tr><td><b>海鯤艦</b></td><td>S5→S6（10/9–10 新進展仍在 S5：無日期、賣方代打）</td><td>T1（海軍司令／國防部長仍釘得住）</td><td>書面錯誤紀錄</td><td>追蹤表第 6 列；報告 14 的 S5 實例新增「賣方代打」變體</td></tr>
+      <tr><td><b>徐佳青</b></td><td>S6（請辭止血完成）→S5（他字案靜置）</td><td>T1（任命與監督鏈：行政院，時效內）</td><td>放（假結案）</td><td>追蹤表第 7 列更新：辭職獲准≠結案；可證偽錨 2027-01-31</td></tr>
+    </tbody>
+  </table></div>
+  <div class="punch">
+    <div class="q">兩案併讀的出門版：<b>一個讓「不回答」穿「回應」的衣服，一個讓「辭職」冒充「結案」——而衣服和結案書上，都沒有該負責那個人的名字。</b></div>
+    <p>與報告 13、14 的接合：媒體三向閘（逼／書面錯誤紀錄／放）是「兩本帳」的第四個記帳通道——媒體書面替零決策的主管「登出回應」，等於替功勞帳預先銷毀責任帳的憑證。Session 檢討報告的待坍縮 A（引擎未 cold-run 未見過的新聞）維持開放：本次複驗屬「校準確認」，非 cold-run。</p>
+  </div>
+</section>
+
+<div class="note">
+<b>查證分層（AI-RMA 紀律）。</b>　海鯤號案 L1（郭璽爆料、陳政宏行程、紀東昀具名）取自自由時報 2026/10/10 16:56 報導全文✅；陳政宏「2025/10 甫上任台船董座」沿用 Session 檢討報告所引 taiwannews 6202170 查證⚠️（本報告未回一手重驗）。　徐佳青案：SERP 計量（36 則／10 辭職語／11 霸凌語／源集中）為本檔實測✅；「五年 2,300 萬／47 次／526 天」為民眾黨團揭數字⚠️；「監院認定東沙營違反利益衝突迴避法」轉述自 SERP 語料⚠️待回監院公報；SERP 時間窗❓（靜態存檔無時間戳）。　「根案一階主管」之確切法律定位（徐佳青對李冠德霸凌案、外交部對日內瓦處長之監督關係）❓，本報告以「該認領者」籠統標示，不為具名定性。　引擎六輪校準史與負Λ自檢見 Session 檢討報告（配套素材）。
+</div>
+
+<div class="sig">相 · 行 · 體 — 新聞鑑識雙案複驗 · 20261012 · news-forensics v1.6</div>
+
+</div>
+</body></html>

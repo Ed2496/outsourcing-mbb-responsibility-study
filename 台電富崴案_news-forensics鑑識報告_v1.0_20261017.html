@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>台電富崴案鑑識報告</title>
+<style>
+  :root{
+    --bg:#eaf4f1; --surface:#ffffff; --surface-2:#f4fbf9; --surface-3:#e7f4f0;
+    --ink:#17302c; --ink-soft:#4b625d; --ink-faint:#7a8e89;
+    --teal-900:#0b3b36; --teal-800:#0f5751; --teal-700:#0f766e; --teal-600:#16907f;
+    --teal-500:#2bb3a3; --teal-300:#8fd4c9; --teal-200:#bfe6df; --teal-100:#dcf0eb;
+    --line:#cfe6e0; --line-soft:#e3f0ec;
+    --ok-bg:#dcf2e8; --ok-ink:#0c6c52;
+    --warn-bg:#fbf0d6; --warn-ink:#8a5a09;
+    --gap-bg:#e7edf0; --gap-ink:#546472;
+    --flag-bg:#fde8e4; --flag-ink:#a83a2a;
+    --mono:ui-monospace,"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); line-height:1.72; font-size:16px;
+    padding:0 16px;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding:40px 0 72px}
+
+  /* ---- cover ---- */
+  header.cover{
+    background:linear-gradient(135deg,var(--teal-800),var(--teal-600));
+    color:#eafaf6; border-radius:18px; padding:34px 32px 30px;
+    box-shadow:0 10px 30px -14px rgba(15,87,81,.55);
+  }
+  header.cover .kicker{font-size:12.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:#bfeae1; margin:0 0 10px}
+  header.cover h1{margin:0 0 6px; font-size:27px; line-height:1.28; letter-spacing:.01em}
+  header.cover .sub{margin:0; color:#d2f1ec; font-size:14.5px}
+  .meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px}
+  .meta span{background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.22);
+    border-radius:999px; padding:4px 12px; font-size:12.5px; color:#eafaf6}
+  .meta span b{font-weight:600; color:#fff}
+  .stance{margin:18px 0 0; padding:12px 14px; background:rgba(11,59,54,.28);
+    border-left:3px solid var(--teal-300); border-radius:0 8px 8px 0; font-size:13px; color:#e3f5f0}
+
+  /* ---- sections ---- */
+  section{background:var(--surface); border:1px solid var(--line); border-radius:14px;
+    padding:26px 28px; margin-top:22px; box-shadow:0 4px 18px -14px rgba(15,87,81,.4)}
+  h2{font-size:20px; margin:0 0 4px; color:var(--teal-800); letter-spacing:.01em;
+    display:flex; align-items:baseline; gap:10px}
+  h2 .n{font-family:var(--mono); font-size:14px; color:var(--teal-500); font-weight:700}
+  h2 + .lead{margin:2px 0 18px; color:var(--ink-soft); font-size:14.5px}
+  h3{font-size:15.5px; margin:22px 0 8px; color:var(--teal-700);
+    border-left:4px solid var(--teal-300); padding-left:10px}
+  p{margin:10px 0}
+  strong{color:var(--teal-900)}
+  .verdict{background:var(--surface-3); border:1px solid var(--teal-200); border-radius:10px;
+    padding:14px 16px; margin:16px 0; font-size:15px}
+  .verdict b{color:var(--teal-800)}
+
+  /* ---- chips ---- */
+  .chip{display:inline-block; font-size:11.5px; font-weight:600; border-radius:6px;
+    padding:1px 7px; line-height:1.6; white-space:nowrap; font-family:var(--mono)}
+  .ok{background:var(--ok-bg); color:var(--ok-ink)}
+  .warn{background:var(--warn-bg); color:var(--warn-ink)}
+  .gap{background:var(--gap-bg); color:var(--gap-ink)}
+  .flag{background:var(--flag-bg); color:var(--flag-ink)}
+  .legend{display:flex; flex-wrap:wrap; gap:14px; margin:8px 0 2px; font-size:12.5px; color:var(--ink-soft)}
+  .legend span{display:inline-flex; align-items:center; gap:6px}
+
+  /* ---- tables ---- */
+  .table-wrap{overflow-x:auto; margin:14px 0; border-radius:10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; font-size:13.5px; min-width:520px}
+  th,td{text-align:left; padding:9px 12px; border-bottom:1px solid var(--line-soft); vertical-align:top}
+  thead th{background:var(--teal-700); color:#eafaf6; font-weight:600; font-size:13px;
+    border-bottom:none; position:sticky; top:0}
+  tbody tr:nth-child(even){background:var(--surface-2)}
+  tbody tr:last-child td{border-bottom:none}
+  td b{color:var(--teal-900)}
+  .mono{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft)}
+
+  /* ---- ladder ---- */
+  .ladder{margin:16px 0; border-left:3px solid var(--teal-300); padding-left:0}
+  .rung{display:grid; grid-template-columns:52px 1fr auto; gap:12px; align-items:start;
+    padding:12px 14px; border-bottom:1px solid var(--line-soft); background:var(--surface-2);
+    margin-left:-3px; border-left:3px solid var(--teal-500)}
+  .rung:nth-child(odd){background:var(--surface)}
+  .rung .lv{font-family:var(--mono); font-weight:700; color:var(--teal-600); font-size:14px}
+  .rung .body b{color:var(--teal-900)}
+  .rung .catch{font-size:12px; font-weight:600; white-space:nowrap}
+  .c-yes{color:var(--ok-ink)} .c-no{color:var(--flag-ink)} .c-part{color:var(--warn-ink)}
+
+  /* ---- checklist ---- */
+  .zone{margin:16px 0}
+  .zone h4{font-size:14px; margin:0 0 8px; color:var(--teal-800);
+    background:var(--teal-100); border-radius:8px; padding:7px 12px}
+  ul.ck{list-style:none; margin:0; padding:0}
+  ul.ck li{padding:9px 12px 9px 14px; border-left:3px solid var(--teal-200);
+    background:var(--surface-2); margin:6px 0; border-radius:0 8px 8px 0; font-size:13.5px}
+  ul.ck li .org{font-weight:600; color:var(--teal-800)}
+  ul.ck li .doc{color:var(--ink)}
+  ul.ck li .date{font-family:var(--mono); font-size:12px; color:var(--ink-soft)}
+
+  .anchor{background:linear-gradient(135deg,var(--teal-100),var(--surface-3));
+    border:1px solid var(--teal-200); border-radius:12px; padding:16px 18px; margin:18px 0}
+  .anchor .lab{font-family:var(--mono); font-size:12px; color:var(--teal-600);
+    letter-spacing:.08em; text-transform:uppercase}
+
+  .note{font-size:12.5px; color:var(--ink-faint); margin-top:8px}
+  footer{margin-top:28px; padding:18px 4px 0; border-top:1px solid var(--line);
+    font-size:12.5px; color:var(--ink-faint); text-align:center}
+
+  @media (max-width:560px){
+    body{font-size:15px}
+    .wrap{padding:24px 0 48px}
+    header.cover{padding:26px 20px}
+    header.cover h1{font-size:22px}
+    section{padding:20px 18px}
+    .rung{grid-template-columns:40px 1fr; }
+    .rung .catch{grid-column:2; margin-top:4px}
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0e1b19; --surface:#122523; --surface-2:#0f201e; --surface-3:#14302c;
+      --ink:#dcefe9; --ink-soft:#9fb8b2; --ink-faint:#718a84;
+      --line:#1f3a36; --line-soft:#193430;
+      --teal-100:#143b36; --teal-200:#1c4f48; --teal-800:#8fd4c9;
+      --ok-bg:#123a2e; --ok-ink:#7fd9bb; --warn-bg:#3a2e12; --warn-ink:#e3b864;
+      --gap-bg:#1d2a31; --gap-ink:#9fb4c0; --flag-bg:#3a1e18; --flag-ink:#e79a8a;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="cover">
+  <p class="kicker">News-Forensics · 結構鑑識報告</p>
+  <h1>台電離岸二期・富崴風機抵押案</h1>
+  <p class="sub">三文本對稱 × 相層四閘 × 執尺者遞歸梯 × 出門查證清單</p>
+  <div class="meta">
+    <span><b>版本</b>　v1.0</span>
+    <span><b>日期</b>　2026-10-17</span>
+    <span><b>框架</b>　news-forensics v1.8（選配 D 開啟）</span>
+    <span><b>鑑識者</b>　Claude</span>
+    <span><b>文型</b>　混合型（卸責＋推力）</span>
+  </div>
+  <p class="stance">掃結構不是人，對任一政治光譜皆可跑。本報告不判勝負、不判違法、不讀心；只定位主詞、空椅子與結案權，所有判讀標查證分層，缺口就寫缺口不補。</p>
+</header>
+
+<section>
+  <h2><span class="n">摘要</span>黃金斷案（總）</h2>
+  <div class="verdict">
+    這整案的誤差不在刀，在<b>砧板</b>。驅動分析的那篇（署名 #樂樂）是一篇<b>無媒體落款、核心推力句「台電已讀不回」可當場證偽為假</b>的聚合稿；它把主詞從「郭台強把台電已付清價金的風機抵押給自己集團」挪成「台電不協商」，於是後面每一層——AI 執尺、提問瞄準——都在放大一個被調包的主詞。而<b>同一家鏡週刊四天前的封面故事，L1 紮實、主詞釘在郭台強身上</b>。你要的對稱材料，媒體自己就出過，只是沒拿進砧板。
+  </div>
+  <p class="legend">
+    <span><i class="chip ok">✅</i> 公開可得／已查證</span>
+    <span><i class="chip warn">⚠️</i> 部分可得／待核一手</span>
+    <span><i class="chip gap">❓</i> 須正式調閱</span>
+    <span><i class="chip flag">🚩</i> L3 偽裝成 L1</span>
+  </p>
+</section>
+
+<section>
+  <h2><span class="n">一</span>事件結構</h2>
+  <p class="lead">根案不是「誰不協商」，是「集團把台電已付清的風機抵押給自己、兩造無金流」。主詞每往外滑一層，就離決策者更遠。</p>
+
+  <h3>主詞偏移鏈</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>層級</th><th>主詞</th><th>離郭台強／森崴</th></tr></thead>
+    <tbody>
+      <tr><td><b>根案</b></td><td>集團把風機抵押給自己、無金流，是否脫產／掏空</td><td>0（正中靶心）</td></tr>
+      <tr><td>外案一</td><td>「台電不協商／已讀不回」</td><td>+1（主詞換台電）</td></tr>
+      <tr><td>外案二</td><td>「幾百億爛帳全民買單」</td><td>+2（主詞換納稅人）</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>空椅子雙軸（誰有資料與權力、卻未具名回答）</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>軸</th><th>該出面者</th><th>該回答什麼</th><th>深度</th></tr></thead>
+    <tbody>
+      <tr><td>私部門</td><td>郭台強／森崴</td><td>61 億債權如何形成、兩造為何無金流、抵押給自己集團的決議依據</td><td><b>最深</b></td></tr>
+      <tr><td>公部門（履約）</td><td>台電核決者（接管／付款／保全）、經濟部／國營事業主管</td><td>監督付款為何失靈、下包商為何仍收不到錢、監督成果</td><td>次之</td></tr>
+      <tr><td>公部門（源頭）</td><td>台電評選審標、經濟部</td><td>27 億股本之子公司憑何承攬近 630 億標案、8 次流標後決標設計、55 億追加依據</td><td><b>共同盲區</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>結案權程序：已啟動，非未動</h3>
+  <p>金管會證期局 <span class="mono">2026/10/6</span> 收台電檢舉、發函森崴說明（《證交法》）<span class="chip ok">✅</span>；經濟部長龔明鑫公開稱經濟部及台電全力配合司法調查 <span class="chip warn">⚠️</span>。故本案不是「程序未啟動的空椅子」，是「程序已啟動、結果未出」。</p>
+</section>
+
+<section>
+  <h2><span class="n">二</span>媒體鑑識 · 三文本對稱（選配 D）</h2>
+  <p class="lead">先修正標的：這裡是三個文本，不是兩個。驅動分析的 C，連要不要算進鏡週刊帳上都無法確定。</p>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>代號</th><th>文本</th><th>出處／日期</th><th>立場</th><th>查證</th></tr></thead>
+    <tbody>
+      <tr><td><b>A</b></td><td>封面故事〈森崴案涉偽造假債權…〉文｜劉榮</td><td>鏡週刊 · 10/10</td><td>檢方尺，打郭台強</td><td><span class="chip ok">✅ 全文</span></td></tr>
+      <tr><td><b>B</b></td><td>游玉琦報導</td><td>鏡週刊 · 10/14</td><td>富崴反擊尺</td><td><span class="chip warn">⚠️ 原文未逐字核</span></td></tr>
+      <tr><td><b>C</b></td><td>署名 #樂樂〈台電說錢早付清…〉<br><span class="note">＝你實際餵進分析的那篇</span></td><td><b>出處不明</b></td><td>富崴反擊尺（更濃）</td><td><span class="chip gap">❓ 非鏡週刊落款</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">forensics 自己標：C 與 B「高度重合但無轉載聲明」。A↔B 可乾淨跑 D；A↔C 只能當「鏡週刊原稿 vs 不明聚合稿」看。</p>
+
+  <h3>同一把尺，四天內翻面（A vs B／C）</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>檢查軸</th><th>A（劉榮 10/10）</th><th>B／C（富崴版 10/14）</th></tr></thead>
+    <tbody>
+      <tr><td>標籤方向</td><td>全打郭台強：偽造假債權、特別背信、脫產、掏空、兩手策略、裝潢蟑螂（引盧景煌）</td><td>全打台電：已讀不回、死活不願協商；富崴＝背黑鍋</td></tr>
+      <tr><td>主詞歸位</td><td>釘決策者：「郭卻將最值錢的風機抵押給森崴」</td><td>移開台電：「台電選擇已讀不回」</td></tr>
+      <tr><td>追問對象</td><td>郭台強（多反問）；台電＝0 追問</td><td>台電（已讀不回）；富崴僅一句「61 億依據待釐清」</td></tr>
+      <tr><td>回應位置</td><td>給林坤煌、郭台強發言，但具體指控用反問逼答</td><td>給林坤煌大篇幅反駁</td></tr>
+      <tr><td>L1 密度</td><td><b>高</b>：登記逐項表列＋日期鏈</td><td><b>低</b>：幾乎全 L2＋L3 框架</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>標籤方向相反、主詞歸位相反、追問對象相反。<strong>這不是同一把尺量兩造，是兩把相反的尺，各量一次。</strong></p>
+
+  <h3>勝負手：把「已讀不回」丟進可證偽閘 → 假</h3>
+  <p>C 對台電最重的推力句「已讀不回／死活不願協商」，被同一批媒體自己報過的 L1 打臉：</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>反證 L1</th><th>日期</th></tr></thead>
+    <tbody>
+      <tr><td>台電公開發三點澄清（工程款九成已付、現場遭阻撓、所有權屬台電）</td><td class="mono">2026/9/29</td></tr>
+      <tr><td>爭議經工程會決議採「監督付款」，台電稱一直照辦</td><td class="mono">9/29 前</td></tr>
+      <tr><td>經濟部長龔明鑫公開稱「台電還在與富崴討論中」</td><td class="mono">10 月中</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>一個被指「已讀不回」的一方，在同一新聞週期發了三點聲明、走了工程會調解、部長出面說雙方在談——<strong>這根 L3 推力，三秒死在可證偽閘。</strong></p>
+</section>
+
+<section>
+  <h2><span class="n">三</span>媒體鑑識 · A 篇相層四閘</h2>
+  <p class="lead">對稱 ≠ 各打五十大板。同一把尺量 A，判決必須不同；不同的方式本身就是發現。</p>
+
+  <h3>A 的本錢在 L1（B／C 沒有這一層）</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>硬 L1 脊椎</th><th>日期</th></tr></thead>
+    <tbody>
+      <tr><td>台中市府登記：設定森崴 61 億（29 機艙／29 塔架／87 葉片，估值 144.86 億）；崴強 1.55 億（1 機艙／1 塔架／3 葉片，估值約 4.995 億）</td><td class="mono">契約起 8/26、登記 9/1</td></tr>
+      <tr><td>日期巧合鏈：台電發函接管 → 公證點交 → 抵押契約同起始日 → 同日森崴董事會通過 0.05 元公開收購</td><td class="mono">8/24→8/26、28→8/26</td></tr>
+      <tr><td>台電向台中市府申請塗銷兩筆登記</td><td class="mono">9/21</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>四閘</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>閘</th><th>A 命中</th><th>判讀</th></tr></thead>
+    <tbody>
+      <tr><td>主詞歸位</td><td><span class="chip ok">✅</span> 釘得準：郭台強本人置主詞位</td><td>A 做對的地方</td></tr>
+      <tr><td>可證偽閘</td><td><span class="chip ok">✅</span> 多數指控可驗（登記／公證／0.05 元收購）</td><td>與 B／C 相反：A 的核心指控過得了</td></tr>
+      <tr><td>對稱閘</td><td><span class="chip flag">❌</span> 尺只架郭台強，台電零追問</td><td><b>A 最大破綻</b></td></tr>
+      <tr><td>推力閘</td><td>命中，但多為「裝飾漆」型</td><td>刮掉不影響 L1</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>推力讀數（要分清楚的兩種）</h3>
+  <p>
+    <strong>裝飾漆（純標籤，記推力帳）</strong>：勒索、敲詐、擺爛、裝潢蟑螂——用情緒詞取代「阻擋施工」這個可查行為。<span class="chip flag">🚩</span> 預設共識詞：「更離譜的是」「讓台電傻眼的是」。<br>
+    <strong>不是純標籤</strong>：偽造假債權、特別背信、掏空、脫產——有 L1 支撐（登記／日期／承諾書／無金流），且文末收「一切有賴司法調查」、通篇用「恐／可能／疑雲」。掛 <span class="chip warn">⚠️</span>（未裁判），但不是「用綽號取代論證」。
+  </p>
+
+  <h3>行層：A 藏起來的那張椅子＝招標／監督鏈</h3>
+  <p>A 讓出面的全是台電（盧景煌開砲、曾文生入鏡、台電聲明），被反問的全是郭台強，<strong>對招標與監督決策鏈零追問</strong>：8 次流標後由股本約 27 億元之子公司承攬近 630 億標案、再追加 55 億，而工程會決議監督付款後下包商仍傳出沒拿到錢。一旦追問源頭，「台電＝受害者」人設就破了，所以這張椅子被藏在裝潢蟑螂敘事底下。</p>
+
+  <h3>對稱結論：不完整的方式不對稱</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th></th><th>B／C（你餵的）</th><th>A（封面故事）</th></tr></thead>
+    <tbody>
+      <tr><td>推力的角色</td><td><b>承重牆</b>：L1 稀薄，核心推力句可證偽為<b>假</b></td><td><b>裝飾漆</b>：推力刷在真牆上</td></tr>
+      <tr><td>拆掉推力後</td><td>敘事垮掉</td><td>牆還在</td></tr>
+      <tr><td>主詞歸位</td><td>挪去台電／全民</td><td>準確釘郭台強</td></tr>
+      <tr><td>自己的空椅子</td><td>藏私部門（脫產嫌疑）</td><td>藏公部門（招標／監督）</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">把兩篇壓成「反正都有立場、都別信」，才是對稱閘要擋的那種假平衡。</p>
+
+  <div class="verdict">
+    <b>黃金斷案（A 篇）</b>：這不是一則「台電對上郭台強」的新聞，是一次<b>用紮實的私部門 L1、換掉公部門招標問責</b>的現場——它把脫產嫌疑查到登記單據那一層，卻讓「27 億公司為何吃得下 630 億標案、8 次流標後誰核定決標、55 億追加憑什麼」這張椅子，在受害者敘事裡整張消失。
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">四</span>元層鑑識 · 執尺者遞歸梯</h2>
+  <p class="lead">每一層都在喊「執尺者也在尺上」，但每一層都只往上照一級、沒照到自己下面那級。</p>
+
+  <div class="ladder">
+    <div class="rung"><div class="lv">L0</div><div class="body"><b>選源</b>　餵進 C：無落款、核心推力（已讀不回）可證偽為假的聚合稿</div><div class="catch c-no">沒人 catch →本報告補</div></div>
+    <div class="rung"><div class="lv">L1</div><div class="body"><b>新聞敘事</b>　富崴＝背黑鍋、台電＝已讀不回（翻尺，非平衡）</div><div class="catch c-part">perplexity 部分</div></div>
+    <div class="rung"><div class="lv">L2</div><div class="body"><b>AI 執尺</b>　burden 壓在提問者身上，機關沉默只記「缺口」</div><div class="catch c-yes">Edward catch ✅</div></div>
+    <div class="rung"><div class="lv">L3</div><div class="body"><b>提問瞄準</b>　「納粹」標籤＋只指公部門</div><div class="catch c-no">本報告 catch</div></div>
+  </div>
+  <p>整條鏈的源頭在 <b>L0</b>：C 把主詞挪成「台電不協商」，提問者與 AI 都接著被挪過的主詞往下跑，於是一起把空椅子指向公部門、一起漏了私部門那張最深的椅子。不是推理錯，是<strong>進料被調包</strong>。</p>
+
+  <h3>perplexity 鑑識</h3>
+  <p><strong>做對（高水準第一遍）</strong>：L1／L2／L3 分層、逐句編號計數、四閘、拒收「納粹」標籤、把台電也架上同一把尺、可證偽錨帶日期、自檢並當場更正圖說誤計入分母（28→26）。</p>
+  <p><strong>兩個結構錯</strong>：（一）<b>單一文本捕獲</b>——在富崴反擊版裡打轉，未開選配 D／E 把同媒體反向封面故事、脫產結構調出來，把案子讀成比實際更對稱的「他說她說」。（二）<b>對稱閘跑了新聞、沒跑自己</b>——嚴格要求提問者的指控過證據關，卻把掌握資料與權力那方的沉默只記 ⚠️／❓，違反 v1.8「執尺者也在尺上」。附帶：把「搜不到不代表沒有」<b>單向部署</b>（只用來擋指控，沒同時用來說「我搜不到機關紀錄 ≠ 機關沒有產出紀錄的義務」）＝武器化。</p>
+  <p><strong>更正品質</strong>：被推一下後更正乾淨誠實，點名部會與四種機關應答形態。但<b>錯在第一遍、對在被挑戰後</b>；且更正版順著挑戰把椅子補到公部門，仍沒回頭修「單一文本捕獲」、沒補私部門的郭台強。</p>
+
+  <h3>提問思路鑑識</h3>
+  <p><strong>強核心</strong>：挑戰句「你可以質疑我，更應說明誰該出面負責」＝把對稱閘套回執尺者，是教科書級的「空椅子＋權責鎖」反射，且朝 AI 自己打——用人力補了 perplexity 漏掉的 meta 步驟。真正的武器不是事實，是<b>定位 burden 該落在哪</b>（文盲型思考者的標準動作：產不出文件，但指得出誰欠文件）。</p>
+  <p><strong>鏡子照回兩處</strong>：（一）開場「人民納稅給納粹嗎」＝標籤代論證＋假兩難，過不了自己要求的對稱閘；但這不否定結構挑戰，兩件事分開。（二）瞄準偏半格——跟 perplexity 一起被 C 框住，把空椅子主要指向公部門；而正中靶心的那格（招標源頭）兩個框都刻意不碰。沒對自己的 source selection 過對稱閘——對稱的起點是餵兩面。</p>
+
+  <h3>靶心重定位（你的公部門直覺是對的，位置要換）</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>公部門問責落點</th><th>判定</th></tr></thead>
+    <tbody>
+      <tr><td>「台電已讀不回」</td><td><span class="chip flag">假</span> C 餵的，三秒死在可證偽閘</td></tr>
+      <tr><td>「經濟部／國營司不說明監督成果」</td><td><span class="chip warn">半對</span> 監督付款為何失靈、成果該公開，成立</td></tr>
+      <tr><td><b>招標源頭：27 億公司憑何承攬 630 億？8 次流標決標合理性？55 億追加依據？</b></td><td><span class="chip ok">正中</span> A、B／C 兩框共同略過</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">五</span>查證清單（出門版）</h2>
+  <p class="lead">全程宣告句，零問句、零形容詞——行層三向「書面無果 → 查證清單」格式。靶心（招標／監督鏈）放最前。</p>
+
+  <div class="zone">
+    <h4>一、招標源頭（A、B／C 兩篇皆未碰）</h4>
+    <ul class="ck">
+      <li><span class="org">台電／政府電子採購網</span>｜<span class="doc">離岸二期招標公告、8 次流標紀錄、2020 決標公告</span>｜<span class="date">2020 年</span> <span class="chip ok">✅</span></li>
+      <li><span class="org">台電評選及審標單位</span>｜<span class="doc">富崴廠商資格審查、財務能力證明、評選委員會會議紀錄</span>｜<span class="date">得標時</span> <span class="chip gap">❓</span></li>
+      <li><span class="org">台電</span>｜<span class="doc">採購契約正本及附件（履約保證金、工程保留款、所有權與禁止設定條款）</span>｜<span class="date">簽約日</span> <span class="chip gap">❓</span></li>
+      <li><span class="org">台電／經濟部</span>｜<span class="doc">股本約 27 億、標案近 630 億之比例紀錄</span>｜<span class="date">決標時</span> <span class="chip warn">⚠️</span></li>
+    </ul>
+  </div>
+
+  <div class="zone">
+    <h4>二、追加預算與監督付款（監督鏈）</h4>
+    <ul class="ck">
+      <li><span class="org">台電／經濟部</span>｜<span class="doc">追加款 55 億 5693 萬 3697 元核定文、核決簽呈、法源</span>｜<span class="date">2026 年</span> <span class="chip warn">⚠️</span></li>
+      <li><span class="org">公共工程委員會</span>｜<span class="doc">富崴提付調解受理文、「監督付款」決議書</span>｜<span class="date">2026/9/29 前</span> <span class="chip warn">⚠️</span></li>
+      <li><span class="org">台電／工程會</span>｜<span class="doc">監督付款各期撥付紀錄、下包商請款與實際受款對帳</span>｜<span class="date">生效後迄今</span> <span class="chip gap">❓</span></li>
+      <li><span class="org">經濟部國營事業主管單位</span>｜<span class="doc">本案列管、查核及改善追蹤紀錄</span>｜<span class="date">財務危機公開後迄今</span> <span class="chip gap">❓</span></li>
+    </ul>
+  </div>
+
+  <div class="zone">
+    <h4>三、接管與資產保全</h4>
+    <ul class="ck">
+      <li><span class="org">台電</span>｜<span class="doc">接管風機發函及核決簽呈</span>｜<span class="date">2026/8/24</span> <span class="chip warn">⚠️</span></li>
+      <li><span class="org">台電／公證人</span>｜<span class="doc">設備項目、數量、存放地點公證點交紀錄（公證書）</span>｜<span class="date">2026/8/26、8/28</span> <span class="chip warn">⚠️</span></li>
+      <li><span class="org">台電</span>｜<span class="doc">與 Vestas 重新議約及採購決標文件</span>｜<span class="date">2026/7/20</span> <span class="chip ok">✅</span></li>
+      <li><span class="org">富崴</span>｜<span class="doc">6/3、6/27 兩度請求台電接管之書面</span>｜<span class="date">2026/6/3、6/27</span> <span class="chip warn">⚠️</span></li>
+    </ul>
+  </div>
+
+  <div class="zone">
+    <h4>四、私部門（本案最深一格，B／C 篇略過）</h4>
+    <ul class="ck">
+      <li><span class="org">台中市政府（動產擔保登記）</span>｜<span class="doc">設定森崴 61 億登記原件（標的、權利人、債權性質）</span>｜<span class="date">契約起 8/26、登記 9/1</span> <span class="chip ok">✅</span></li>
+      <li><span class="org">台中市政府</span>｜<span class="doc">設定崴強 1.55 億登記原件</span>｜<span class="date">同上</span> <span class="chip ok">✅</span></li>
+      <li><span class="org">富崴／森崴／崴強</span>｜<span class="doc">借款契約、匯款紀錄、董事會設定抵押決議</span>｜<span class="date">設定前</span> <span class="chip gap">❓</span></li>
+      <li><span class="org">台中市政府</span>｜<span class="doc">台電申請塗銷兩筆登記之收文及處理狀態</span>｜<span class="date">申請 2026/9/21</span> <span class="chip warn">⚠️</span></li>
+      <li><span class="org">公開資訊觀測站／金管會</span>｜<span class="doc">胡正杰每股 0.05 元公開收購說明書、森崴審議會及董事會通過紀錄</span>｜<span class="date">提出 8/17、通過 8/26</span> <span class="chip ok">✅</span></li>
+      <li><span class="org">法院</span>｜<span class="doc">富崴破產聲請狀及受理案號</span>｜<span class="date">2026 年 9 月</span> <span class="chip gap">❓</span></li>
+    </ul>
+  </div>
+
+  <div class="zone">
+    <h4>五、結案權機關對照（誰有權結、程序是否已啟動）</h4>
+    <ul class="ck">
+      <li><span class="org">金管會證期局</span>｜權源《證券交易法》｜<span class="date">已啟動：2026/10/6 收檢舉、發函森崴</span> <span class="chip ok">✅</span></li>
+      <li><span class="org">檢調／司法</span>｜權源刑法（偽造文書、背信、特別背信）｜<span class="date">部長稱配合調查；立案案號 ❓</span> <span class="chip warn">⚠️</span></li>
+      <li><span class="org">審計部</span>｜權源審計法（國營採購與決算查核）｜<span class="date">狀態 ❓</span> <span class="chip gap">❓</span></li>
+      <li><span class="org">監察院</span>｜權源監察法（招標、監督失職之糾彈）｜<span class="date">狀態 ❓</span> <span class="chip gap">❓</span></li>
+      <li><span class="org">立法院經濟委員會／預算中心</span>｜權源預算審議權（台電預算及追加）｜<span class="date">狀態 ❓</span> <span class="chip gap">❓</span></li>
+    </ul>
+  </div>
+
+  <div class="anchor">
+    <p class="lab">可證偽錨（掛結案權程序）</p>
+    <p style="margin:6px 0 0">到 <b>2026/11/30</b>：若金管會對森崴 61 億抵押與金流出具具體處分、或檢調有具體偵查作為 → <b>私部門結案權軸</b>運作中；若審計部或監察院就招標與監督付款啟動調查 → <b>公部門問責軸</b>同時運作。兩軸可並存。到期若僅「看不到資料」，結果維持 ❓，不得把缺口冒充事實。</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">收尾</span>紀律</h2>
+  <p>本報告屬「書面無果」版：只記書面有無、程序到哪，不替任一方斷勝負、不判違法。第一、二區（招標與監督）查證多為 <span class="chip gap">❓</span>，正是兩篇報導共同未追的空椅子；第四區私部門硬 L1 多為 <span class="chip ok">✅</span>（登記原件），但債權與金流（<span class="chip gap">❓</span>）未取得前，脫產為嫌疑、非認定。所有標籤僅記推力讀數與缺失 L1，不碰動機、不寫「操弄／帶風向／蓄意」。</p>
+  <p class="note"><b>自檢</b>：A↔C 以「鏡週刊原稿 vs 不明聚合稿」處理，未僭稱 A↔B 已逐字對跑；B 原文是否 L3 翻尺維持 ❓。斷案主詞換成對立光譜之同結構案仍成立（付款／沒簽字不能代替完整權利證據，對台電與富崴同一標準）。</p>
+</section>
+
+<footer>
+  台電離岸二期・富崴風機抵押案 — 結構鑑識報告　v1.0　2026-10-17<br>
+  news-forensics v1.8（選配 D）｜掃結構不是人｜標記＝探針＝下一步驗證方向
+</footer>
+
+</div>
+</body>
+</html>

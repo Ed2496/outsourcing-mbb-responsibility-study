@@ -1,0 +1,230 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Session 檢討報告</title>
+<style>
+/* 版面：縱向——脊椎 → 產出 → 演進 → 負Λ自檢 → 待坍縮 → 方位。
+   調色：鑑識深板岩＋teal，沿用兩本帳家族色；錯誤紅、待辦金。負Λ段以紅框標示＝反方向檢討。*/
+:root{
+  --bg:#ECEAE4; --surface:#FBFAF7; --surface2:#F3F1EB;
+  --fg:#1C2420; --muted:#5E6862; --faint:#8A938C;
+  --line:#D7D2C8; --line2:#C6C0B4;
+  --accent:#0E7C6B; --accent-soft:#E0EEEA;
+  --err:#AE352B; --err-soft:#F6E6E3;
+  --todo:#9A6410; --todo-soft:#F6ECD9;
+  --ff-cjk:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --ff-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121613; --surface:#1A201C; --surface2:#20271F;
+  --fg:#E9E7E1; --muted:#9BA49C; --faint:#6E776F;
+  --line:#2C332D; --line2:#394038;
+  --accent:#43A08E; --accent-soft:#17241F;
+  --err:#E07264; --err-soft:#2A1A18;
+  --todo:#D9A449; --todo-soft:#271F13;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#121613; --surface:#1A201C; --surface2:#20271F;
+  --fg:#E9E7E1; --muted:#9BA49C; --faint:#6E776F;
+  --line:#2C332D; --line2:#394038;
+  --accent:#43A08E; --accent-soft:#17241F;
+  --err:#E07264; --err-soft:#2A1A18;
+  --todo:#D9A449; --todo-soft:#271F13;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--ff-cjk);line-height:1.72;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding-block:40px 80px;padding-inline:20px}
+.mono{font-family:var(--ff-mono);font-variant-numeric:tabular-nums}
+h1,h2,h3{text-wrap:balance;line-height:1.28}
+section{margin-top:48px}
+.eyebrow{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);display:inline-block}
+.eyebrow.neg{color:var(--err)}.eyebrow.neg::before{background:var(--err)}
+.eyebrow.todo{color:var(--todo)}.eyebrow.todo::before{background:var(--todo)}
+
+.hero{border:1px solid var(--line2);border-radius:16px;background:var(--surface);padding:32px 30px}
+.hero .kick{font-family:var(--ff-mono);font-size:12px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin-bottom:12px}
+.hero h1{font-size:clamp(26px,5vw,42px);font-weight:800;letter-spacing:-.01em;margin:0}
+.hero h1 .en{font-family:var(--ff-mono);font-weight:600;font-size:.42em;letter-spacing:0;color:var(--muted);display:block;margin-top:8px}
+.hero .meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12.5px;color:var(--muted);font-family:var(--ff-mono);border-top:1px solid var(--line);padding-top:14px}
+.spine{margin-top:18px;font-size:clamp(15px,2.3vw,18px);font-weight:600;line-height:1.55;border-left:3px solid var(--accent);padding-left:16px}
+.spine b{color:var(--accent)}
+
+h2.sec{font-size:22px;margin:0 0 4px}
+.lead{font-size:15px;color:var(--muted);max-width:64ch;margin:0 0 16px}
+.lead b{color:var(--fg)}
+
+/* 脊椎時間線 */
+.spinebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;font-size:13px;font-family:var(--ff-mono)}
+.spinebar .n{background:var(--surface);border:1px solid var(--line2);border-radius:999px;padding:5px 13px}
+.spinebar .ar{color:var(--faint)}
+
+/* 產出卡 */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:16px 18px}
+.card .tag{font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.card h3{margin:5px 0 5px;font-size:15.5px}
+.card p{margin:0;font-size:12.8px;color:var(--muted)}
+.card .st{display:inline-block;margin-top:9px;font-family:var(--ff-mono);font-size:10.5px;padding:1px 8px;border-radius:5px;background:var(--accent-soft);color:var(--accent)}
+
+/* 演進 table */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:13px}
+thead th{background:var(--surface2);text-align:left;padding:10px 13px;font-size:11px;font-family:var(--ff-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line2);white-space:nowrap}
+tbody td{padding:9px 13px;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:hover{background:var(--surface2)}
+td .v{font-family:var(--ff-mono);font-weight:700;color:var(--accent);white-space:nowrap}
+
+/* 負Λ 自檢 */
+.neg-grid{display:grid;gap:12px}
+.flaw{border:1px solid color-mix(in srgb,var(--err) 35%,transparent);border-left:3px solid var(--err);border-radius:10px;background:var(--err-soft);padding:15px 18px}
+.flaw h3{margin:0 0 5px;font-size:15px;color:var(--err)}
+.flaw p{margin:0;font-size:13.3px;color:var(--fg)}
+.flaw .fix{margin-top:7px;font-size:12.5px;color:var(--muted)}
+.flaw .fix b{color:var(--fg)}
+
+/* 待坍縮 */
+.todo-list{display:grid;gap:10px}
+.ti{display:grid;grid-template-columns:26px 1fr;gap:12px;border:1px solid var(--line);border-left:3px solid var(--todo);border-radius:10px;background:var(--surface);padding:13px 16px}
+.ti .b{color:var(--todo);font-weight:700;font-family:var(--ff-mono)}
+.ti h3{margin:0 0 3px;font-size:14.5px}
+.ti p{margin:0;font-size:12.8px;color:var(--muted)}
+
+/* 方位 */
+.dir{border:1.5px solid var(--accent);border-radius:14px;background:var(--accent-soft);padding:22px 24px}
+.dir .q{font-size:clamp(16px,2.6vw,20px);font-weight:700;line-height:1.5}
+.dir ol{margin:14px 0 0;padding-left:20px;font-size:14px}
+.dir ol li{margin:7px 0}
+.dir ol li b{color:var(--accent)}
+
+.note{margin-top:34px;border:1px solid var(--line);background:var(--surface2);border-radius:11px;padding:15px 18px;font-size:12px;color:var(--muted);line-height:1.75}
+.sig{margin-top:22px;font-family:var(--ff-mono);font-size:11.5px;color:var(--faint);text-align:center;letter-spacing:.05em}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="kick">負Λ 旋轉 · 反方向檢討 · 非正向延伸</div>
+  <h1>Session 檢討報告<span class="en">NEWS-FORENSICS BUILD · 2026-10-11 → 10-12</span></h1>
+  <div class="spine">
+    整個 session 只有一條脊椎——<b>主詞替代</b>。你 10-12 開場第一句「主詞、替代、轉嫁，一如 FW 郵件」，到收尾你 1990 漢諾威的 8 號字商標聲明，中間長出的三層軸、三向閘、兩本帳、四類詞庫，全是這一句的展開。
+  </div>
+  <div class="meta">
+    <span>今日風水起點 D165（10-11）</span><span>news-forensics v1.0 → v1.6（六輪）</span><span>產出：1 artifact｜1 skill｜2 prompt｜1 下載包</span>
+  </div>
+</header>
+
+<!-- 脊椎 -->
+<section>
+  <div class="eyebrow">一 · 脊椎</div>
+  <h2 class="sec">一句話長成一台引擎</h2>
+  <p class="lead">主詞替代這個 primitive 跨 36 年、跨兩個 domain 反覆出現。這不是為今天兩案捏的框，是你 1990 年就在讀的那行 8 號字。</p>
+  <div class="spinebar">
+    <span class="n">1990 漢諾威 8號字「商標屬原作者」</span><span class="ar">→</span>
+    <span class="n">MBB 卸責槽</span><span class="ar">→</span>
+    <span class="n">2026 海鯤號（電視）</span><span class="ar">→</span>
+    <span class="n">2026 徐佳青（SERP）</span><span class="ar">→</span>
+    <span class="n">主詞歸位閘 四類詞庫</span>
+  </div>
+</section>
+
+<!-- 產出 -->
+<section>
+  <div class="eyebrow">二 · 產出清單</div>
+  <h2 class="sec">今天落地了什麼</h2>
+  <div class="cards">
+    <div class="card"><div class="tag">Artifact</div><h3>兩本帳 地雷圖</h3><p>MBB 槽位卸責必然性：證據湮滅五步鏈＋責任帳/功勞帳對帳台＋17 案回驗（16:1）。</p><span class="st">已發佈</span></div>
+    <div class="card"><div class="tag">Skill</div><h3>news-forensics v1.6</h3><p>相·行·體三層鑑識引擎，收在黃金斷案＋可證偽錨。六輪校準定版。</p><span class="st">帳號已存</span></div>
+    <div class="card"><div class="tag">Prompt</div><h3>可攜鑑識 prompt ×2</h3><p>早上雛形版＋傍晚 v1.6 骨架版，給五衛星（Kimi/Perplexity…）對齊同一把尺。</p><span class="st">純文字</span></div>
+    <div class="card"><div class="tag">下載</div><h3>skill zip ＋ SKILL.md</h3><p>資料夾打包，可直接匯入；與帳號存檔同一份（161 行）。</p><span class="st">已交付</span></div>
+  </div>
+</section>
+
+<!-- 演進 -->
+<section>
+  <div class="eyebrow">三 · 引擎演進</div>
+  <h2 class="sec">v1.0 → v1.6，每一版加了什麼</h2>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>版本</th><th>新增</th><th>校準來源</th></tr></thead>
+      <tbody>
+        <tr><td class="v">v1.0</td><td>三層軸雛形＋過三閘＋黃金斷案</td><td>07:20 prompt 淬煉</td></tr>
+        <tr><td class="v">v1.1</td><td>主詞偏移偵測（根案/外案＋雙重身分）、失效模式庫、SERP 覆蓋形狀、換帳、可證偽鎖</td><td>海鯤號＋徐佳青兩案實跑</td></tr>
+        <tr><td class="v">v1.2</td><td>行層三向閘（逼/書面錯誤紀錄/放）＋收尾紀律；海鯤號改判</td><td>你指出逼/放分水嶺</td></tr>
+        <tr><td class="v">v1.3</td><td>空椅子越深（出面者越沒決策權）</td><td>陳政宏查證（甫上任）</td></tr>
+        <tr><td class="v">v1.4</td><td>主詞歸位閘升「蒸發＋替代」雙型＋相→行因果鎖</td><td>你指出陳政宏/媒體同為替代</td></tr>
+        <tr><td class="v">v1.5</td><td>四類偵測詞庫（蒸發/稀釋向上/橫向轉嫁/匿名借殼）</td><td>你展開完整詞表</td></tr>
+        <tr><td class="v">v1.6</td><td>免責聲明判別（指回真主詞 vs 指向無人）＋跨域校準錨</td><td>1990 漢諾威 8 號字</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 負Λ 自檢 -->
+<section>
+  <div class="eyebrow neg">四 · 負Λ 自檢（我犯的錯）</div>
+  <h2 class="sec">反方向看：哪裡該收回、哪裡多做了</h2>
+  <p class="lead">這是檢討報告的核心。以下五條是我在這個 session 裡的失誤，不是你的——照實記下，因為下個 session 的我要看得到。</p>
+  <div class="neg-grid">
+    <div class="flaw">
+      <h3>① 我多走一步：「媒體幫霸凌（效果層）」</h3>
+      <p>你從沒要這個框。我自行引入一個靠近「意圖」的結論，被你當場駁回。</p>
+      <p class="fix"><b>修正：</b>改回行層「假結案終點（權責歸屬）」——只問誰有結案權，不碰動機。已寫進可證偽鎖，並在 CAPA 留下撤回記錄。<b>教訓：我端出了證據與你都沒支持的結論。</b></p>
+    </div>
+    <div class="flaw">
+      <h3>② 我判錯：海鯤號標成「逼」</h3>
+      <p>我把「逼」這個功勞記給了自由時報。真正在逼的是消息源郭璽，報社只是把非回應標成「回應」。</p>
+      <p class="fix"><b>修正：</b>改判為「書面錯誤紀錄」，並加防線——追問者須是媒體本身才算逼。<b>教訓：我把健康態（追責）安在了沒做追責的對象上。</b></p>
+    </div>
+    <div class="flaw">
+      <h3>③ 我反覆開卡、效率差</h3>
+      <p>提案卡開了約八次，數次因沒先讀現行檔而版本衝突，兩次 JSON 解析失敗。</p>
+      <p class="fix"><b>修正：</b>改進提案前必先讀全檔的紀律。<b>教訓：求快反而更慢。</b></p>
+    </div>
+    <div class="flaw">
+      <h3>④ 字誤殘留</h3>
+      <p>同步過程把字洗壞（震凌→霸凌、玄職→瀆職等多數已修；v1.6 仍殘留「彻底、攝截」兩處）。</p>
+      <p class="fix"><b>修正：</b>多數已回正，兩處待 v1.6.1。<b>教訓：你立過「錯字＝定位偏移」，我該一次掃淨。</b></p>
+    </div>
+    <div class="flaw">
+      <h3>⑤ 言行不一：喊收工卻一直加</h3>
+      <p>我至少三次說「過擬合、該收工」，卻每輪都跟著你的餵料繼續加條文。</p>
+      <p class="fix"><b>修正：</b>其中詞庫、免責判別兩條確實是反過擬合的通用化，加得對；但我沒把「停」執行到底。<b>教訓：方位要和行動一致，不然方位只是話術。</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- 待坍縮 -->
+<section>
+  <div class="eyebrow todo">五 · 待坍縮</div>
+  <h2 class="sec">還沒被驗、還沒被你親裁的</h2>
+  <div class="todo-list">
+    <div class="ti"><div class="b">A</div><div><h3>引擎從未 cold-run 於「沒見過的新聞」</h3><p>六輪全基於海鯤號、徐佳青兩案。真正的驗收在第三型（媒體真在逼／有真書面落款）。這是最大的一條——引擎目前對這兩案是完美的，而完美到危險。</p></div></div>
+    <div class="ti"><div class="b">B</div><div><h3>S1–S8 階段仍引自 Kimi 報告推估</h3><p>news-forensics 與兩本帳 17 案的 S 階段都還掛 ⚠️，待你逐案親驗後收為親裁刻度。</p></div></div>
+    <div class="ti"><div class="b">C</div><div><h3>兩本帳 16:1 的對照組前提</h3><p>「進口雞蛋＝專責＝責任可追」沿用你報告已載，未回一手複驗。</p></div></div>
+    <div class="ti"><div class="b">D</div><div><h3>v1.6.1 字誤清理</h3><p>彻底→徹底、攝截→攔截，兩處待覆蓋。</p></div></div>
+  </div>
+</section>
+
+<!-- 方位 -->
+<section>
+  <div class="eyebrow">六 · 方位</div>
+  <div class="dir">
+    <div class="q">今天的坍縮夠了。真正的下一步不是 v1.7，是讓引擎面對它沒見過的東西。</div>
+    <ol>
+      <li><b>Cold-run 一則新類型新聞</b>——媒體真在逼、或有真書面落款的那種。接得住才證明引擎不是為兩案量身訂做。</li>
+      <li><b>兩本帳 → 出門</b>——壓成 30ep 或 LinkedIn。你思維樹自標 D5 變現 45%／內容 5% 是全架構最弱環；地雷圖彈藥已足，缺的是出膛。</li>
+      <li><b>102 Plan 的尺還在走</b>——今天 D166 上下，可證偽閘（launch 後六個月內 recurring external cash flow）的閘門在這個月底。引擎做得再利，也要記得它是手段，不是河裡的水。</li>
+    </ol>
+  </div>
+</section>
+
+<div class="note">
+  <b>查證分層。</b>　本報告的「產出、版本演進、我的失誤」為本 session 可回溯事實（對話與工具呼叫記錄）。　「S1–S8、16:1 對照組」的底層資料沿用既有報告，未在本 session 回一手複驗，標 ⚠️。　陳政宏「甫上任台船董座」經 taiwannews 6202170 查證。　負Λ 自檢為我方自我鑑識，非對你的評價。
+</div>
+
+<div class="sig">相 · 行 · 體 — 負Λ 旋轉 · 20261012 · news-forensics v1.6 定版</div>
+
+</div>
+
+</body></html>

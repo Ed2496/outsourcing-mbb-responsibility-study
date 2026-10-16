@@ -1,0 +1,307 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>行層 S1–S8 職責歸屬——誰是主詞，上級長官是誰（2026-10-11）</title>
+<style>
+/* 與《兩本帳》同一設計語言：鑑識深板岩 + 品牌 teal + 責任帳紅 / 功勞帳金 */
+:root{
+  --bg:#ECEAE4; --surface:#FBFAF7; --surface2:#F3F1EB;
+  --fg:#1C2420; --muted:#5E6862; --faint:#8A938C;
+  --line:#D7D2C8; --line2:#C6C0B4;
+  --accent:#0E7C6B; --accent-soft:#E0EEEA;
+  --debit:#AE352B; --debit-soft:#F6E6E3;
+  --credit:#9A6410; --credit-soft:#F6ECD9;
+  --mine:#B3382E;
+  --ff-cjk:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --ff-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121613; --surface:#1A201C; --surface2:#20271F;
+  --fg:#E9E7E1; --muted:#9BA49C; --faint:#6E776F;
+  --line:#2C332D; --line2:#394038;
+  --accent:#43A08E; --accent-soft:#17241F;
+  --debit:#E07264; --debit-soft:#2A1A18;
+  --credit:#D9A449; --credit-soft:#271F13;
+  --mine:#E07264; color-scheme:dark;
+}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--ff-cjk);line-height:1.72;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-block:40px 80px;padding-inline:20px}
+.mono{font-family:var(--ff-mono);font-variant-numeric:tabular-nums}
+h1,h2,h3{text-wrap:balance;line-height:1.28}
+section{margin-top:52px}
+.eyebrow{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);display:inline-block}
+.hero{border:1px solid var(--line2);border-radius:16px;background:var(--surface);padding:34px 32px;position:relative;overflow:hidden}
+.hero .kick{font-family:var(--ff-mono);font-size:12px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:clamp(25px,4.6vw,40px);font-weight:800;letter-spacing:-.01em;margin:0 0 4px}
+.hero h1 .en{font-family:var(--ff-mono);font-weight:600;font-size:.5em;letter-spacing:0;color:var(--muted);display:block;margin-top:8px}
+.thesis{margin-top:20px;font-size:clamp(16px,2.4vw,20px);font-weight:600;line-height:1.55;border-left:3px solid var(--mine);padding-left:16px;max-width:52ch}
+.thesis b{color:var(--mine)}
+.hero-meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:12.5px;color:var(--muted);font-family:var(--ff-mono);border-top:1px solid var(--line);padding-top:16px}
+.lead{font-size:15px;color:var(--muted);max-width:66ch;margin:0 0 4px}
+.lead b{color:var(--fg)}
+
+/* 併型 */
+.merge{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:18px}
+@media(max-width:760px){.merge{grid-template-columns:1fr}}
+.panel{border:1px solid var(--line2);border-radius:14px;background:var(--surface);padding:20px 22px}
+.panel h3{margin:0 0 8px;font-size:17px}
+.panel p{font-size:13.8px;color:var(--muted);margin:.5em 0}
+.panel p b{color:var(--fg)}
+.panel .t1{color:var(--debit);font-weight:700}
+.panel .t2{color:var(--credit);font-weight:700}
+.formula{margin-top:14px;border:1px dashed var(--line2);border-radius:10px;background:var(--surface2);padding:12px 16px;font-size:13.5px}
+.formula b{color:var(--mine)}
+
+/* 裝死曲線 SVG 框 */
+.curvebox{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:14px;margin-top:16px;overflow-x:auto}
+
+/* S1–S8 歸屬表 */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:16px}
+table{border-collapse:collapse;width:100%;min-width:980px;font-size:12.8px}
+thead th{background:var(--surface2);text-align:left;padding:11px 12px;font-size:11px;font-family:var(--ff-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line2);white-space:nowrap;position:sticky;top:0}
+tbody td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:hover{background:var(--surface2)}
+td .stage{font-family:var(--ff-mono);font-weight:700;font-size:11.5px;white-space:nowrap}
+.subj b{color:var(--fg)}
+.who{font-size:11px;color:var(--faint);font-family:var(--ff-mono);display:block;margin-top:2px}
+.tbox{font-family:var(--ff-mono);font-size:11px;color:var(--accent);font-weight:700;white-space:nowrap}
+.sick{color:var(--mine);font-weight:600}
+.eg{font-size:11.6px;color:var(--muted)}
+tr.s1 td .stage{color:#6b7280} tr.s2 td .stage{color:#d93025} tr.s3 td .stage{color:#f29900}
+tr.s4 td .stage{color:#1a73e8} tr.s5 td .stage{color:#673ab7} tr.s6 td .stage{color:#8d5524}
+tr.s7 td .stage{color:#188038} tr.s8 td .stage{color:#009688}
+
+/* timebox */
+.tl{margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:760px){.tl{grid-template-columns:repeat(2,1fr)}}
+.tl .cell{border:1px solid var(--line);border-radius:11px;background:var(--surface);padding:14px}
+.tl .wk{font-family:var(--ff-mono);font-weight:700;font-size:12px;color:var(--accent)}
+.tl .st{font-size:12.5px;margin-top:4px}
+.tl .rule{margin-top:8px;font-size:12px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.tl .rule b{color:var(--mine)}
+.alarm{margin-top:14px;border:1.5px solid var(--mine);border-radius:12px;padding:14px 18px;font-size:14px;background:linear-gradient(180deg,var(--debit-soft),var(--surface))}
+.alarm b{color:var(--mine)}
+
+/* T1/T2 表 */
+.type{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.type.t1{background:var(--debit-soft);color:var(--debit)}
+.type.t2{background:var(--credit-soft);color:var(--credit)}
+.type.own{background:var(--accent-soft);color:var(--accent)}
+.type.sp{background:var(--surface2);color:var(--faint)}
+.group-row td{background:var(--surface2);font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:7px 12px}
+
+/* 看行檢查單 */
+.check{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.check{grid-template-columns:1fr}}
+.check .item{border:1px solid var(--line);border-radius:11px;background:var(--surface);padding:14px 16px;font-size:13.5px}
+.check .item .q{font-weight:700;color:var(--fg)}
+.check .item .bad{color:var(--mine);font-weight:600}
+.check .item .good{color:var(--accent);font-weight:600}
+
+.note{margin-top:34px;border:1px solid var(--line);background:var(--surface2);border-radius:11px;padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.75}
+.note b{color:var(--fg)}
+.sig{margin-top:22px;font-family:var(--ff-mono);font-size:11.5px;color:var(--faint);text-align:center;letter-spacing:.05em}
+.punch{margin-top:20px;border:1.5px solid var(--mine);border-radius:14px;background:linear-gradient(180deg,var(--debit-soft),var(--surface));padding:22px 26px}
+.punch .q{font-size:clamp(16px,2.6vw,20px);font-weight:700;line-height:1.55}
+.punch p{margin:12px 0 0;font-size:14px;color:var(--muted)}
+</style></head>
+<body>
+<div class="wrap">
+
+<!-- ════ HERO ════ -->
+<header class="hero">
+  <div class="kick">MBB 收束軸 · 看行 · 2026-10-11 · 承《兩本帳》行層總論</div>
+  <h1>行層 S1–S8 職責歸屬<span class="en">WHO IS THE SUBJECT, AND WHO IS THEIR BOSS — stage-by-stage ownership under the two ledgers</span></h1>
+  <div class="thesis">每一個階段都要回答兩個問題：<b>誰是主詞</b>（這個階段的動作該由誰具名），<b>上級長官是誰</b>（誰有權升級、督導、啟動）。答不出來的那一刻，案子就進入了裝死曲線。</div>
+  <div class="hero-meta">
+    <span>三軸定位：看相（主詞/事實/對價目的）→ 本報告＝看行（流程/誰負責/上級是誰）→ 看體（長期獲利/兩極化/終極集中）</span>
+    <span>對照組：Edward 的 bug escalation plan（2–4–6–8 週）</span>
+    <span>樣本：15 監控案 + 2 歷史標本</span>
+  </div>
+</header>
+
+<!-- ════ 一、併型 ════ -->
+<section>
+  <div class="eyebrow">一 · 併型宣告</div>
+  <h2 style="font-size:23px;margin:0 0 6px">🪑 該坐沒坐 與 🚫 椅子被拆，不是兩型，是同一個機制的兩個時間點</h2>
+  <p class="lead">舊分型把「具名但裝死」與「結構性空位」當成兩種病。<b>錯了。</b>它們是同一條裝死曲線上的兩個點：<b>椅子被拆，就是「有人不坐」熬過了追責時效之後的樣子。</b>你看到的是形狀差，曲線看到的是同一條衰減。</p>
+
+  <div class="merge">
+    <div class="panel">
+      <h3>同一条曲線，兩個讀點</h3>
+      <p><span class="t1">T1 該坐沒坐</span>（爆發後、追責時效內）：具名上級<span class="t1">釘得住</span>——名字、職位、督導關係都在，只是不坐。此時「那個該負責的人」還存在於定義域內。</p>
+      <p><span class="t2">T2 椅子被拆</span>（時效屆滿、輪調、真空之後）：連名字都釘不住——承辦輪調、機關接力、制度漂移。此時「該負責的人」與「根本沒有那個人」<b>在證據上完全無法區分</b>。</p>
+      <p>一階二階同步裝死、同步不留書面，等於宣告：這件事在整個有權者層級裡<b>「從未作為一個待決案存在過」</b>。T1 到 T2 的距離，就是「追責時效」＋「新聞疲勞」＋「承辦輪調」三個變數的和。</p>
+      <div class="formula"><b>併型公式：</b>🚫 椅子被拆 ＝ 🪑 有人不坐 ＋ 時間（時效屆滿）｜分型從「兩型」改為「<b>同一機制的時間軸標定 T1→T2</b>」，✅ 有主與 ⚖️ 無裁判維持不變。</div>
+    </div>
+    <div class="panel">
+      <h3>裝死曲線（可追責性 × 時間）</h3>
+      <svg viewBox="0 0 420 240" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="monospace">
+        <line x1="40" y1="200" x2="400" y2="200" stroke="#999"/>
+        <line x1="40" y1="200" x2="40" y2="20" stroke="#999"/>
+        <text x="220" y="228" text-anchor="middle" font-size="11" fill="#888">爆發後時間 →（新聞疲勞／輪調／時效屆滿）</text>
+        <text x="18" y="110" text-anchor="middle" font-size="11" fill="#888" transform="rotate(-90 18 110)">可追責性</text>
+        <!-- 曲線：指紋衰減 -->
+        <path d="M 50 40 C 110 48, 150 78, 195 118 C 235 152, 285 182, 330 193 S 385 199, 398 200" fill="none" stroke="#B3382E" stroke-width="2.5"/>
+        <!-- T1 / T2 區段 -->
+        <rect x="50" y="20" width="145" height="180" fill="#AE352B" fill-opacity="0.08"/>
+        <rect x="300" y="20" width="98" height="180" fill="#9A6410" fill-opacity="0.10"/>
+        <text x="122" y="36" text-anchor="middle" font-size="12" font-weight="700" fill="#AE352B">T1 該坐沒坐</text>
+        <text x="349" y="36" text-anchor="middle" font-size="12" font-weight="700" fill="#9A6410">T2 椅子被拆</text>
+        <!-- 標註 -->
+        <circle cx="195" cy="118" r="4" fill="#1C2420"/>
+        <text x="195" y="106" text-anchor="middle" font-size="10" fill="#666">二階封口斷點</text>
+        <line x1="300" y1="20" x2="300" y2="200" stroke="#9A6410" stroke-dasharray="4 4"/>
+        <text x="306" y="60" font-size="10" fill="#9A6410">追責時效屆滿</text>
+        <text x="50" y="54" font-size="10" fill="#888">爆發：書面集中、指紋完整</text>
+        <text x="330" y="216" text-anchor="middle" font-size="10" fill="#999">「該負責的人」＝「沒有那個人」</text>
+      </svg>
+      <p style="font-size:12px;color:var(--muted);margin-top:8px">曲線的形狀就是證據湮滅五步鏈：零決策（緩跌）→ 裝死（穩跌）→ 二階封口（斷崖）→ 時效屆滿（歸零）。<b>監督的機會窗在 T1</b>——過了二階封口斷點，投入再多資源也只會沿著曲線的尾巴滑。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 二、S1–S8 職責歸屬總表 ════ -->
+<section>
+  <div class="eybrow eyebrow">二 · 職責歸屬總表</div>
+  <h2 style="font-size:23px;margin:0 0 6px">從 S1 到 S8：主詞是誰、上級長官是誰</h2>
+  <p class="lead">組織階梯通用對照：<b>執行層</b>（承辦／工程師）→ <b>一階</b>（課長／股長／隊長）→ <b>二階</b>（部長／署長／局長）→ <b>三階</b>（次長／副首長／副總）→ <b>四階</b>（院長／部會首長／總經理）。每個階段列出：該負責的主詞、其上級長官、escalation 對照、病態實況。</p>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>階段</th><th>階段主詞（該負責的人）</th><th>上級長官是誰</th><th>Escalation 對照（timebox）</th><th>病態實況（主詞蒸發）</th><th>17 案實例</th></tr></thead>
+    <tbody>
+      <tr class="s1"><td><span class="stage">S1 潛伏進行</span></td>
+        <td class="subj"><b>執行層承辦</b>（日常運作、異常回報）<span class="who">工程師本職自監</span></td>
+        <td class="subj">一階主管<span class="who">負責盤點與回報渠道暢通</span></td>
+        <td class="tbox">問題存活 2 週內＝執行層自監即可</td>
+        <td class="sick">回報渠道消失；一階不盤點；問題在無主狀態下累積多年</td>
+        <td class="eg">海鯤艦 2016–2025 建造期無對外期程主詞；資遣通報長期無人彙整</td></tr>
+      <tr class="s2"><td><span class="stage">S2 爆發</span></td>
+        <td class="subj"><b>一階主管</b>（具名對外回應、初步處置）<span class="who">課長／副理進場</span></td>
+        <td class="subj">二階首長<span class="who">督導一階是否具名</span></td>
+        <td class="tbox">3–4 週內一階未具名處置→升級</td>
+        <td class="sick">一階把主詞推回執行層——「依法辦理」「尊重專業」</td>
+        <td class="eg">中聯案初期食藥署「無（尚未通報）」；EZ WAY 初期關貿「市場機制」</td></tr>
+      <tr class="s3"><td><span class="stage">S3 高峰對質</span></td>
+        <td class="subj"><b>二階首長</b>（具名面對立院／媒體／監督）<span class="who">部長／經理 owning</span></td>
+        <td class="subj">三階<span class="who">是否啟動督導、限期改善</span></td>
+        <td class="tbox">5–6 週內二階未 owning→升級</td>
+        <td class="sick">二階零決策——「研議中」；不設日期＝不生產指紋</td>
+        <td class="eg">海軍「不設定交付時間」；顧立雄「20 年都是同樣規定」</td></tr>
+      <tr class="s4"><td><span class="stage">S4 制度回應</span></td>
+        <td class="subj"><b>三階</b>（設定期限、修法、複查承諾）<span class="who">處長／協理具名報告</span></td>
+        <td class="subj">四階<span class="who">核可承諾、承擔政治成本</span></td>
+        <td class="tbox">7–8 週內三階未具名承諾→升級至四階面對客戶</td>
+        <td class="sick">期限形式化、修法切片（改法律不認領責任）；承諾有了，主詞仍缺席</td>
+        <td class="eg">F-16V 特別條例（延法律期限）；關務署 3 個月檢討（11/6 到期）</td></tr>
+      <tr class="s5"><td><span class="stage">S5 疲勞靜默</span></td>
+        <td class="subj"><b>主詞＝真空</b>——該重啟督導的四階未啟動</td>
+        <td class="subj">四階本人<span class="who">無更上級（除憲政裁判）</span></td>
+        <td class="tbox"><b>超過 8 週無人認領＝斜率歸零，卸責成立的判定點</b></td>
+        <td class="sick">一二階同步空白＝「從未作為待決案存在」；新聞疲勞接手</td>
+        <td class="eg">個保會「無定期」；數位中介「無重啟時程」；海鯤艦「不再逐一回應」</td></tr>
+      <tr class="s6"><td><span class="stage">S6 切割處分</span></td>
+        <td class="subj"><b>執行層</b>（被推上火線承責）<span class="who">第一被告</span></td>
+        <td class="subj">一二階<span class="who">以「已處理」敘事結束督導責任</span></td>
+        <td class="tbox">不存在 timebox——斜率轉負，責任下沉</td>
+        <td class="sick">處分個人、制度空白倖存；處分書＝切割的落款</td>
+        <td class="eg">徐佳青請辭止血；中聯 15 人起訴；郭力恆一人扛 20 年</td></tr>
+      <tr class="s7"><td><span class="stage">S7 敘事逆轉結案</span></td>
+        <td class="subj"><b>一二階</b>（領功：「已檢討／已獲償／已轉型」）</td>
+        <td class="subj">四階<span class="who">照敘事結算——認定權／給付權分離的終點</span></td>
+        <td class="tbox">—（結案段，升級函數已被敘事覆蓋）</td>
+        <td class="sick">結案與制度修正脫鉤；功勞帳結算、責任帳銷毀</td>
+        <td class="eg">台電 711 億「已填平」；拉法葉 270.8 億「國庫獲償」</td></tr>
+      <tr class="s8"><td><span class="stage">S8 長程遺留</span></td>
+        <td class="subj"><b>槽位本身</b>（換人不換槽；議題週期性重燃）</td>
+        <td class="subj">無<span class="who">機制成為常態，無人需要負責</span></td>
+        <td class="tbox">—</td>
+        <td class="sick">同一供應鏈再生意化無波瀾；特赦／重啟議題隨選舉循環</td>
+        <td class="eg">拉法葉 2024 再對法採購 24 億；陳水扁特赦週期；高端出口越南</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="punch">
+    <div class="q">讀表規則一句話：<b>每過一個階段，「該負責的主詞」就向上跳一級</b>——S1 是執行層、S2 是一階、S3 是二階、S4 是三階、S5 以後主詞消失。健康的組織，主詞隨時間上升（escalation）；病態的組織，主詞在 S5 蒸發，然後在 S6 從天上掉回執行層。</div>
+    <p>這就是「責任層級＝f（時間）」的階段版：健康是單調遞增，S5 是歸零，S6 是反號，S7 是函數被刪除。</p>
+  </div>
+</section>
+
+<!-- ════ 三、Escalation → Timebox ════ -->
+<section>
+  <div class="eyebrow">三 · 把 escalation plan 制度化為階段 timebox</div>
+  <h2 style="font-size:23px;margin:0 0 6px">2–4–6–8 週：從 bug 管理移植到案件監督的健康斜率</h2>
+  <p class="lead">Edward 的 bug escalation plan 之所以讓客戶一直支持，不是因為零 bug，是因為<b>失控時一定有人認領</b>。把它移植到公共案件監督：每個階段設最大停留時間，超過未升級即自動告警——不必等結局，畫出「責任層級 vs 時間」曲線即可當場讀出。</p>
+
+  <div class="tl">
+    <div class="cell"><div class="wk">2 週</div><div class="st"><b>S1→S2</b> 執行層自監</div><div class="rule">異常存活逾 2 週未回報→<b>告警</b>（回報渠道斷）｜實例：資遣黑數＝20 年未回報</div></div>
+    <div class="cell"><div class="wk">3–4 週</div><div class="st"><b>S2</b> 一階具名進場</div><div class="rule">爆發逾 4 週一階未具名→<b>升級</b>｜實例：中聯 6/15 大廠已知悉、6/30 才通報＝48 天失速</div></div>
+    <div class="cell"><div class="wk">5–6 週</div><div class="st"><b>S3</b> 二階 owning</div><div class="rule">高峰逾 6 週二階未 owning→<b>升級</b>｜實例：海軍不設交付時間＝拒絕 owning 的明示</div></div>
+    <div class="cell"><div class="wk">7–8 週</div><div class="st"><b>S4</b> 三階具名承諾</div><div class="rule">逾 8 週無具名承諾→<b>四階面對客戶</b>（承諾即落款）｜實例：關務署 3 個月檢討＝勉強及格的承諾</div></div>
+  </div>
+
+  <div class="alarm"><b>S5 告警線：</b>任何案件超過「8 週無人認領」，自動判定裝死成立——不必證明誰錯，只要證明「沒有人升級」。這是把《兩本帳》第五步（槽位必然）倒過來用：<b>槽位讓責任無法歸屬，timebox 讓不作為本身成為可歸屬的對象。</b>追「誰做了錯決策」追不到；追「誰在 8 週內沒有升級」追得到——因為升級的缺席，在時間軸上是看得見的洞。</div>
+</section>
+
+<!-- ════ 四、17 案 T1/T2 標定 ════ -->
+<section>
+  <div class="eyebrow">四 · 併型後回驗</div>
+  <h2 style="font-size:23px;margin:0 0 4px">17 案在裝死曲線上的位置</h2>
+  <p class="lead">分型從「兩型」改為「同一機制的時間軸標定」：<span class="type t1">T1 該坐沒坐</span>＝追責時效內、名字還釘得住；<span class="type t2">T2 椅子被拆</span>＝已熬過時效或名字已漂移。T1 是還來得及追问「誰放的人」的窗；T2 是只能記錄「椅子曾經在這裡」的墓誌。</p>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>事件</th><th>階段</th><th>曲線位置</th><th>釘得住的名字</th><th>備註</th></tr></thead>
+    <tbody>
+      <tr class="group-row"><td colspan="5">T1 該坐沒坐——監督機會窗仍開著</td></tr>
+      <tr><td><b>海鯤艦交艦</b></td><td>S5</td><td><span class="type t1">T1</span></td><td>海軍司令／國防部長／台船董事長</td><td>「不設時間表」是不坐的明示；10/29、11/6 前的每一個質詢都是 T1 資產</td></tr>
+      <tr><td><b>中聯毒油</b></td><td>S4</td><td><span class="type t1">T1</span></td><td>食藥署長／衛福部長</td><td>停止鍵該行使未行使——時效內可追「誰沒按停止鍵」</td></tr>
+      <tr><td><b>F-16V 交機</b></td><td>S4</td><td><span class="type t1">T1</span></td><td>空軍司令／國防部長</td><td>修法切片是把 S4 主詞從「認領交機」偷換成「修改法條」，名字仍釘得住</td></tr>
+      <tr><td><b>徐佳青案</b></td><td>S6</td><td><span class="type t1">T1</span></td><td>行政院長（任命與監督鏈）</td><td>個人承責完成切割，但「誰任命、誰督導」仍在時效內</td></tr>
+      <tr><td><b>吳乃仁追償</b></td><td>S5</td><td><span class="type t1">T1 ⚑</span></td><td>台糖董座（半張書面⚑：撤回那張狀）</td><td>罕見留下「選擇不為」落款的案件——T1 裡證據最完整的一案</td></tr>
+      <tr class="group-row"><td colspan="5">T1→T2 過渡——名字開始漂移</td></tr>
+      <tr><td><b>EZ WAY 收費</b></td><td>S4</td><td><span class="type t1">T1→T2</span></td><td>關貿董座／關務署長／財政部長</td><td>三機關接力中——若 11/6 檢討報告無具名結論，漂移完成；這是本研究下一個可驗證的預測點</td></tr>
+      <tr><td><b>福麥炸藥案</b></td><td>S6→S5</td><td><span class="type t1">T1→T2</span></td><td>軍備局長（話術落款：「20 年同樣規定」）</td><td>北檢若 12 個月內無起訴，正式滑入 T2</td></tr>
+      <tr class="group-row"><td colspan="5">T2 椅子被拆——只能記錄，難以追責</td></tr>
+      <tr><td><b>國艦彈藥弊案</b></td><td>S7</td><td><span class="type t2">T2</span></td><td>（已漂移）</td><td>糾正＋停權＝處分敘事完成，制度問題無人認領</td></tr>
+      <tr><td><b>台電電價公式</b></td><td>S7</td><td><span class="type t2">T2</span></td><td>（四方漂移：經濟部／審議會／立院／台電）</td><td>711 億撥補＝敘事結案；12 月審議會是 T2 狀態下的形式流程</td></tr>
+      <tr><td><b>數位中介法</b></td><td>S7</td><td><span class="type t2">T2</span></td><td>（無人負責重啟）</td><td>退回未完 4 年——「重啟」這個決策從未有過主詞</td></tr>
+      <tr><td><b>高端疫苗</b></td><td>S8</td><td><span class="type t2">T2</span></td><td>（63 案簽結）</td><td>敘事逆轉完成：弊案靜默、公司轉型——T2 的企業版</td></tr>
+      <tr><td><b>資遣通報黑數</b></td><td>S4</td><td><span class="type t2">T2</span></td><td>（無人被指定為 owner）</td><td>「全國資遣流量」這個職位從未存在——椅子不是被拆，是從未釘過</td></tr>
+      <tr><td><b>個保會組織法</b></td><td>S5</td><td><span class="type t2">T2</span></td><td>（黨團協商＝集體無名）</td><td>3.5 年無定期——集體決策結構是 T2 的憲政形態</td></tr>
+      <tr><td><b>陳水扁案</b></td><td>S8</td><td><span class="type t2">T2（司法版）</span></td><td>（停審凍結 7 年）</td><td>「停止審理」＝司法版裝死曲線的 T1→T2 過程整整走了 21 年</td></tr>
+      <tr><td><b>拉法葉案</b></td><td>S8</td><td><span class="type t2">T2（終極）</span></td><td>（汪傳浦死亡切割）</td><td>35 年＝裝死曲線的完整標本：死亡＋時效＋再生意化，三重終局</td></tr>
+      <tr class="group-row"><td colspan="5">對照與特例</td></tr>
+      <tr><td><b>進口雞蛋</b></td><td>S1–S7</td><td><span class="type own">✅ 有主</span></td><td>專案辦公室主任（具名）</td><td>唯一椅子有人坐的案件——證明 T1/T2 不是命運，是設計選擇</td></tr>
+      <tr><td><b>憲政對抗</b></td><td>S3</td><td><span class="type sp">⚖️ 無裁判</span></td><td>—</td><td>雙方皆最高層，無更上級可啟動 escalation——timebox 在憲政層失效，需憲法法庭補位</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ════ 五、看行檢查單 ════ -->
+<section>
+  <div class="eyebrow">五 · 看行檢查單</div>
+  <h2 style="font-size:23px;margin:0 0 6px">MBB 典範流程的六個追問（任何案件、任何組織適用）</h2>
+  <div class="check">
+    <div class="item"><span class="q">1 · 流程是什麼？</span><br>寫出該案的 escalation 路線圖（誰在何時進場）。<span class="bad">答不出流程＝流程不存在＝S1 就缺主詞。</span></div>
+    <div class="item"><span class="q">2 · 誰負責？</span><br>對每個階段指出具名主詞（不是單位，是人）。<span class="bad">只能指出單位＝已進入 T1→T2 漂移。</span></div>
+    <div class="item"><span class="q">3 · 上級長官是誰？</span><br>主詞的上級是否知情、是否啟動督導。<span class="bad">上級「尊重專業」＝二階封口啟動。</span></div>
+    <div class="item"><span class="q">4 · 解決問題了嗎？</span><br>對照 timebox：2–4–6–8 週各級是否如期進場。<span class="bad">超過 8 週無人認領＝S5 告警成立。</span></div>
+    <div class="item"><span class="q">5 · 輔導與監督有行動嗎？</span><br>督導紀錄、輔導會議、限期改善——有無書面。<span class="bad">零書面＝兩本帳已開始記帳。</span></div>
+    <div class="item"><span class="q">6 · 是典範流程卸責嗎？</span><br>每個環節都「依法」、每個人都「沒有錯」、但問題沒有解決——<span class="good">MBB 典範流程卸責成立的定義：程序合規率 100%、問題存活率 100%。</span></div>
+  </div>
+
+  <div class="punch" style="margin-top:22px">
+    <div class="q">結論：該坐沒坐與椅子被拆，是同一個機制的兩個時間點；而「時間點」是可以被 timebox 凍結的。<b>把 8 週設為法定升級線，T2 就永遠不會到來</b>——因為椅子被拆的前提，是有人安安靜靜地熬過了前 8 週。</div>
+    <p>下一個驗證點：11/6 關務署 EZ WAY 檢討報告。若報告無具名結論、無第二家開放時程——EZ WAY 正式從 T1 滑入 T2，本表的預測即可對照核銷。</p>
+  </div>
+</section>
+
+<div class="note">
+<b>查證分層（AI-RMA 紀律）。</b>　本報告之 S 階段引自研究報告總綱第三節（研究推估，半年精度）；T1/T2 標定為以「併型」框架對各案已載結構的時間軸推論——「時效內／時效屆滿」為法律概念的簡化標記，各案實際追訴時效（刑事、彈劾、公務員懲戒、民事）長短不同，精確判定需逐案對回法條。　併型宣告（🪑＝🚫＋時間）為本研究之行層假說，其可證偽形式：若出現「結構性空位自始存在、從未有任何具名上級可釘」的案件，且無法還原出任何 T1 態，則併型不成立、兩型說復活。　帶 ⚠️ 的一手數字（財政部持股 36.11% 等）在回一手文件前不作定論。　資料基準：報告總索引_20261009 · S1–S8 甘特圖_20261011 · 兩本帳行層總論_20261011。
+</div>
+
+<div class="sig">相 · 行 · 體 — 看行 · 20261011 · D165</div>
+
+</div>
+</body></html>

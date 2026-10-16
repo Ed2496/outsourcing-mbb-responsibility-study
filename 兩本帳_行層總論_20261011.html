@@ -1,0 +1,382 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>兩本帳</title>
+<style>
+/* 版面：縱向敘事——命題 → 證據湮滅五步鏈 → 兩本帳對帳台 → 認定/給付引擎 → 17案回驗。
+   調色：鑑識深板岩 + 品牌teal + 責任帳紅 / 功勞帳金（雙帳雙色）。*/
+:root{
+  --bg:#ECEAE4; --surface:#FBFAF7; --surface2:#F3F1EB;
+  --fg:#1C2420; --muted:#5E6862; --faint:#8A938C;
+  --line:#D7D2C8; --line2:#C6C0B4;
+  --accent:#0E7C6B; --accent-soft:#E0EEEA;
+  --debit:#AE352B; --debit-soft:#F6E6E3;   /* 責任帳：被追 */
+  --credit:#9A6410; --credit-soft:#F6ECD9; /* 功勞帳：獲利 */
+  --mine:#B3382E;
+  --ff-cjk:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --ff-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121613; --surface:#1A201C; --surface2:#20271F;
+  --fg:#E9E7E1; --muted:#9BA49C; --faint:#6E776F;
+  --line:#2C332D; --line2:#394038;
+  --accent:#43A08E; --accent-soft:#17241F;
+  --debit:#E07264; --debit-soft:#2A1A18;
+  --credit:#D9A449; --credit-soft:#271F13;
+  --mine:#E07264;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#121613; --surface:#1A201C; --surface2:#20271F;
+  --fg:#E9E7E1; --muted:#9BA49C; --faint:#6E776F;
+  --line:#2C332D; --line2:#394038;
+  --accent:#43A08E; --accent-soft:#17241F;
+  --debit:#E07264; --debit-soft:#2A1A18;
+  --credit:#D9A449; --credit-soft:#271F13;
+  --mine:#E07264;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--ff-cjk);line-height:1.72;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding-block:40px 80px;padding-inline:20px}
+.mono{font-family:var(--ff-mono);font-variant-numeric:tabular-nums}
+h1,h2,h3{text-wrap:balance;line-height:1.28}
+section{margin-top:52px}
+a{color:var(--accent)}
+
+/* ───── eyebrow / 標號 ───── */
+.eyebrow{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);display:inline-block}
+
+/* ───── HERO ───── */
+.hero{border:1px solid var(--line2);border-radius:16px;background:var(--surface);
+  padding:34px 32px;position:relative;overflow:hidden}
+.hero .kick{font-family:var(--ff-mono);font-size:12px;letter-spacing:.16em;color:var(--muted);
+  text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:clamp(27px,5.4vw,46px);font-weight:800;letter-spacing:-.01em;margin:0 0 4px}
+.hero h1 .en{font-family:var(--ff-mono);font-weight:600;font-size:.52em;letter-spacing:0;
+  color:var(--muted);display:block;margin-top:8px}
+.thesis{margin-top:20px;font-size:clamp(17px,2.6vw,21px);font-weight:600;line-height:1.5;
+  border-left:3px solid var(--mine);padding-left:16px;max-width:46ch}
+.thesis b{color:var(--mine)}
+.hero-meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:12.5px;color:var(--muted);
+  font-family:var(--ff-mono);border-top:1px solid var(--line);padding-top:16px}
+
+/* ───── 證據湮滅鏈 ───── */
+.chain{display:grid;gap:14px}
+.step{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start;
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.step .n{font-family:var(--ff-mono);font-weight:700;font-size:18px;color:var(--surface);
+  background:var(--fg);width:40px;height:40px;border-radius:9px;display:grid;place-items:center}
+.step h3{margin:0 0 4px;font-size:16.5px}
+.step h3 .tag{font-family:var(--ff-mono);font-weight:600;font-size:11px;color:var(--muted);
+  margin-left:8px;letter-spacing:.04em}
+.step p{margin:0;font-size:14px;color:var(--muted)}
+.step p b{color:var(--fg)}
+.step.kill .n{background:var(--mine);color:#fff}
+.payoff{margin-top:18px;border:1px solid var(--mine);border-radius:12px;overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr}
+.payoff>div{padding:18px 20px}
+.payoff .up{background:var(--credit-soft);border-right:1px solid var(--line2)}
+.payoff .dn{background:var(--debit-soft)}
+.payoff .lbl{font-family:var(--ff-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:600;margin-bottom:6px}
+.payoff .up .lbl{color:var(--credit)} .payoff .dn .lbl{color:var(--debit)}
+.payoff h3{margin:0 0 4px;font-size:17px}
+.payoff p{margin:0;font-size:13px;color:var(--muted)}
+@media(max-width:560px){.payoff{grid-template-columns:1fr}.payoff .up{border-right:none;border-bottom:1px solid var(--line2)}}
+
+/* ───── 兩本帳對帳台 ───── */
+.rule-banner{text-align:center;margin:0 auto 20px;max-width:40ch;font-size:15px;color:var(--muted)}
+.rule-banner b{color:var(--fg);font-weight:700}
+.ledger{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
+@media(max-width:620px){.ledger{grid-template-columns:1fr}}
+.book{border-radius:14px;overflow:hidden;border:1px solid var(--line2);display:flex;flex-direction:column}
+.book.debit{background:var(--debit-soft);border-color:color-mix(in srgb,var(--debit) 40%,transparent)}
+.book.credit{background:var(--credit-soft);border-color:color-mix(in srgb,var(--credit) 40%,transparent)}
+.book-head{padding:16px 18px 14px;border-bottom:1px solid var(--line)}
+.book.debit .book-head{border-color:color-mix(in srgb,var(--debit) 25%,transparent)}
+.book.credit .book-head{border-color:color-mix(in srgb,var(--credit) 25%,transparent)}
+.book-head .tag{font-family:var(--ff-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.book.debit .tag{color:var(--debit)} .book.credit .tag{color:var(--credit)}
+.book-head h3{margin:4px 0 2px;font-size:19px}
+.book-head .sub{font-size:12.5px;color:var(--muted)}
+.book dl{margin:0;padding:6px 18px 16px}
+.book dl div{display:grid;grid-template-columns:76px 1fr;gap:12px;padding:9px 0;
+  border-bottom:1px dashed var(--line)}
+.book dl div:last-child{border-bottom:none}
+.book dt{font-family:var(--ff-mono);font-size:11px;color:var(--muted);letter-spacing:.03em;padding-top:2px}
+.book dd{margin:0;font-size:13.5px}
+.book dd b{font-weight:700}
+.book.debit dd b{color:var(--debit)} .book.credit dd b{color:var(--credit)}
+.verdict{margin-top:18px;border:1px solid var(--line2);border-radius:12px;background:var(--surface);
+  padding:18px 20px;font-size:14.5px}
+.verdict b{color:var(--fg)}
+.flip{display:inline-block;font-family:var(--ff-mono);font-size:12px;font-weight:700;
+  padding:1px 8px;border-radius:5px;margin:0 2px}
+.flip.d{background:var(--debit-soft);color:var(--debit)} .flip.c{background:var(--credit-soft);color:var(--credit)}
+
+/* ───── escalation 對照 ───── */
+.esc{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:22px 24px}
+.esc-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:4px}
+@media(max-width:620px){.esc-grid{grid-template-columns:1fr}}
+.esc-col h4{margin:0 0 10px;font-size:13.5px;font-family:var(--ff-mono);letter-spacing:.04em;
+  text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.esc ol{margin:0;padding-left:0;list-style:none;display:grid;gap:7px}
+.esc li{display:grid;grid-template-columns:62px 1fr;gap:12px;font-size:13px;align-items:baseline}
+.esc li .wk{font-family:var(--ff-mono);font-size:11.5px;color:var(--muted)}
+.esc .sick li .wk{color:var(--mine)}
+.esc .healthy .lv{color:var(--accent);font-weight:600}
+.esc .sick .lv{color:var(--mine);font-weight:600}
+.esc-note{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.esc-note b{color:var(--fg)}
+
+/* ───── 17案回驗 ───── */
+.dist{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0 20px}
+@media(max-width:620px){.dist{grid-template-columns:repeat(2,1fr)}}
+.dist .cell{border:1px solid var(--line);border-radius:11px;background:var(--surface);padding:14px 14px}
+.dist .big{font-family:var(--ff-mono);font-weight:700;font-size:30px;line-height:1}
+.dist .lbl{font-size:12px;color:var(--muted);margin-top:6px}
+.dist .t-cut .big{color:var(--debit)} .dist .t-void .big{color:var(--credit)}
+.dist .t-own .big{color:var(--accent)} .dist .t-sp .big{color:var(--faint)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:12.8px}
+thead th{background:var(--surface2);text-align:left;padding:11px 12px;font-size:11px;
+  font-family:var(--ff-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
+  font-weight:600;border-bottom:1px solid var(--line2);white-space:nowrap;position:sticky;top:0}
+tbody td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:hover{background:var(--surface2)}
+td .case{font-weight:700;color:var(--fg)}
+td .org{font-size:11px;color:var(--faint);font-family:var(--ff-mono);display:block;margin-top:2px}
+.stg{font-family:var(--ff-mono);font-weight:700;font-size:11.5px}
+.type{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.type.cut{background:var(--debit-soft);color:var(--debit)}
+.type.void{background:var(--credit-soft);color:var(--credit)}
+.type.own{background:var(--accent-soft);color:var(--accent)}
+.type.sp{background:var(--surface2);color:var(--faint)}
+td.paper{font-family:var(--ff-mono);font-size:11px;text-align:center;white-space:nowrap}
+.flag{color:var(--credit);font-weight:700}
+.group-row td{background:var(--surface2);font-family:var(--ff-mono);font-size:10.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:7px 12px}
+
+/* ───── punchline + footer ───── */
+.punch{margin-top:20px;border:1.5px solid var(--mine);border-radius:14px;
+  background:linear-gradient(180deg,var(--debit-soft),var(--surface));padding:24px 26px}
+.punch .q{font-size:clamp(17px,2.8vw,22px);font-weight:700;line-height:1.5}
+.punch .q .ratio{color:var(--mine);font-family:var(--ff-mono)}
+.punch p{margin:12px 0 0;font-size:14px;color:var(--muted)}
+.note{margin-top:34px;border:1px solid var(--line);background:var(--surface2);border-radius:11px;
+  padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.75}
+.note b{color:var(--fg)}
+.sig{margin-top:22px;font-family:var(--ff-mono);font-size:11.5px;color:var(--faint);text-align:center;
+  letter-spacing:.05em}
+.lead{font-size:15.5px;color:var(--muted);max-width:62ch;margin:0 0 4px}
+.lead b{color:var(--fg)}
+</style>
+
+<div class="wrap">
+
+<!-- ════ HERO ════ -->
+<header class="hero">
+  <div class="kick">MBB 槽位卸責必然性 · 行層總論 · 2026-10-11</div>
+  <h1>兩本帳<span class="en">THE TWO LEDGERS — why no one signs, and why that pays</span></h1>
+  <div class="thesis">卸責不需要壞人，只需要<b>上級不簽字</b>。<br>零決策讓責任沒有指紋，裝死讓時間湮滅痕跡——於是動手的黑手扛全責，下令的人連被告資格都沒有。</div>
+  <div class="hero-meta">
+    <span>MBB = Manage By Bullshit</span><span>收束軸：相 · 行 · 體 → 行層</span><span>樣本：15 監控案 + 2 歷史標本</span>
+  </div>
+</header>
+
+<!-- ════ 一、證據湮滅五步鏈 ════ -->
+<section>
+  <div class="eyebrow">一 · 證據湮滅五步鏈</div>
+  <h2 style="font-size:23px;margin:0 0 6px">零決策不是怠惰，是一道工程</h2>
+  <p class="lead">一般人以為卸責要串供、要共謀。不必。卸責只需要一二階主管各自<b>不做一個動作</b>——不下書面決策。「不動」天然同步，不需要任何人協調。</p>
+
+  <div class="chain" style="margin-top:20px">
+    <div class="step kill">
+      <div class="n">1</div>
+      <div><h3>零決策<span class="tag">不生產指紋</span></h3>
+      <p>責任要被追，前提是存在「某人做了某決定」的書面。決策一旦落款，就是一枚指紋。上級只要停在<b>研議中／尊重專業／依法辦理</b>，就從源頭不生產這枚指紋。海鯤艦「不設時間表」不是怠惰，是精準——設日期＝可追的指紋。</p></div>
+    </div>
+    <div class="step kill">
+      <div class="n">2</div>
+      <div><h3>裝死<span class="tag">把舉證外包給時間</span></h3>
+      <p>沉默不留痕跡，而時間會做剩下的事——新聞疲勞、承辦輪調、時效屆滿。到了那天，<b>連「他當時沒決策」這件事都查不出來</b>。「為保密不再逐一回應」＝資訊斷鏈的標準話術。</p></div>
+    </div>
+    <div class="step kill">
+      <div class="n">3</div>
+      <div><h3>二階封口<span class="tag">補上最後一道裂縫</span></h3>
+      <p>一階裝死，還可能被上級督導紀錄戳破。只要<b>二階主管也禁聲、也不留書面督導</b>，追溯鏈就在第二節斷掉。一二階同時空白，等於宣告：這件事在整個有權者層級裡「從未作為一個待決案存在過」。</p></div>
+    </div>
+    <div class="step kill">
+      <div class="n">4</div>
+      <div><h3>三缺<span class="tag">指控在法律上不成立</span></h3>
+      <p>想追責的人面對三重牆：<b>沒有權力</b>（平行單位、下游、人民無調查指揮權）、<b>沒有有效證據</b>（零決策＝無指紋）、<b>沒有合法證據</b>（耳語不具法定形式，進不了彈劾／起訴門檻）。故意不作為，和「無辜的沒發生」長得一模一樣。</p></div>
+    </div>
+    <div class="step">
+      <div class="n">5</div>
+      <div><h3>槽位必然<span class="tag">position dominates person</span></h3>
+      <p>前四步成立後，坐上一二階的「是誰」完全不影響結果——做決策＝留指紋＝可追；零決策＝無痕跡＝安全晉升。理性人必然選後者。那個位置不是由人填的，是由「免責」這個功能填的。<b>MBB 只是把這個槽位商品化</b>：高管花錢買的不是建議，是免責服務。</p></div>
+    </div>
+  </div>
+
+  <div class="payoff">
+    <div class="up"><div class="lbl">▲ 向上集中</div><h3>極權 · 極利 · 極功</h3>
+      <p>決策權、資源分配、長期獲利、功勞認定——全留在一二階。不留書面的人不是中立消失，是消失在責任帳、同時浮現在功勞帳。</p></div>
+    <div class="dn"><div class="lbl">▼ 向下傾倒</div><h3>極錯 · 極責</h3>
+      <p>中聯 15 人起訴、郭力恆判 20 年、拉法葉單一軍官扛 20 年——動手的人扛全責，下令（或零決策默許）的人連被告資格都不存在。</p></div>
+  </div>
+</section>
+
+<!-- ════ 二、兩本帳對帳台 ════ -->
+<section>
+  <div class="eyebrow">二 · 核心視覺 · 兩本帳</div>
+  <h2 style="font-size:23px;margin:0 0 14px">同一條規則，兩種相反的歸屬</h2>
+  <p class="rule-banner">同一個組織，同時跑兩本帳。兩本都用同一條規則——<b>「看書面」</b>——卻產出完全相反的歸屬。</p>
+
+  <div class="ledger">
+    <div class="book debit">
+      <div class="book-head"><div class="tag">明帳 · DEBIT</div><h3>責任帳</h3>
+        <div class="sub">出事時結算 · 記「誰犯了錯」</div></div>
+      <dl>
+        <div><dt>憑證</dt><dd>書面：簽呈、工單、出貨單、承辦落款</dd></div>
+        <div><dt>指向</dt><dd>有書面者＝<b>做事的人＝執行層</b></dd></div>
+        <div><dt>「看書面」</dt><dd>有書面 → 被追 → <b>書面是罪證</b></dd></div>
+        <div><dt>平時評語</dt><dd>「只會做事、沒有 vision」</dd></div>
+        <div><dt>出事</dt><dd>第一被告</dd></div>
+      </dl>
+    </div>
+    <div class="book credit">
+      <div class="book-head"><div class="tag">暗帳 · CREDIT</div><h3>功勞帳</h3>
+        <div class="sub">平時發獎金 · 記「誰有功」</div></div>
+      <dl>
+        <div><dt>憑證</dt><dd>無書面：口頭、默契、「大局」</dd></div>
+        <div><dt>指向</dt><dd>無書面者＝<b>沒留痕跡的人＝一二階</b></dd></div>
+        <div><dt>「看書面」</dt><dd>沒書面 → 運籌帷幄 → <b>沒書面是高度</b></dd></div>
+        <div><dt>平時評語</dt><dd>「掌握大局、指揮若定」</dd></div>
+        <div><dt>出事</dt><dd>不在定義域</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="verdict">
+    同一個人，留了書面：出事是第一被告，平時「沒 vision」。同一個人，不留書面：出事不在定義域，平時「掌握大局」。
+    <br><br><b>所以「零決策」不只是防禦（躲責任），同時是進攻（領功勞）。</b>不留書面的人，
+    在責任帳 <span class="flip d">消失</span> 的同一瞬間，在功勞帳 <span class="flip c">浮現</span>。
+    這才是理性人必然往上爬進這個槽的真正理由——不是「上去比較安全」，是<b>上去既安全又多錢</b>。
+    不留書面，是這個結構裡報酬率最高的行為。
+  </div>
+</section>
+
+<!-- ════ 三、認定/給付引擎 ════ -->
+<section>
+  <div class="eyebrow">三 · 引擎 · 認定權 / 給付權分離</div>
+  <h2 style="font-size:23px;margin:0 0 6px">兩本帳為什麼能同時存在</h2>
+  <p class="lead">動力源是一句話：<b>績效是一階二階認定，但四階決定獎金多少。</b>認定權與給付權的分離，是兩本帳的結構前提。</p>
+
+  <div class="esc" style="margin-top:18px">
+    <div class="esc-grid">
+      <div class="esc-col">
+        <h4><span class="dot" style="background:var(--credit)"></span>認定權 · 一二階</h4>
+        <p style="font-size:13px;color:var(--muted);margin:0 0 10px">既是暗帳的記帳人，也是暗帳的受益人——<b style="color:var(--fg)">自己認定自己有功</b>，且因無書面，下游無法複核。</p>
+      </div>
+      <div class="esc-col">
+        <h4><span class="dot" style="background:var(--debit)"></span>給付權 · 四階</h4>
+        <p style="font-size:13px;color:var(--muted);margin:0 0 10px">不碰細節（維持自身零指紋），只看一二階呈上的「認定」發錢。<b style="color:var(--fg)">「我只是照考績發錢」</b>。</p>
+      </div>
+    </div>
+    <div class="esc-note">
+      認定的人說給付不是我，給付的人說認定不是我——<b>連「圖利自己」都被切成兩段合法動作接力完成</b>，與 EZ WAY 三段合法論述接力同一手術，只是產物從「壟斷」換成「自肥」。於是獎金流向完美複製權力結構：<b>錢往上、功往上、責往下</b>。
+    </div>
+  </div>
+
+  <!-- escalation 對照 -->
+  <div class="esc" style="margin-top:16px">
+    <div class="eyebrow" style="margin-bottom:12px">對照組 · Edward 的 bug escalation plan</div>
+    <p style="font-size:13.5px;color:var(--muted);margin:0 0 14px">責任層級 = f(時間)，單調遞增，封頂在<b style="color:var(--fg)">「具名高層轉身面對客戶」</b>。這是帳本該長的正常樣子——客戶一直支持，不是因為零 bug，是因為失控時一定有人認領。</p>
+    <div class="esc-grid">
+      <div class="esc-col healthy">
+        <h4><span class="dot" style="background:var(--accent)"></span>健康 · 斜率遞增</h4>
+        <ol>
+          <li><span class="wk">2 週</span><span><span class="lv">工程師</span> 本職自監</span></li>
+          <li><span class="wk">3–4 週</span><span><span class="lv">課長／副理</span> 進場</span></li>
+          <li><span class="wk">5–6 週</span><span><span class="lv">部長／經理</span> owning</span></li>
+          <li><span class="wk">7–8 週</span><span><span class="lv">處長／協理</span> 具名報告客戶</span></li>
+        </ol>
+      </div>
+      <div class="esc-col sick">
+        <h4><span class="dot" style="background:var(--mine)"></span>病態 · 斜率反號</h4>
+        <ol>
+          <li><span class="wk">S5 凍結</span><span><span class="lv">斜率歸零</span> 時間過了責任不升</span></li>
+          <li><span class="wk">S6 切割</span><span><span class="lv">斜率轉負</span> 責任下沉到底層</span></li>
+          <li><span class="wk">空椅子</span><span>該轉身認領的高層，位子空著</span></li>
+          <li><span class="wk">= 無人認領</span><span>監督資源被「無人認領」耗盡，非被對抗耗盡</span></li>
+        </ol>
+      </div>
+    </div>
+    <div class="esc-note"><b>S5 和 S6 在數學上就是這條函數的反號。</b>凡過了「第 8 週」仍未升到最高層、或曲線往下走的，就是卸責——不必一案一案判，畫出「責任層級 vs 時間」曲線即可讀出。</div>
+  </div>
+</section>
+
+<!-- ════ 四、17案回驗 ════ -->
+<section>
+  <div class="eyebrow">四 · 回驗 · 15 監控案 + 2 歷史標本</div>
+  <h2 style="font-size:23px;margin:0 0 4px">把尺架到每一案上</h2>
+  <p class="lead">核心診斷：是 <b style="color:var(--debit)">🪑 有人不坐</b>（具名上級裝死、切底層）還是 <b style="color:var(--credit)">🚫 椅子被拆</b>（結構性空位，連名字都釘不住）？兩型在證據上<b>無法區分</b>——都是零決策、無書面。唯一的 <b style="color:var(--accent)">✅ 有主</b> 對照組，反證椅子有人坐時責任可追。</p>
+
+  <div class="dist">
+    <div class="cell t-cut"><div class="big">8</div><div class="lbl">🪑 有人不坐＋切割<br>具名但裝死</div></div>
+    <div class="cell t-void"><div class="big">7</div><div class="lbl">🚫 椅子被拆<br>結構性空位</div></div>
+    <div class="cell t-sp"><div class="big">1</div><div class="lbl">⚖️ 無裁判<br>憲政層無更上級</div></div>
+    <div class="cell t-own"><div class="big">1</div><div class="lbl">✅ 有主（對照組）<br>責任可追</div></div>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr>
+        <th>事件</th><th>上一級單位</th><th>階段</th><th>分型</th><th>書面</th><th>空椅子在哪／機制</th>
+      </tr></thead>
+      <tbody>
+        <tr class="group-row"><td colspan="6">A · 進行中（S3–S6）</td></tr>
+        <tr><td><span class="case">EZ WAY 收費</span><span class="org">關貿6183／關務署／財政部</span></td><td>財政部（官股）</td><td class="stg">S4</td><td><span class="type void">🚫 椅子被拆</span></td><td class="paper">三段接力<br>無單一</td><td>S4「開不開放第二家」。三機關各有不管的理由，壟斷在縫隙自我維持。</td></tr>
+        <tr><td><span class="case">潛艦海鯤艦</span><span class="org">台船／海軍／國防部</span></td><td>國防部</td><td class="stg">S5</td><td><span class="type cut">🪑 有人不坐</span></td><td class="paper">可釘<br>未落款</td><td>S4「交艦日期」。部長／海軍可釘，卻「不設時間表」——椅子有人、不坐。</td></tr>
+        <tr><td><span class="case">中聯毒油食安</span><span class="org">中聯油脂／食藥署／衛福部</span></td><td>衛福部</td><td class="stg">S4</td><td><span class="type cut">🪑 有人不坐</span></td><td class="paper">切底層</td><td>15 人起訴，「停止鍵」制度空白倖存——該行使停產權者不行使。</td></tr>
+        <tr><td><span class="case">F-16V 交機延期</span><span class="org">空軍／漢翔／國防部</span></td><td>國防部</td><td class="stg">S4</td><td><span class="type cut">🪑 有人不坐</span></td><td class="paper">改修法</td><td>交不出貨就延法律期限——不認領交機，改走修法切片。</td></tr>
+        <tr><td><span class="case">福麥炸藥採購</span><span class="org">軍備局／國防部</span></td><td>國防部</td><td class="stg">S6→S5</td><td><span class="type void">🚫 椅子被拆</span></td><td class="paper">話術落款</td><td>顧立雄「20 年都是同樣規定」＝制度無人負責的明確宣告；解約停權＝已處理敘事。</td></tr>
+        <tr><td><span class="case">徐佳青濫用公務</span><span class="org">僑委會／行政院</span></td><td>行政院</td><td class="stg">S6</td><td><span class="type cut">🪑 有人不坐</span></td><td class="paper">切個人</td><td>10/7 請辭止血、個人承責；任命與監督鏈不進調查。</td></tr>
+        <tr><td><span class="case">吳乃仁 1.7 億追償</span><span class="org">台糖／經濟部</span></td><td>經濟部</td><td class="stg">S5</td><td class="paper"><span class="flag">半張 ✎</span></td><td><span class="type cut">🪑 有人不坐</span></td><td>撤回那張狀＝「選擇不為」的落款——罕見留下半張書面的故意不作為。</td></tr>
+        <tr><td><span class="case">資遣通報黑數</span><span class="org">勞動部／行政院</span></td><td>行政院</td><td class="stg">S4</td><td><span class="type void">🚫 椅子被拆</span></td><td class="paper">無人彙整</td><td>流量指標無全國彙整——無人被指定當「全國資遣流量」的 owner。</td></tr>
+        <tr><td><span class="case">個保會組織法</span><span class="org">行政院／立法院</span></td><td>—</td><td class="stg">S5</td><td><span class="type void">🚫 椅子被拆</span></td><td class="paper">無定期</td><td>黨團協商無定期＝無期限＝無進度；憲政層無人負責。</td></tr>
+        <tr><td><span class="case">行政—立法憲政對抗</span><span class="org">行政院／總統府</span></td><td>—</td><td class="stg">S3</td><td><span class="type sp">⚖️ 無裁判</span></td><td class="paper">N/A</td><td>雙方皆最高層，無更上級裁判——監督資源在對抗中耗盡（消耗結案）。</td></tr>
+
+        <tr class="group-row"><td colspan="6">B · 已結案／敘事化（S7–S8）</td></tr>
+        <tr><td><span class="case">台電累虧與電價公式</span><span class="org">台電／經濟部</span></td><td>經濟部</td><td class="stg">S7</td><td><span class="type void">🚫 椅子被拆</span></td><td class="paper">四方漂移</td><td>「何時漲、漲多少」在經濟部／審議會／立院／台電四方之間漂移；711 億撥補蓋公式。</td></tr>
+        <tr><td><span class="case">國艦國造／彈藥弊案</span><span class="org">軍備局／中科院／國防部</span></td><td>國防部</td><td class="stg">S7</td><td><span class="type cut">🪑 有人不坐</span></td><td class="paper">切底層</td><td>糾正＋解約停權，制度面無人負責——錯在單層追得到人、空白無人可追。</td></tr>
+        <tr><td><span class="case">數位中介法</span><span class="org">數發部／行政院</span></td><td>行政院</td><td class="stg">S7</td><td><span class="type void">🚫 椅子被拆</span></td><td class="paper">靜默</td><td>退回未完、無重啟時程——無人負責「重啟」這個決策。</td></tr>
+        <tr><td><span class="case">高端疫苗採購</span><span class="org">疾管署／衛福部</span></td><td>行政院</td><td class="stg">S8</td><td><span class="type void">🚫 椅子被拆</span></td><td class="paper">簽結</td><td>63 案簽結、合約保密爭議消散；公司轉型出口越南＝時間結案的企業版。</td></tr>
+        <tr><td><span class="case">進口雞蛋（對照組）</span><span class="org">農業部進口蛋專案辦公室</span></td><td>行政院</td><td class="stg">S1–7</td><td><span class="type own">✅ 有主</span></td><td class="paper"><span class="flag">專責 ✓</span></td><td>專案辦公室＝單一負責人；解散＝責任終點。反向證明椅子有人坐時責任可追。</td></tr>
+
+        <tr class="group-row"><td colspan="6">C · 歷史標本（長程）</td></tr>
+        <tr><td><span class="case">陳水扁貪污案</span><span class="org">21 年樣本</span></td><td>司法</td><td class="stg">S8</td><td><span class="type cut">🪑 有人不坐</span></td><td class="paper">停審</td><td>本人具名，但「停止審理」＝司法版裝死，程序不死不活，監督者無對象可施力。</td></tr>
+        <tr><td><span class="case">拉法葉艦購案</span><span class="org">35 年樣本</span></td><td>海軍／國防部</td><td class="stg">S8</td><td><span class="type cut">🪑 有人不坐</span></td><td class="paper">死亡切割</td><td>汪傳浦病逝→不起訴；郭力恆一人扛 20 年。死亡與時間是最有效的切割機。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="punch">
+    <div class="q">16 比 1。<span class="ratio"> 16 : 1</span><br>17 案裡，只有一案（進口雞蛋）椅子有人坐——因為它有專責辦公室、有單一負責人。</div>
+    <p>出門版：<b style="color:var(--fg)">你公司獎金發得最多的那個人，很可能就是書面留得最少的那個人。</b>不是因為他最聰明，是因為這台機器就是這樣設計的——它讓「無法被究責」和「獲利最高」，是同一個位置。椅子有人坐時，責任追得到；這不是運氣，是可以設計的。</p>
+  </div>
+</section>
+
+<!-- ════ 查證分層 ════ -->
+<div class="note">
+  <b>查證分層（AI-RMA 紀律）。</b>　本圖「分型」為以兩本帳框架對各案<b>已載結構</b>的推論：單一機關可釘＝🪑 有人不坐；多機關接力／無定期／四方漂移＝🚫 椅子被拆；有專責辦公室＝✅ 有主——分型跟著文件結構走，非對當事人的指控。　<b>S 階段</b>引自研究報告總綱第三節，為研究推估（半年精度），由陳水扁、拉法葉兩樣本拆解歸納，尚待 Edward 逐案坍縮。　<b>「書面」欄</b>標示的是各案「故意不作為是否留下落款」的觀察（吳乃仁撤回聲請＝半張、進口雞蛋專責＝有主），非完整檔案稽核。　帶 ⚠️ 的一手數字（財政部持股 36.11% 等）在回一手文件前不作定論。　資料基準：報告總索引_20261009 · S1–S8 甘特圖_20261011 · 思維樹 PA 方向圖。
+</div>
+
+<div class="sig">相 · 行 · 體 — 行層收束 · 20261011 · D165</div>
+
+</div>
+
+</body></html>

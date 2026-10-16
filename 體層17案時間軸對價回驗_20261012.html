@@ -1,0 +1,295 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>體層 17 案回驗：時間軸對價受益者總表（2026-10-12）</title>
+<style>
+/* 與《兩本帳》《行層 S1–S8》《三閘升級版》同一設計語言 */
+:root{
+  --bg:#ECEAE4; --surface:#FBFAF7; --surface2:#F3F1EB;
+  --fg:#1C2420; --muted:#5E6862; --faint:#8A938C;
+  --line:#D7D2C8; --line2:#C6C0B4;
+  --accent:#0E7C6B; --accent-soft:#E0EEEA;
+  --debit:#AE352B; --debit-soft:#F6E6E3;
+  --credit:#9A6410; --credit-soft:#F6ECD9;
+  --mine:#B3382E;
+  --ff-cjk:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --ff-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121613; --surface:#1A201C; --surface2:#20271F;
+  --fg:#E9E7E1; --muted:#9BA49C; --faint:#6E776F;
+  --line:#2C332D; --line2:#394038;
+  --accent:#43A08E; --accent-soft:#17241F;
+  --debit:#E07264; --debit-soft:#2A1A18;
+  --credit:#D9A449; --credit-soft:#271F13;
+  --mine:#E07264; color-scheme:dark;
+}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--ff-cjk);line-height:1.72;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1280px;margin:0 auto;padding-block:40px 80px;padding-inline:20px}
+.mono{font-family:var(--ff-mono);font-variant-numeric:tabular-nums}
+h1,h2,h3{text-wrap:balance;line-height:1.28}
+section{margin-top:52px}
+.eyebrow{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);display:inline-block}
+.hero{border:1px solid var(--line2);border-radius:16px;background:var(--surface);padding:34px 32px;position:relative;overflow:hidden}
+.hero .kick{font-family:var(--ff-mono);font-size:12px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:clamp(25px,4.6vw,40px);font-weight:800;letter-spacing:-.01em;margin:0 0 4px}
+.hero h1 .en{font-family:var(--ff-mono);font-weight:600;font-size:.5em;letter-spacing:0;color:var(--muted);display:block;margin-top:8px}
+.thesis{margin-top:20px;font-size:clamp(16px,2.4vw,20px);font-weight:600;line-height:1.55;border-left:3px solid var(--mine);padding-left:16px;max-width:56ch}
+.thesis b{color:var(--mine)}
+.hero-meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:12.5px;color:var(--muted);font-family:var(--ff-mono);border-top:1px solid var(--line);padding-top:16px}
+.lead{font-size:15px;color:var(--muted);max-width:70ch;margin:0 0 4px}
+.lead b{color:var(--fg)}
+.panel{border:1px solid var(--line2);border-radius:14px;background:var(--surface);padding:20px 22px;margin-top:16px}
+.panel h3{margin:0 0 8px;font-size:17px}
+.panel p{font-size:13.8px;color:var(--muted);margin:.5em 0}
+.panel p b{color:var(--fg)}
+.formula{margin-top:14px;border:1px dashed var(--line2);border-radius:10px;background:var(--surface2);padding:12px 16px;font-size:13.5px}
+.formula b{color:var(--mine)}
+
+/* 17 案對價總表 */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:16px}
+table{border-collapse:collapse;width:100%;min-width:1240px;font-size:12.6px}
+thead th{background:var(--surface2);text-align:left;padding:11px 12px;font-size:11px;font-family:var(--ff-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line2);white-space:nowrap;position:sticky;top:0}
+tbody td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;line-height:1.6}
+tbody tr:hover{background:var(--surface2)}
+td b{color:var(--fg)}
+td .case{font-weight:700;white-space:nowrap}
+td .pos{font-family:var(--ff-mono);font-size:11px;color:var(--muted);display:block;white-space:nowrap}
+th.hd-d{color:var(--debit)}
+th.hd-c{color:var(--credit)}
+td.deb{background:linear-gradient(90deg,var(--debit-soft),transparent 70%)}
+td.cre{background:linear-gradient(90deg,var(--credit-soft),transparent 70%)}
+.group-row td{background:var(--surface2);font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:7px 12px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.tag.yes{background:var(--debit-soft);color:var(--debit)}
+.tag.done{background:var(--credit-soft);color:var(--credit)}
+.tag.ext{background:var(--surface2);color:var(--faint)}
+.tag.own{background:var(--accent-soft);color:var(--accent)}
+.tag.sp{background:var(--surface2);color:var(--faint)}
+.anchor{font-family:var(--ff-mono);font-size:11px;color:var(--accent);font-weight:700;white-space:nowrap}
+.undec{color:var(--faint)}
+
+/* 統計 */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:16px}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{border:1px solid var(--line2);border-radius:12px;background:var(--surface);padding:16px 18px}
+.stat .n{font-family:var(--ff-mono);font-size:30px;font-weight:700;line-height:1.1}
+.stat .l{font-size:12.5px;color:var(--muted);margin-top:6px}
+.stat.r .n{color:var(--debit)} .stat.g .n{color:var(--credit)} .stat.gr .n{color:var(--faint)} .stat.a .n{color:var(--accent)} .stat.m .n{color:var(--fg)}
+
+.note{margin-top:34px;border:1px solid var(--line);background:var(--surface2);border-radius:11px;padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.75}
+.note b{color:var(--fg)}
+.punch{margin-top:22px;border:1.5px solid var(--mine);border-radius:14px;background:linear-gradient(180deg,var(--debit-soft),var(--surface));padding:22px 26px}
+.punch .q{font-size:clamp(16px,2.6vw,20px);font-weight:700;line-height:1.55}
+.punch p{margin:12px 0 0;font-size:14px;color:var(--muted)}
+footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;font-size:12px;color:var(--faint);font-family:var(--ff-mono)}
+</style></head><body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kick">DIMENSION 3 · 看體 · 2026-10-12 · 承報告 16 三閘升級版</div>
+  <h1>體層 17 案回驗：時間軸對價受益者總表<span class="en">SEVENTEEN CASES ON THE QUID PRO QUO AXIS — WHO PAYS, WHO PROFITS, WHO IS THE LONG-RUN PRINCIPAL</span></h1>
+  <div class="thesis">把報告 14 的 17 案全部釘上體層時間軸：每案讀出<b>責任帳</b>（成本歸誰付）、<b>功勞帳</b>（利益歸誰拿）、<b>體層主詞</b>（長期最大淨獲利者初判）。行層告訴你椅子誰該坐；體層告訴你<b>桌子上的錢最後進誰口袋</b>。</div>
+  <div class="hero-meta"><span>判定式（報告 16）：長期最大淨獲利者≠名義當責者，且前者書面最少、後者書面最多 → 兩本帳成立</span><span>樣本：15 監控案＋2 歷史標本</span><span>資料基準：報告總索引_20261009 · 報告 13/14/15/16</span></div>
+</header>
+
+<section>
+  <div class="eyebrow">METHOD</div>
+  <h2 style="font-size:23px;margin:0 0 6px">一、回驗方法：體層三讀</h2>
+  <div class="panel">
+    <p><b>第一讀·責任帳：</b>這條時間軸上，成本、代價、風險、罰責長期淨流向誰？（被追的、被罰的、受害的、付錢的——納稅人也是付錢的主詞。）</p>
+    <p><b>第二讀·功勞帳：</b>同一段時間裡，預算、訂單、位子、聲量、免於負責的利益淨流向誰？</p>
+    <p><b>第三讀·對價判定：</b>兩本帳是否同一批人？<b>不是＝兩本帳成立</b>；是＝體層對價透明（對照組）。已走完 S7–S8 的案子，判定為「已結算」——功勞帳結清、責任帳銷毀，不再變動。</p>
+    <p><b>紀律：</b>體層主詞欄為<b>初判</b>——以公開資訊推定的長期淨獲利位置，標⚠️者待一手對帳；每案掛長稽錨（有日期者為已知期限，標❓者為待補日期，不虛構）。判定式只讀結構效果，不碰動機。</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">THE LEDGER · 17 CASES</div>
+  <h2 style="font-size:23px;margin:0 0 6px">二、17 案對價總表</h2>
+  <p class="lead">分三組＋對照列報：<span class="tag yes">成立</span>＝兩本帳仍在運行（T1／T1→T2 段）；<span class="tag done">已結算</span>＝功勞帳已結、責任帳已銷（T2／S7–S8 段）；<span class="tag ext">極端型</span>＝帳本未設格或漂移完成。</p>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>案件／曲線位置</th><th class="hd-d">責任帳（成本歸誰）</th><th class="hd-c">功勞帳（利益歸誰）</th><th>體層主詞（長期最大淨獲利者・初判）</th><th>判定</th><th>長稽錨</th></tr></thead>
+    <tbody>
+      <tr class="group-row"><td colspan="6">A｜兩本帳仍在運行——T1／T1→T2 段，對帳窗口還開著</td></tr>
+
+      <tr><td><span class="case">海鯤艦交艦</span><span class="pos">S5 · T1</span></td>
+        <td class="deb">納稅人承擔預算超支與期程延誤；台船基層承擔趕工與保密靜默；海軍戰力空窗由國防全體承擔</td>
+        <td class="cre">國造預算留在台船經營層位置；「不再逐一回應」省下全部對外政治成本；後續艦訂單預期留在原鏈</td>
+        <td>台船經營層位置＋海軍建軍預算鏈⚠️（書面最少者：不設時間表的決策無人具名）</td>
+        <td><span class="tag yes">成立（初步）</span></td>
+        <td><span class="anchor">2026-12-31</span> 交艦期程／懲處具名複核</td></tr>
+
+      <tr><td><span class="case">中聯毒油</span><span class="pos">S4 · T1</span></td>
+        <td class="deb">15 人被起訴（執行層第一被告）；消費者健康；食藥署信譽</td>
+        <td class="cre">大廠 48 天失速期間產能與獲利未被停止鍵中斷；「無（尚未通報）」回應保住署長位置免於即時追責</td>
+        <td>大廠（責任帳外移至個人起訴）⚠️——長期觀測罰鍰金額 vs 失速期間獲利</td>
+        <td><span class="tag yes">成立（初步）</span></td>
+        <td><span class="anchor">❓</span> 一審判決罰鍰 vs 失速獲利對帳</td></tr>
+
+      <tr><td><span class="case">F-16V 交機</span><span class="pos">S4 · T1</span></td>
+        <td class="deb">空軍戰力空窗由國防與全民承擔；延誤責任在修法前無主詞</td>
+        <td class="cre">修法切片把「認領交機」偷換成「修改法條」——預算與合約留在原軍售鏈，政治成本歸零</td>
+        <td>軍售採購鏈位置⚠️（修法後無人需要交機，只需要改法）</td>
+        <td><span class="tag yes">成立（初步）</span></td>
+        <td><span class="anchor">❓</span> 特別條例審查結果與新期限落點</td></tr>
+
+      <tr><td><span class="case">徐佳青案</span><span class="pos">S6 · T1</span></td>
+        <td class="deb">徐佳青個人（請辭承責）；<b>日內瓦基層受害者自輿情消失</b>（責任帳的主體被洗掉）；五年 2300 萬⚠️公帳</td>
+        <td class="cre">任命鏈（總統府／行政院）零成本止血；SERP 洗版把瀆職指控結在「已辭職」</td>
+        <td>任命權位置——體層主詞不在輿情裡，在任命權裡</td>
+        <td><span class="tag yes">成立</span>（換帳：花錢帳蓋瀆職帳）</td>
+        <td><span class="anchor">2027-01-31</span> 任命鏈具名負責複查</td></tr>
+
+      <tr><td><span class="case">吳乃仁追償</span><span class="pos">S5 · T1⚑</span></td>
+        <td class="deb">台糖（國庫）承擔 1.7 億放棄；吳乃仁管收 12 天；二十年僅追回 500–700 萬</td>
+        <td class="cre">撤回追償那張狀的決策者：免除全部民事風險、無人具名、可能領「息事寧人」之功</td>
+        <td>「撤回決策」位置⚑——半張書面（撤回那張狀就是「選擇不為」的落款，全體系罕見的可釘之名：台糖董座）</td>
+        <td><span class="tag yes">成立</span>（體層主詞有半張書面＝唯一快釘住的一案）</td>
+        <td><span class="anchor">❓</span> 台糖董座人事與撤回決策說明</td></tr>
+
+      <tr><td><span class="case">EZ WAY 收費</span><span class="pos">S4 · T1→T2</span></td>
+        <td class="deb">報關業者付月費＋每筆費；消費者承擔無替代平台的轉嫁成本；財政部持股 36.11%⚠️使全民同時是受害者與股東</td>
+        <td class="cre">關貿收確認費（級距 0.8–3.5 元）＋對接費（月 2500＋0.8 元）；「市場機制」敘事免責；獨家地位無第二家</td>
+        <td>關貿位置＋持股鏈⚠️——責任帳無主詞（市場機制），功勞帳具名收費：判定式讀數最乾淨的一案</td>
+        <td><span class="tag yes">成立（初步）</span></td>
+        <td><span class="anchor">2026-11-06</span> 關務署檢討報告具名結論；無則滑入 T2</td></tr>
+
+      <tr><td><span class="case">福麥炸藥案</span><span class="pos">S6→S5 · T1→T2</span></td>
+        <td class="deb">國防安全由全民承擔；若起訴＝承辦與廠商個人；室內裝修得標的審查責任無人承擔</td>
+        <td class="cre">「解約停權＝已處理」敘事；顧立雄「20 年都是同樣規定」＝制度位置免責</td>
+        <td>「20 年同樣規定」的制度位置——體層主詞是規定本身，規定不會被起訴</td>
+        <td><span class="tag yes">成立（初步）</span></td>
+        <td><span class="anchor">❓</span> 北檢 12 個月無起訴＝滑入 T2</td></tr>
+
+      <tr class="group-row"><td colspan="6">B｜兩本帳已結算——T2／S7–S8 段，功勞帳結清、責任帳銷毀，體層對價定讞</td></tr>
+
+      <tr><td><span class="case">國艦彈藥弊案</span><span class="pos">S7 · T2</span></td>
+        <td class="deb">個別軍官停權（執行層）；彈藥品質風險由國軍承擔</td>
+        <td class="cre">監院糾正＋停權敘事完成者：監督成本一次付清、制度修正無人認領</td>
+        <td>已漂移——體層主詞隨處分敘事蒸發，對價結束</td>
+        <td><span class="tag done">已結算</span></td>
+        <td class="undec">—</td></tr>
+
+      <tr><td><span class="case">台電電價公式</span><span class="pos">S7 · T2</span></td>
+        <td class="deb">全民：711 億撥補（納稅人）＋電價成本（用戶）；虧損公式繼續運轉</td>
+        <td class="cre">四方漂移（經濟部／審議會／立院／台電）＝<b>政治成本四方分摊、無人付責</b>——漂移本身即是體層獲利</td>
+        <td>漂移結構本身——這一案的體層主詞不是一個人，是一個讓任何人都不用負責的安排</td>
+        <td><span class="tag done">已結算</span>（12 月審議為形式流程）</td>
+        <td><span class="anchor">2026-12</span> 第三次審議會：公式是否仍無主詞</td></tr>
+
+      <tr><td><span class="case">數位中介法</span><span class="pos">S7 · T2</span></td>
+        <td class="deb">平台業者承擔 4 年不確定性；言論自由邊界懸置；「重啟」決策從未有主詞</td>
+        <td class="cre">不重啟＝不必承擔重啟的政治成本——<b>不做事的權利</b>是這一案的體層利益</td>
+        <td>「不重啟」的集體位置（部會無人負責重啟）</td>
+        <td><span class="tag done">已結算</span></td>
+        <td class="undec">—</td></tr>
+
+      <tr><td><span class="case">高端疫苗</span><span class="pos">S8 · T2</span></td>
+        <td class="deb">國庫採購預算；63 案簽結、弊案敘事靜默；接種者承擔全部不確定性</td>
+        <td class="cre">公司轉型、出口越南——敘事逆轉完成，企業版 T2 的標本：責任帳清零、功勞帳轉型得利</td>
+        <td>公司經營層（敘事逆轉的獲利位置）</td>
+        <td><span class="tag done">已結算</span></td>
+        <td class="undec">—</td></tr>
+
+      <tr><td><span class="case">陳水扁案</span><span class="pos">S8 · T2 司法版</span></td>
+        <td class="deb">司法公信力 21 年（停審凍結 7 年）；案件本身成為永久政治創傷</td>
+        <td class="cre">兩黨各自動員位置：特赦／重審議題隨選舉循環產生動員利益——<b>案件不結＝資產不滅</b></td>
+        <td>兩極化的雙方位置——司法版裝死曲線的體層特異型：不結案對雙方都有利</td>
+        <td><span class="tag done">已結算</span>（政治資產型）</td>
+        <td class="undec">—</td></tr>
+
+      <tr><td><span class="case">拉法葉案</span><span class="pos">S8 · T2 終極</span></td>
+        <td class="deb">國庫與軍售安全 35 年（最長未完案）；270.8 億「國庫獲償」敘事掩蓋佣金未清</td>
+        <td class="cre">佣金位置（汪傳浦家族）死後仍運作；2024 再對法採購 24 億＝同一供應鏈再生意化無波瀾</td>
+        <td>佣金位置——死亡切割後功勞帳仍活的終局標本：死亡＋時效＋再生意化三重終局</td>
+        <td><span class="tag done">已結算</span>（終極型）</td>
+        <td class="undec">—</td></tr>
+
+      <tr class="group-row"><td colspan="6">C｜極端型——帳本未設格，體層對價無從讀起</td></tr>
+
+      <tr><td><span class="case">資遣通報黑數</span><span class="pos">S4 · T2</span></td>
+        <td class="deb">失業勞工——黑數即「看不到的受害者」，連被算進帳本的資格都沒有</td>
+        <td class="cre">「流量通報合規」敘事維持；全國彙整職位從未設立＝無人需要負責也無人需要領功</td>
+        <td><b>不存在的位置</b>——椅子不是被拆，是從未釘過；體層對價的極端型：帳本根本沒有這一格</td>
+        <td><span class="tag ext">極端型</span></td>
+        <td><span class="anchor">❓</span> 立院提案 3 個月書面報告</td></tr>
+
+      <tr><td><span class="case">個保會組織法</span><span class="pos">S5 · T2</span></td>
+        <td class="deb">全民個資保護真空 3.5 年；「無定期」＝真空無期限</td>
+        <td class="cre">黨團協商＝集體無名：無人推進也無人擋責，協商位置免費</td>
+        <td>集體決策結構——憲政形態的 T2：沒有一個人可以被釘，也沒有一個人需要付費</td>
+        <td><span class="tag ext">極端型</span></td>
+        <td class="undec">—</td></tr>
+
+      <tr class="group-row"><td colspan="6">D｜對照與特殊</td></tr>
+
+      <tr><td><span class="case">進口雞蛋</span><span class="pos">S1–S7 · ✅有主</span></td>
+        <td class="deb">專案辦公室主任具名承擔</td>
+        <td class="cre">同一個具名者</td>
+        <td>體層主詞＝名義當責者——判定式<b>不成立</b>：兩本帳同一批人，責任追得到</td>
+        <td><span class="tag own">對照 ✅</span></td>
+        <td class="undec">—</td></tr>
+
+      <tr><td><span class="case">憲政對抗</span><span class="pos">S3 · ⚖️無裁判</span></td>
+        <td class="deb">全民監督資源被對抗持續消耗</td>
+        <td class="cre">對抗雙方各自鞏固基本盤——兩極化的雙方都是體層獲利者</td>
+        <td>雙方位置——timebox 在憲政層失效：無更上級可啟動 escalation，體層對價變成長期消耗戰</td>
+        <td><span class="tag sp">特殊 ⚖️</span></td>
+        <td class="undec">—</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <div class="eyebrow">AGGREGATE</div>
+  <h2 style="font-size:23px;margin:0 0 6px">三、17 案體層回驗統計</h2>
+  <div class="stats">
+    <div class="stat r"><div class="n">7</div><div class="l"><b>兩本帳成立（運行中）</b><br>海鯤、中聯、F-16V、徐佳青、吳乃仁、EZ WAY、福麥——對帳窗口仍開著，每案掛長稽錨</div></div>
+    <div class="stat g"><div class="n">6</div><div class="l"><b>已結算</b><br>國艦彈藥、台電、數位中介、高端、陳水扁、拉法葉——功勞帳結清、責任帳銷毀，體層對價定讞</div></div>
+    <div class="stat gr"><div class="n">2</div><div class="l"><b>極端型</b><br>資遣黑數、個保會——帳本未設格／集體無名，對價無從讀起，只能靠立法設格</div></div>
+    <div class="stat a"><div class="n">1</div><div class="l"><b>對照組 ✅</b><br>進口雞蛋——體層主詞＝名義當責者，證明判定式不成立時責任追得到，兩本帳不是宿命</div></div>
+    <div class="stat m"><div class="n">1</div><div class="l"><b>特殊 ⚖️</b><br>憲政對抗——體層對價成為雙方消耗戰，全民是被消耗的帳</div></div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h3>體層主詞集中度觀察：權力三源</h3>
+    <p>17 案的體層主詞初判，反覆指向<b>三種位置</b>——錢、位子、不做事的權利：</p>
+    <p><b>① 預算／訂單鏈</b>（海鯤、F-16V、EZ WAY、拉法葉）：利益以預算與訂單形式留在原鏈，責任以「無期程／修法／市場機制」形式外移。檢驗法：訂單落點與預算流向。</p>
+    <p><b>② 任命權</b>（徐佳青、吳乃仁、福麥）：止血成本由被任命者個人支付，任命者免費。檢驗法：任命鏈是否有人具名負責。</p>
+    <p><b>③ 不做事的權利</b>（數位中介、台電漂移、個保會）：以「不重啟／四方分摊／集體無名」讓決策位置免費存在。檢驗法：決策位置是否有人具名進場。</p>
+    <p>三源共用同一個體層定律：<b>書面最少的三個位置（預算鏈、任命權、不決策），恰好是獲利最多的三個位置。</b>這是報告 13「兩本帳」在 17 案上的體層定量復讀：16 比 1 的分型計數，在體層對價上復現為 16 比 1 的帳本判定（7 運行中＋6 已結算＋2 極端＋1 特殊 對 1 對照）。</p>
+  </div>
+
+  <div class="punch">
+    <div class="q">體層回驗的最重要發現：<b>兩本帳的成立與案件的「結案方式」無關，與「帳是否對得上」有關。</b>已結算的 6 案不是卸責失敗，是卸責完成——功勞帳安全落袋才是 T2 的定義。</div>
+    <p>因此長稽管理只追一件事：運行中的 7 案，每到一個錨點問一次——「長期最大淨獲利者具名了嗎？還是又熬過了一格？」</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">LONG-RUN AUDIT ANCHORS</div>
+  <h2 style="font-size:23px;margin:0 0 6px">四、長稽錨清單（本表立，隨複查核銷）</h2>
+  <div class="tablewrap"><table style="min-width:720px">
+    <thead><tr><th>日期</th><th>案件</th><th>對帳內容（二值可證偽）</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">2026-10-29</td><td>EZ WAY</td><td>關務署檢討進度：是否出現具名結論與第二家開放時程</td></tr>
+      <tr><td class="mono">2026-11-06</td><td>EZ WAY</td><td>檢討報告到期：無具名結論＝T1→T2 預測核銷（沿報告 14）</td></tr>
+      <tr><td class="mono">2026-12</td><td>台電</td><td>第三次電價審議：公式是否仍無主詞、撥補敘事是否再現</td></tr>
+      <tr><td class="mono">2026-12-31</td><td>海鯤艦</td><td>交艦期程或懲處具名＝判錯；無＝兩本帳運行確認</td></tr>
+      <tr><td class="mono">2027-01-31</td><td>徐佳青</td><td>任命鏈具名負責＝判錯；無＝假結案確認、兩本帳成立</td></tr>
+      <tr><td class="mono">❓ 待補</td><td>中聯／F-16V／吳乃仁／福麥／資遣黑數</td><td>待對回各案法律時效與程序期限後補日期，不虛構</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<div class="note">
+  <b>查證分層（AI-RMA 紀律）。</b>　責任帳／功勞帳欄為對公開報導與體系內已標註事實的結構性整理；體層主詞欄一律為<b>初判</b>，標⚠️者待一手對帳，不寫為定論。帶⚠️ 一手數字：財政部持股 36.11%、徐佳青案「五年 2300 萬／47 次／526 天」（民眾黨團說法）、中聯大廠失速獲利、軍售鏈訂單落點。「16 比 1」的體層復讀（7＋6＋2＋1 對 1）為分型統計，非對個人的指控。　陳水扁案「政治資產型」為結構觀察，不對任何一方動機斷言。　本表「已結算」不代表合法定讞，代表體層對價在公開資訊上不再變動。
+</div>
+
+<footer>體層 17 案回驗 · 時間軸對價受益者總表 · 2026-10-12 · 報告體系第 17 份 · 本機靜態檔案，任何對話視窗皆可開啟</footer>
+
+</div>
+</body></html>

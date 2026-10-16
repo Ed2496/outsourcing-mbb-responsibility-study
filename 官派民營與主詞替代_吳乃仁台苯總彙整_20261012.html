@@ -1,0 +1,173 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>官派民營的兩本帳：主詞替代→惡意替換主詞——吳乃仁任命鏈×台苯家族×書面台帳總彙整（2026-10-12）</title>
+<style>
+:root{
+  --bg:#ECEAE4; --surface:#FBFAF7; --surface2:#F3F1EB;
+  --fg:#1C2420; --muted:#5E6862; --faint:#8A938C;
+  --line:#D7D2C8; --line2:#C6C0B4;
+  --accent:#0E7C6B; --accent-soft:#E0EEEA;
+  --debit:#AE352B; --debit-soft:#F6E6E3;
+  --credit:#9A6410; --credit-soft:#F6ECD9;
+  --mine:#B3382E;
+  --ff-cjk:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --ff-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121613; --surface:#1A201C; --surface2:#20271F;
+  --fg:#E9E7E1; --muted:#9BA49C; --faint:#6E776F;
+  --line:#2C332D; --line2:#394038;
+  --accent:#43A08E; --accent-soft:#17241F;
+  --debit:#E07264; --debit-soft:#2A1A18;
+  --credit:#D9A449; --credit-soft:#271F13;
+  --mine:#E07264; color-scheme:dark;
+}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--ff-cjk);line-height:1.72;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-block:40px 80px;padding-inline:20px}
+.mono{font-family:var(--ff-mono);font-variant-numeric:tabular-nums}
+h1,h2,h3{text-wrap:balance;line-height:1.28}
+section{margin-top:52px}
+.eyebrow{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);display:inline-block}
+.hero{border:1px solid var(--line2);border-radius:16px;background:var(--surface);padding:34px 32px;position:relative;overflow:hidden}
+.hero .kick{font-family:var(--ff-mono);font-size:12px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:clamp(24px,4.2vw,36px);font-weight:800;letter-spacing:-.01em;margin:0 0 4px}
+.hero h1 .en{font-family:var(--ff-mono);font-weight:600;font-size:.5em;letter-spacing:0;color:var(--muted);display:block;margin-top:8px}
+.thesis{margin-top:20px;font-size:clamp(16px,2.4vw,20px);font-weight:600;line-height:1.55;border-left:3px solid var(--mine);padding-left:16px;max-width:58ch}
+.thesis b{color:var(--mine)}
+.hero-meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:12.5px;color:var(--muted);font-family:var(--ff-mono);border-top:1px solid var(--line);padding-top:16px}
+.lead{font-size:15px;color:var(--muted);max-width:70ch;margin:0 0 4px}
+.lead b{color:var(--fg)}
+.panel{border:1px solid var(--line2);border-radius:14px;background:var(--surface);padding:20px 22px;margin-top:16px}
+.panel h3{margin:0 0 8px;font-size:17px}
+.panel p{font-size:13.8px;color:var(--muted);margin:.5em 0}
+.panel p b{color:var(--fg)}
+.formula{margin-top:14px;border:1px dashed var(--line2);border-radius:10px;background:var(--surface2);padding:12px 16px;font-size:13.5px}
+.formula b{color:var(--mine)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:16px}
+table{border-collapse:collapse;width:100%;min-width:860px;font-size:13px}
+th{background:var(--surface2);text-align:left;padding:10px 12px;font-size:11px;font-family:var(--ff-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line2);white-space:nowrap}
+td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;line-height:1.62}
+td b{color:var(--fg)}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.tag.d{color:var(--debit);background:var(--debit-soft)}
+.tag.c{color:var(--credit);background:var(--credit-soft)}
+.tag.a{color:var(--accent);background:var(--accent-soft)}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px}
+.chip{border:1px solid var(--line2);border-radius:10px;background:var(--surface);padding:10px 14px;font-size:13px}
+.chip b{display:block;font-size:12px}
+.chip .r{font-family:var(--ff-mono);font-size:10.5px;color:var(--muted)}
+.arrow{color:var(--faint);font-family:var(--ff-mono)}
+.fable{border:1px solid var(--line2);border-radius:14px;background:var(--surface);padding:22px 26px;margin-top:16px}
+.fable .quote{font-size:15px;line-height:1.8;color:var(--fg);border-left:3px solid var(--line2);padding-left:16px}
+.fable .quote b{color:var(--mine)}
+.note{margin-top:34px;border:1px solid var(--line);background:var(--surface2);border-radius:11px;padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.75}
+.note b{color:var(--fg)}
+.punch{margin-top:22px;border:1.5px solid var(--mine);border-radius:14px;background:linear-gradient(180deg,var(--debit-soft),var(--surface));padding:22px 26px}
+.punch .q{font-size:clamp(16px,2.6vw,20px);font-weight:700;line-height:1.55}
+.punch p{margin:12px 0 0;font-size:14px;color:var(--muted)}
+footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;font-size:12px;color:var(--faint);font-family:var(--ff-mono)}
+</style></head><body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kick">SYNTHESIS · 2026-10-12 · 承報告 16 三維框架／報告 17 體層 17 案</div>
+  <h1>官派民營的兩本帳：主詞替代→惡意替換主詞<span class="en">APPOINTED "PRIVATE" CAPITAL — WHEN SUBSTITUTION IS BUILT INTO THE CHARTER, NOT JUST THE SENTENCE</span></h1>
+  <div class="thesis">主詞替代是<b>話術</b>：句子裡把「我」換成「大家／市場／制度」。惡意替換主詞是<b>制度</b>：讓主詞在章程裡就合法離位——政府派任、持股、控制，出事時用「已民營化」卸責。官派民營、官投控股的問題不在替代本身，在<b>兩種利益同時取用</b>：控制時用「政府」身分，免責時用「民營」身分。</div>
+  <div class="hero-meta"><span>報告 18</span><span>語料：美國千金寓言字幕・三行諷刺・六類書面台帳 CSV（396 筆）</span><span>查證：台糖官網歷史・中央社 2002・中視 2018–19・風傳媒・RTI・維基台糖售地案</span></div>
+</header>
+
+<section>
+  <div class="eyebrow">FABLE AS MACHINE</div>
+  <h2 style="font-size:23px;margin:0 0 6px">一、寓言是機器：美國千金故事的相層判定</h2>
+  <p class="lead">《美國千金居然在台灣打工》逐字字幕（2,610 字）：紐約千金被丟在台北、便當店老闆娘一頓飯、手搖飲店長一條圍裙、三個月學會「平視流汗的人」、爸爸老淚縱橫。按鑑識引擎過一遍：</p>
+  <div class="panel">
+    <p><b>L1 可查證事實：零。</b>無時間、無地點、無具名單位、無落款——通篇 L2 戲劇敘事＋L3 框架（「台灣人情味」對「金錢買不到尊重」）。</p>
+    <p><b>三閘：</b>主詞歸位閘——主詞是「這片土地」，零個人、零機關、零責任；可證偁閘——不可證偽，它是故事；對稱閘——無對立方。</p>
+    <p><b>判定：「放」＝敘事結案的注意力版本。</b>它的結構功能與徐佳青 SERP 同型——用高情緒內容佔據注意力槽位，讓「問責」這個主題在注意力經濟裡排不進版面。徐佳青案洗的是「已辭職＝結案」；這支影片洗的是「人情味＝不需要問責」。<b>沒有人作惡，也沒有人負責——這正是它做為機器的高明處。</b></p>
+  </div>
+  <div class="fable">
+    <div class="quote">「不要問執政負責什麼？只要同聲討伐親中賣台不聽話。」<b>——這三行就是一部操作手冊。</b></div>
+    <p style="font-size:13.5px;color:var(--muted)">框架轉譯：①「不要問執政負責什麼」＝<b>主詞蒸發指令</b>——把追問的對象從「當責者」改成「不該問的人」。②「同聲討伐親中賣台不聽話」＝<b>外案主詞替代根案主詞</b>——「親中賣台」這個不可證偽框架佔據主詞位，任命鏈、預算鏈的追問全部失焦；而且「不聽話」洩露了真實的罪狀結構：罪不是貪瀆，是不服從。③「台灣人情味不代表民進黨可以不負責任」＝<b>歸位句</b>——人情味是這片土地的，不是任何政黨的免責道具。寓言教你平視流汗的人；政治操作卻讓流汗的人永遠抬頭看椅子——椅子上沒有人。</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">LESSON</div>
+  <h2 style="font-size:23px;margin:0 0 6px">二、教學：主詞替代 vs 惡意替換主詞</h2>
+  <p class="lead">你的問題：「這種官派民營事業、官投資控股民營企業，是主詞替代，還是惡意替換主詞？」——答案：<b>相層是主詞替代，行層與體層合起來構成惡意替換主詞。</b></p>
+  <div class="tablewrap"><table>
+    <tr><th>層次</th><th>主詞替代（話術）</th><th>惡意替換主詞（制度）</th></tr>
+    <tr><td><b>發生位置</b></td><td>句子裡：記者會、聲明、新聞標題</td><td>章程、組織法、派任制度、問責設計裡</td></tr>
+    <tr><td><b>手段</b></td><td>蒸發／稀釋向上／橫向轉嫁／匿名借殼</td><td>把主詞離位<b>合法化</b>：民營自主（政府免責）＋官派董監（政府控制）並存</td></tr>
+    <tr><td><b>破綻</b></td><td>一過三閘就現形</td><td>每段都合法、每句都過閘——<b>破綻只在體層</b>：利益與控制歸一邊，責任歸另一邊</td></tr>
+    <tr><td><b>判別式</b></td><td colspan="2"><b>若「民營」身分讓政府同時取用控制利益（派任、政策配合）與免責利益（不負監督責任），而對外話語只取免責端——惡意替換成立。</b>反之，政府只持股、不控制、也不以民營身分免責＝正當民營化，不構成替換。</td></tr>
+  </table></div>
+  <div class="panel">
+    <h3>回答你的四個追問</h3>
+    <p><b>①「已民營化，那至今政府不派遣董監事嗎？」</b>——仍派遣。台糖是國營，董事長由<b>經濟部提名、行政院核定</b>（2002 年吳乃仁即循此流程上任）；官股民營企業（官股低於 50% 或已釋股者）政府仍依持股派任董監事。所以「已民營化」從不意味「政府不在場」。</p>
+    <p><b>②「政府派遣，政府誰負責任？還是只需派遣不負責？」</b>——按兩本帳紀律：<b>派遣即書面，派遣者入責任帳。</b>經濟部提名、行政院核定，兩個名字就是兩個主詞。出事時若只追「民營自主」而不追「誰提名、核定、考核」＝責任帳蒸發、功勞帳保留——這正是吳乃仁案 2026 年撤回管收時「經濟部：尊重台糖專業判斷」的實況：尊重專業＝二階封口句式，提名者的責任帳原地蒸發。</p>
+    <p><b>③「吳乃仁只是個人行為，全家受益——誰讓他當台糖董事長？」</b>——查證：2002/4/8 接任（台糖官網歷史頁 L1），流程為經濟部報請行政院核定；時任經濟部長林義夫、行政院長游錫堃⚠️（依上任日期推定，待回一手派任令）。2003/10 核定售地價、12 月卸任。個人行為定讞（背信 9 個月），但<b>任命鏈無人入調查</b>——個人承責＝切割完成，提名／核定／考核三格書面無人認領。</p>
+    <p><b>④「妻子、子女有何相關經歷是自己擔任該職位？」</b>——查證：台苯（民營上市公司）2017 年台鋼入主後，吳怡青任董事長、吳怡翰任董事，兩年領 3,500 萬，三年合計約 7,000 萬⚠️；妻子詹彩虹任顧問，一家三口同在董事會；吳怡青另在榮剛、春雨任獨董。報導直指兩人<b>無化工背景</b>。體層讀法：父親的責任帳（1.7 億）記了二十年，子女的功勞帳（7,000 萬）先領——<b>十年利益在誰手上：不在被判背信的父親帳上，在子女坐領的位子裡。</b>這就是「全家受益，個人承責」的兩本帳家族版。</p>
+  </div>
+  <div class="chain">
+    <span class="chip"><b>提名</b>經濟部長⚠️<span class="r">責任帳①</span></span><span class="arrow">→</span>
+    <span class="chip"><b>核定</b>行政院長⚠️<span class="r">責任帳②</span></span><span class="arrow">→</span>
+    <span class="chip"><b>核定售地價</b>吳乃仁（定讞承責）<span class="r">責任帳③（唯一被記）</span></span><span class="arrow">→</span>
+    <span class="chip"><b>撤回追償</b>2026 台糖／經濟部「尊重專業」<span class="r">半張書面⚑</span></span><span class="arrow">→</span>
+    <span class="chip"><b>功勞帳</b>子女台苯三年 7,000 萬⚠️<span class="r">體層歸位</span></span>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">CHEN SHUI-BIAN FRAME</div>
+  <h2 style="font-size:23px;margin:0 0 6px">三、「不是貪污，只是政治迫害」的相層判定</h2>
+  <div class="panel">
+    <p><b>L1 事實層：</b>陳水扁部分案件有罪定讞（龍潭購地案等，曾入監服刑），部分案件無罪定讞（國務機要費案 2022 更四審無罪）。兩者都是判決紀錄。</p>
+    <p><b>框架層：</b>「政治迫害」敘事的做法是——用無罪的部分（L1）覆蓋有罪的部分（L1），再用「司法迫害」框架（L3）覆蓋全部。主詞替代點：貪污<b>事實主詞</b>（誰收了錢、錢進了哪個帳戶）被換成<b>程序主詞</b>（誰在迫害、誰被清算）——一旦換框成功，追問就從「錢」轉向「動機」，而動機不可證偽。</p>
+    <p><b>可證偽閘：</b>「政治迫害」若要成立，須證明有罪定讞部分的證據係捏造——此為可證偽命題；但主張者從不提出，只反覆提出無罪部分。<b>全稱判斷（「不是貪污」）與定讞紀錄（有罪部分）矛盾，故該框架過不了可證偽閘。</b></p>
+    <p><b>與吳乃仁案的同構：</b>個人承責（定讞／入監）都是真的，蒸發的都是任命鏈與制度鏈。「迫害」框架與「個人行為」框架是同一台機器的兩個出口：一個把責任往上推給抽象的敵人，一個把責任往下壓給具體的個人——<b>兩者都不回答「誰任命、誰考核、誰受益」。</b></p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">EVIDENCE LEDGER</div>
+  <h2 style="font-size:23px;margin:0 0 6px">四、六類書面台帳：責任帳的取證清冊（396 筆）</h2>
+  <p class="lead">《17案_各方六類書面紀錄台帳》把「兩本帳」從理論變成可執行的取證工程：17 案 × 66 個案內對方槽位 × 6 類書面（派任函／董事會紀錄／股權／考核／薪酬／利益流向）＝ 396 筆待核紀錄。</p>
+  <div class="tablewrap"><table>
+    <tr><th>統計項</th><th>數字</th><th>解讀</th></tr>
+    <tr><td>總紀錄</td><td class="mono"><b>396</b></td><td>每一筆都是一個「該有書面」的槽位</td></tr>
+    <tr><td>❓ 未取得／適用待核</td><td class="mono"><b>389（98.2%）</b></td><td>責任帳的書面證據絕大多數尚未取回——<b>缺口本身是發現，但不是罪證</b></td></tr>
+    <tr><td>已找到官方入口／規定</td><td class="mono">7</td><td>台糖績效評估頁、官股東會資料入口、EZ WAY 派任管理規定等——證明制度線索存在，個案文件仍缺</td></tr>
+    <tr><td>最大案</td><td class="mono">吳乃仁 60 筆</td><td>10 個對方槽位（吳乃仁／台糖／經濟部／陳水扁總統府歷史任命線索／春龍公司…）×6 類</td></tr>
+    <tr><td>研究檢查點</td><td class="mono">2026-11-12</td><td>自設，非法定：取得具名文件→更新推論；未取得→只保留缺口，不宣布卸責、也不把缺口當罪證</td></tr>
+  </table></div>
+  <div class="panel">
+    <h3>台帳的方法論意義</h3>
+    <p>這份台帳把報告 13 的「兩本帳」與報告 17 的體層判定式<b>書面化</b>：每個槽位都要求五個具名字段——提名／製作者、核定／簽署者、實際決策者、利益受領／控制者、相反證據。它的紀律與引擎一致：<b>不以集體主詞代替姓名，也不把待核對方認定為責任人。</b>「未取得不等於不存在、不負責或已卸責」——這句話同時擋住兩邊：擋住急著結案的人，也擋住急著定罪的人。</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">ANCHORS</div>
+  <h2 style="font-size:23px;margin:0 0 6px">五、長稽錨（本表新增）</h2>
+  <div class="panel">
+    <p>・<b>2026-11-12</b>：六類台帳研究檢查點——首批派任函／考核／薪酬文件是否取得，389 筆缺口開始閉合或繼續靜置。</p>
+    <p>・<b>2026-11-06</b>：關務署 EZ WAY 檢討報告——官派民營判別式的公開測試場：報告若只談「市場機制」不談持股與派任責任＝惡意替換的標準樣本。</p>
+    <p>・<b>❓ 待補</b>：2002 台糖派任令（經濟部→行政院）調檔、台苯家族酬金明細對帳——列入台帳 C07 優先序。</p>
+  </div>
+  <div class="punch">
+    <div class="q">官派民營不是「政府 vs 民間」的問題，是<b>一個主詞兩件衣服的問題</b>：控制時穿官服，出事時穿民服——而更衣間，就是「民營化」三個字。</div>
+    <p>台灣人情味教我們平視流汗的人；官僚體系教我們仰視空椅子。寓言裡千金三個月學會的事，制度二十年還沒學會：尊貴不是踩在別人頭上，問責也不是踩在別人頭上——兩者都是平視。</p>
+  </div>
+</section>
+
+<div class="note">
+  <b>查證分層：</b>✅台糖官網歷史頁（2002/4/8 吳乃仁接任、2003/12 龔照勝接任）｜✅中央社 2002/3/27（4/8 上任、董瑞斌代行）｜✅RTI 2026/7/1（台糖撤回管收、經濟部「尊重專業判斷」）｜✅維基「台糖售地案」（再審後吳乃仁背信 9 個月、檢方認定損失 2.5 億）｜⚠️中視 2018/12、2019/1（台苯家族三年 7,000 萬、無化工背景——媒體報導，待台苯年報對帳）｜⚠️林義夫／游錫堃為依上任日期推定之提名／核定者，待派任令｜⚠️「經濟部提名、行政院核定」流程引述 Threads（C 級），與國營事業通例一致，仍待一手規定。　寓言影片（YouTube 8Sy8i68picw）為 L3 敘事，僅作為注意力機器樣本，內容本身不引用為事實。
+</div>
+
+<footer>官派民營的兩本帳 · 主詞替代→惡意替換主詞 · 2026-10-12 · 報告體系第 18 份 · 本機靜態檔案</footer>
+
+</div>
+</body></html>

@@ -1,0 +1,149 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>EZ WAY 檢討報告 pre-mortem 鑑識單（2026-10-12 立，2026-11-06 對照）</title>
+<style>
+:root{
+  --bg:#ECEAE4; --surface:#FBFAF7; --surface2:#F3F1EB;
+  --fg:#1C2420; --muted:#5E6862; --faint:#8A938C;
+  --line:#D7D2C8; --line2:#C6C0B4;
+  --accent:#0E7C6B; --accent-soft:#E0EEEA;
+  --debit:#AE352B; --debit-soft:#F6E6E3;
+  --credit:#9A6410; --credit-soft:#F6ECD9;
+  --mine:#B3382E;
+  --ff-cjk:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --ff-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121613; --surface:#1A201C; --surface2:#20271F;
+  --fg:#E9E7E1; --muted:#9BA49C; --faint:#6E776F;
+  --line:#2C332D; --line2:#394038;
+  --accent:#43A08E; --accent-soft:#17241F;
+  --debit:#E07264; --debit-soft:#2A1A18;
+  --credit:#D9A449; --credit-soft:#271F13;
+  --mine:#E07264; color-scheme:dark;
+}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--ff-cjk);line-height:1.72;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-block:40px 80px;padding-inline:20px}
+.mono{font-family:var(--ff-mono);font-variant-numeric:tabular-nums}
+h1,h2,h3{text-wrap:balance;line-height:1.28}
+section{margin-top:52px}
+.eyebrow{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);display:inline-block}
+.hero{border:1px solid var(--line2);border-radius:16px;background:var(--surface);padding:34px 32px;position:relative;overflow:hidden}
+.hero .kick{font-family:var(--ff-mono);font-size:12px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:clamp(24px,4.2vw,36px);font-weight:800;letter-spacing:-.01em;margin:0 0 4px}
+.hero h1 .en{font-family:var(--ff-mono);font-weight:600;font-size:.5em;letter-spacing:0;color:var(--muted);display:block;margin-top:8px}
+.thesis{margin-top:20px;font-size:clamp(16px,2.4vw,20px);font-weight:600;line-height:1.55;border-left:3px solid var(--mine);padding-left:16px;max-width:58ch}
+.thesis b{color:var(--mine)}
+.hero-meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:12.5px;color:var(--muted);font-family:var(--ff-mono);border-top:1px solid var(--line);padding-top:16px}
+.lead{font-size:15px;color:var(--muted);max-width:70ch;margin:0 0 4px}
+.lead b{color:var(--fg)}
+.panel{border:1px solid var(--line2);border-radius:14px;background:var(--surface);padding:20px 22px;margin-top:16px}
+.panel h3{margin:0 0 8px;font-size:17px}
+.panel p{font-size:13.8px;color:var(--muted);margin:.5em 0}
+.panel p b{color:var(--fg)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:16px}
+table{border-collapse:collapse;width:100%;min-width:900px;font-size:12.8px}
+thead th{background:var(--surface2);text-align:left;padding:11px 12px;font-size:11px;font-family:var(--ff-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line2);white-space:nowrap;position:sticky;top:0}
+tbody td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;line-height:1.62}
+tbody tr:hover{background:var(--surface2)}
+td b{color:var(--fg)}
+td .pid{font-family:var(--ff-mono);font-size:11px;color:var(--accent);font-weight:700;white-space:nowrap}
+.group-row td{background:var(--surface2);font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:7px 12px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px;white-space:nowrap}
+.tag.d{color:var(--debit);background:var(--debit-soft)}
+.tag.c{color:var(--credit);background:var(--credit-soft)}
+.tag.a{color:var(--accent);background:var(--accent-soft)}
+.tag.g{color:var(--faint);background:var(--surface2)}
+.box{display:inline-block;width:14px;height:14px;border:1.5px solid var(--faint);border-radius:3px;vertical-align:-2px;margin-right:2px}
+.tree{border:1px solid var(--line2);border-radius:14px;background:var(--surface);padding:22px 26px;margin-top:16px}
+.tree .node{margin:10px 0;padding:12px 16px;border-radius:10px;font-size:13.5px}
+.tree .n1{background:var(--accent-soft);border-left:3px solid var(--accent)}
+.tree .n2{background:var(--debit-soft);border-left:3px solid var(--debit)}
+.tree .n3{background:var(--credit-soft);border-left:3px solid var(--credit)}
+.tree .n4{background:var(--surface2);border-left:3px solid var(--faint)}
+.note{margin-top:34px;border:1px solid var(--line);background:var(--surface2);border-radius:11px;padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.75}
+.note b{color:var(--fg)}
+.punch{margin-top:22px;border:1.5px solid var(--mine);border-radius:14px;background:linear-gradient(180deg,var(--debit-soft),var(--surface));padding:22px 26px}
+.punch .q{font-size:clamp(16px,2.6vw,20px);font-weight:700;line-height:1.55}
+.punch p{margin:12px 0 0;font-size:14px;color:var(--muted)}
+footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;font-size:12px;color:var(--faint);font-family:var(--ff-mono)}
+</style></head><body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kick">PRE-MORTEM FORENSIC SHEET · 立單 2026-10-12 · 對照日 2026-11-06</div>
+  <h1>EZ WAY 檢討報告 pre-mortem 鑑識單<span class="en">PREDICTING THE ACCOUNTABILITY REPORT BEFORE IT EXISTS — TWELVE CHECKABLE CLAIMS, ONE DECISION TREE</span></h1>
+  <div class="thesis">關務署 11/6 檢討報告<b>還不存在</b>——這正是看預判的意義：在報告寫出來之前，先預測它會長什麼樣子。十二條可逐項勾選的預測＋一棵判定樹；11/6 公布當天逐項對照，<b>命中＝卸責結構的預測力證實；落空＝本研究公開記錄誤判</b>。</div>
+  <div class="hero-meta"><span>報告 21</span><span>對象：2026-11-06 關務署 EZ WAY 檢討報告（財政部 8/6 宣布實地查核＋3 個月檢討之到期件）</span><span>引擎：v4.0 看預判首份正式鑑識單</span><span>依據：報告 14/17/18/19/20 已標註事實</span></div>
+</header>
+
+<section>
+  <div class="eyebrow">INPUT FACTS</div>
+  <h2 style="font-size:23px;margin:0 0 6px">一、輸入事實（鑑識單的地基）</h2>
+  <div class="panel">
+    <p>① 關務署 8/3 記者會：EZ WAY 是關貿「基於通關網路業者身分自行建置」，「非海關委託建置」，未強制民眾使用。</p>
+    <p>② 關貿聲明：採「市場機制」級距式收費（每筆 0.8–3.5 元＋對接月費 2,500 元、每筆 0.8 元⚠️口徑待核）。</p>
+    <p>③ 財政部 8/6 宣布實地查核＋3 個月檢討報告（11/6 到期）——<b>這就是本單預測的對象</b>。</p>
+    <p>④ 關務署官方自承：線上委任 App 目前只有 EZ WAY 一款；替代途徑（單一窗口＋自然人憑證）真實存在但無證據顯示可在淘寶既定物流流程直接使用。</p>
+    <p>⑤ 財政部持股關貿 36.11%⚠️（公視報導口徑，未回一手）；官派民營判別式（報告 18）：控制利益與免責利益是否同時取用＝本案核心測試。</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">TWELVE PREDICTIONS</div>
+  <h2 style="font-size:23px;margin:0 0 6px">二、十二條預測（11/6 逐項勾選）</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>編號</th><th>維度</th><th>預測內容</th><th>預測</th><th>若命中的結構意義</th><th>11/6 實況</th></tr></thead>
+    <tbody>
+      <tr class="group-row"><td colspan="6">A｜相層——報告會怎麼說</td></tr>
+      <tr><td class="pid">P01</td><td>主詞</td><td>報告主詞將是「制度／機制／市場」，<b>無任何具名個人承責</b></td><td><span class="tag d">會</span></td><td>主詞蒸發完成——檢討報告本身成為卸責載體</td><td><span class="box"></span></td></tr>
+      <tr><td class="pid">P02</td><td>框架</td><td>「依法」「市場機制」框架延續，收費被描述為業者自主定價</td><td><span class="tag d">會</span></td><td>L3 框架覆蓋 L1 壟斷事實</td><td><span class="box"></span></td></tr>
+      <tr><td class="pid">P03</td><td>回應深度</td><td>費率「檢討」但非「取消」——降費或級距微調當止血</td><td><span class="tag d">會</span></td><td>換帳：把「壟斷」帳換成「費率」帳（報告 18 換帳機制）</td><td><span class="box"></span></td></tr>
+      <tr><td class="pid">P04</td><td>數據替代</td><td>以使用率／滿意度數據呈現，替代責任歸屬的回答</td><td><span class="tag d">會</span></td><td>書面錯誤紀錄的政府版：有數據、無主詞</td><td><span class="box"></span></td></tr>
+      <tr><td class="pid">P05</td><td>股權</td><td>財政部持股問題不被處理，或以「全民股東」一筆帶過</td><td><span class="tag d">會</span></td><td>官派民營判別式的免責端單獨取用</td><td><span class="box"></span></td></tr>
+      <tr class="group-row"><td colspan="6">B｜行層——椅子誰坐</td></tr>
+      <tr><td class="pid">P06</td><td>具名層級</td><td>出面者為關務署長或發言人層級；對關貿費率<b>無直接權限</b>（關貿為獨立法人）</td><td><span class="tag d">會</span></td><td>道具椅：具名者三權（預算／人事／否決）皆不及關貿</td><td><span class="box"></span></td></tr>
+      <tr><td class="pid">P07</td><td>真權力</td><td>真正有權者（財政部長＝持股督導、政委督導層）<b>不具名</b></td><td><span class="tag d">會</span></td><td>有權不坐——責任帳釘不住最高一階</td><td><span class="box"></span></td></tr>
+      <tr><td class="pid">P08</td><td>timebox</td><td>無「具名＋承諾＋日期」三件套——第二家至多「持續鼓勵／研議」，無驗收點</td><td><span class="tag d">會</span></td><td>S4 形式化：承諾有了、主詞缺席（報告 14 病態實況）</td><td><span class="box"></span></td></tr>
+      <tr class="group-row"><td colspan="6">C｜體層——帳歸誰</td></tr>
+      <tr><td class="pid">P09</td><td>責任帳</td><td>「未強制使用、費用由報關業者支付」敘事再現</td><td><span class="tag d">會</span></td><td>責任帳外移——消費者轉嫁成本繼續隱形</td><td><span class="box"></span></td></tr>
+      <tr><td class="pid">P10</td><td>功勞帳</td><td>獨家地位維持，無第二家具名時程</td><td><span class="tag d">會</span></td><td>功勞帳歸位——壟斷利益續存</td><td><span class="box"></span></td></tr>
+      <tr class="group-row"><td colspan="6">D｜反向預測（若下列任一發生，本研究預測落空，公開記錄）</td></tr>
+      <tr><td class="pid">P11</td><td>反向</td><td>報告<b>具名承認</b>政府（財政部／關務署）在 EZ WAY 建置中的角色與監督責任，並提出政策修正</td><td><span class="tag a">不會</span></td><td>若發生＝本單判錯，記入誤判公開簿</td><td><span class="box"></span></td></tr>
+      <tr><td class="pid">P12</td><td>反向</td><td>報告給出<b>第二家具名時程</b>（單一窗口或新業者，含驗收日期）</td><td><span class="tag a">不會</span></td><td>若發生＝兩本帳預測（報告 17）對本案判錯</td><td><span class="box"></span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="lead" style="margin-top:10px">命中預期：<b>P01–P10 至少 8 條命中＋P11、P12 兩條反向預測同時成立</b>。這不是賭運氣——P01–P10 全部源自 8/3 記者會與關貿聲明已使用的句式，檢討報告的邊界條件（誰寫、向誰負責、有無懲處權）決定了它幾乎只能這樣寫。</p>
+</section>
+
+<section>
+  <div class="eyebrow">DECISION TREE</div>
+  <h2 style="font-size:23px;margin:0 0 6px">三、判定樹（11/6 當天對號入座）</h2>
+  <div class="tree">
+    <div class="node n1"><b>枝一｜報告有具名承諾＋三件套齊（具名＋承諾＋日期）＋第二家時程 →</b> 本研究對本案判錯：EZ WAY 兩本帳預測核銷，T1 位置取消，公開記入誤判簿。（預估機率低）</div>
+    <div class="node n2"><b>枝二｜P01–P10 命中 ≥8 條，P11/P12 反向成立 →</b> 卸責結構預測力證實：檢討報告本身＝敘事結案樣本，EZ WAY 正式從 T1 滑入 T2（報告 14 預測核銷），錨 2027-05-06（滑入 T2 後一個新聞週期的複查點，屆時 SERP 框架應已完全轉向）。</div>
+    <div class="node n3"><b>枝三｜具名但三權不全（例：關務署長承諾「協調」關貿——協調非權限）→</b> 道具椅判定成立（報告 20 四亞型），S5 告警維持，升級不計。</div>
+    <div class="node n4"><b>枝四｜報告延期或縮水（改口「持續精進」、不按期公布）→</b> 連 S4 形式化都跳過＝直接 S5；這是最強訊號——連書面都不給了。</div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">WATCHER'S LEDGER</div>
+  <h2 style="font-size:23px;margin:0 0 6px">四、觀察者帳（看器強制欄）</h2>
+  <div class="panel">
+    <p><b>本單佔據的注意力位置：</b>監督者／研究者版面。若 11/6 命中，本研究體系獲得預測可信度——<b>此可信度必須同時記入本研究的功勞帳與風險帳</b>（可信度會誘使後續斷案偷懶，預測取代查證之日就是本框架兩本帳化之時）。</p>
+    <p><b>本單若被當武器使用會砍向誰：</b>關務署與財政部的公信力。防護：本單只預測結構與句式，不指控個人動機；P11/P12 反向預測的設計就是讓自己可以被證偽——<b>不能被判錯的預測，本身就是話術</b>。</p>
+    <p><b>錨被遊戲化的方式預演：</b>若機關 11/5 搶先公布「第二家研議中」搶走判定——枝三道具椅規則已預置：無驗收日期的承諾不計升級。</p>
+  </div>
+</section>
+
+<div class="note">
+  <b>查證分層：</b>本單全部預測依據為體系內已標註事實（8/3 記者會、關貿聲明、財政部 8/6 宣布、關務署自承獨家），無新增外部查證。持股 36.11% 仍標⚠️。預測是反事實判斷，不構成對任何機關或個人的指控；判定樹四枝皆附「本研究判錯」的出口——<b>本單的可證偽性優先於它的命中率</b>。對照結果於 11/6 後填入「實況」欄，並回填追蹤表與斷點清冊。
+</div>
+
+<footer>EZ WAY 檢討報告 pre-mortem 鑑識單 · 立單 2026-10-12 · 對照 2026-11-06 · 報告體系第 21 份 · 本機靜態檔案</footer>
+
+</div>
+</body></html>

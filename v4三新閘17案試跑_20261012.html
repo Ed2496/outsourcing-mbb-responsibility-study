@@ -1,0 +1,216 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>v4.0 三新閘 17 案試跑：看名實×看預判×看器（2026-10-12）</title>
+<style>
+:root{
+  --bg:#ECEAE4; --surface:#FBFAF7; --surface2:#F3F1EB;
+  --fg:#1C2420; --muted:#5E6862; --faint:#8A938C;
+  --line:#D7D2C8; --line2:#C6C0B4;
+  --accent:#0E7C6B; --accent-soft:#E0EEEA;
+  --debit:#AE352B; --debit-soft:#F6E6E3;
+  --credit:#9A6410; --credit-soft:#F6ECD9;
+  --mine:#B3382E;
+  --ff-cjk:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --ff-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121613; --surface:#1A201C; --surface2:#20271F;
+  --fg:#E9E7E1; --muted:#9BA49C; --faint:#6E776F;
+  --line:#2C332D; --line2:#394038;
+  --accent:#43A08E; --accent-soft:#17241F;
+  --debit:#E07264; --debit-soft:#2A1A18;
+  --credit:#D9A449; --credit-soft:#271F13;
+  --mine:#E07264; color-scheme:dark;
+}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--ff-mono);line-height:1.72;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1280px;margin:0 auto;padding-block:40px 80px;padding-inline:20px}
+.mono{font-family:var(--ff-mono);font-variant-numeric:tabular-nums}
+h1,h2,h3{text-wrap:balance;line-height:1.28}
+section{margin-top:52px}
+.eyebrow{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);display:inline-block}
+.hero{border:1px solid var(--line2);border-radius:16px;background:var(--surface);padding:34px 32px;position:relative;overflow:hidden}
+.hero .kick{font-family:var(--ff-mono);font-size:12px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:clamp(24px,4.2vw,36px);font-weight:800;letter-spacing:-.01em;margin:0 0 4px}
+.hero h1 .en{font-family:var(--ff-mono);font-weight:600;font-size:.5em;letter-spacing:0;color:var(--muted);display:block;margin-top:8px}
+.thesis{margin-top:20px;font-size:clamp(16px,2.4vw,20px);font-weight:600;line-height:1.55;border-left:3px solid var(--mine);padding-left:16px;max-width:58ch}
+.thesis b{color:var(--mine)}
+.hero-meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:12.5px;color:var(--muted);font-family:var(--ff-mono);border-top:1px solid var(--line);padding-top:16px}
+.lead{font-size:15px;color:var(--muted);max-width:70ch;margin:0 0 4px}
+.lead b{color:var(--fg)}
+.panel{border:1px solid var(--line2);border-radius:14px;background:var(--surface);padding:20px 22px;margin-top:16px}
+.panel h3{margin:0 0 8px;font-size:17px}
+.panel p{font-size:13.8px;color:var(--muted);margin:.5em 0}
+.panel p b{color:var(--fg)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:16px}
+table{border-collapse:collapse;width:100%;min-width:1240px;font-size:12.6px}
+thead th{background:var(--surface2);text-align:left;padding:11px 12px;font-size:11px;font-family:var(--ff-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line2);white-space:nowrap;position:sticky;top:0}
+tbody td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;line-height:1.62}
+tbody tr:hover{background:var(--surface2)}
+td b{color:var(--fg)}
+td .case{font-weight:700;white-space:nowrap}
+td .pos{font-family:var(--ff-mono);font-size:11px;color:var(--muted);display:block;white-space:nowrap}
+.group-row td{background:var(--surface2);font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:7px 12px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px;white-space:nowrap}
+.tag.d{color:var(--debit);background:var(--debit-soft)}
+.tag.c{color:var(--credit);background:var(--credit-soft)}
+.tag.a{color:var(--accent);background:var(--accent-soft)}
+.tag.g{color:var(--faint);background:var(--surface2)}
+.verdict{font-size:12.5px;margin-top:2px}
+.verdict b{font-size:11px;font-family:var(--ff-mono);letter-spacing:.04em}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{border:1px solid var(--line2);border-radius:12px;background:var(--surface);padding:16px 18px}
+.stat .n{font-family:var(--ff-mono);font-size:30px;font-weight:700;line-height:1.1}
+.stat .l{font-size:12.5px;color:var(--muted);margin-top:6px}
+.stat.a .n{color:var(--accent)} .stat.d .n{color:var(--debit)} .stat.g .n{color:var(--credit)} .stat.m .n{color:var(--fg)}
+.note{margin-top:34px;border:1px solid var(--line);background:var(--surface2);border-radius:11px;padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.75}
+.note b{color:var(--fg)}
+.punch{margin-top:22px;border:1.5px solid var(--mine);border-radius:14px;background:linear-gradient(180deg,var(--debit-soft),var(--surface));padding:22px 26px}
+.punch .q{font-size:clamp(16px,2.6vw,20px);font-weight:700;line-height:1.55}
+.punch p{margin:12px 0 0;font-size:14px;color:var(--muted)}
+footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;font-size:12px;color:var(--faint);font-family:var(--ff-mono)}
+</style></head><body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kick">V4.0 TRIAL RUN · 2026-10-12 · 承報告 19（候選視角）</div>
+  <h1>v4.0 三新閘 17 案試跑：看名實×看預判×看器<span class="en">SEVENTEEN CASES THROUGH THE THREE CANDIDATE GATES — PROP CHAIR · PRE-MORTEM · WATCHER'S LEDGER</span></h1>
+  <div class="thesis">候選閘不實跑就是紙上談兵。三閘對 17 案全量試跑的結論：<b>看名實把舊分型細分為三亞型、看預判在任命鏈類案件回溯全命中、看器暴露了注意力帳的系統性偏向</b>——看名實與看預判通過試跑，看器保留為收束段強制欄。</div>
+  <div class="hero-meta"><span>報告 20</span><span>方法：看名實＝權力三問（預算簽字權／人事權／否決權）；看預判＝回溯式 pre-mortem（若當年跑鑑識單，槽位可預測嗎）；看器＝每案一行觀察者帳</span><span>資料基準：報告 13/14/17/18 已標註事實；權限判斷標❓者不補</span></div>
+</header>
+
+<section>
+  <div class="eyebrow">TRIAL TABLE</div>
+  <h2 style="font-size:23px;margin:0 0 6px">一、17 案三閘試跑總表</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>案件／位置</th><th>看名實（權力三問）</th><th>看預判（回溯：S1 時可預測嗎）</th><th>看器（觀察者帳）</th></tr></thead>
+    <tbody>
+      <tr class="group-row"><td colspan="4">A｜兩本帳運行中（T1／T1→T2）</td></tr>
+
+      <tr><td><span class="case">海鯤艦交艦</span><span class="pos">S5 · T1</span></td>
+        <td>台船董座：<span class="tag d">道具椅</span>坐建造議題有權、坐交艦責任議題無權（對海軍驗收無否決權）＝議題錯配型；海軍司令／國防部長：<span class="tag d">有權不坐</span>（驗收與懲處權在握）</td>
+        <td>立項時若跑鑑識單：「為保密不設期程」＝預測槽位①，實際命中；「賣方代打發言」＝預測槽位②，10/9–10 命中</td>
+        <td>軍事名嘴從爆料獲流量；保密敘事同時壓縮追問空間＝注意力帳工具化</td></tr>
+
+      <tr><td><span class="case">中聯毒油</span><span class="pos">S4 · T1</span></td>
+        <td>食藥署長：<span class="tag d">有權不坐</span>（停止鍵權限在握未行使）；大廠董座：有權但坐錯議題（生產決策 vs 通報責任）</td>
+        <td>三級品管制度設計時可預測「無（尚未通報）」型回應槽位——48 天失速命中</td>
+        <td>食安新聞週期短，追問成本高，受害者（消費者）無組織聲量</td></tr>
+
+      <tr><td><span class="case">F-16V 交機</span><span class="pos">S4 · T1</span></td>
+        <td>空軍司令：<span class="tag g">結構無椅</span>（對美方賣方無三權，椅子設計時就沒給買方）；修法者：有權改法不交货＝真權力在修法位</td>
+        <td>軍售結構先天可預測：交不了貨→修法延期限——「修法結案」在簽約時就寫好劇本</td>
+        <td>國安保密框架＝注意力帳的免費圍欄，追問易被扣洩密帽子</td></tr>
+
+      <tr><td><span class="case">徐佳青案</span><span class="pos">S6 · T1</span></td>
+        <td>徐本人：<span class="tag d">道具椅</span>（被推上承責位，對任命鏈無權）；行政院長（任免考核權）與總統（任命權）：<span class="tag d">有權不坐</span></td>
+        <td>任命時可預測「駐外單位監督真空」槽位——日內瓦／東沙離島監督弱命中；「外案辭職洗成根案結案」＝雙重身分陷阱，事前可寫入鑑識單</td>
+        <td>SERP 獲利者＝爆料方與政黨聲量；受害者零版面（36 則中主詞數＝0）</td></tr>
+
+      <tr><td><span class="case">吳乃仁追償</span><span class="pos">S5 · T1⚑</span></td>
+        <td>台糖董座：<span class="tag a">實坐</span>（撤回聲請權行使了，半張書面⚑）；經濟部長（督導權）：<span class="tag d">有權不坐</span>（「尊重專業」）</td>
+        <td>2002 派任時即可預測：黨大老＋國營董座＋春龍關係＝利益衝突槽位——2003 售地命中。任命鏈 pre-mortem 的最強命中案</td>
+        <td>管收 12 天＝戲劇性高流量；撤回追償＝靜默無流量——注意力帳精準流向娛樂端</td></tr>
+
+      <tr><td><span class="case">EZ WAY 收費</span><span class="pos">S4 · T1→T2</span></td>
+        <td>關貿董座：<span class="tag a">實坐</span>（定價權真行使）；關務署長（開放第二家行政權）：<span class="tag d">有權不坐</span>；財政部長（持股督導權）：有權未坐⚠️</td>
+        <td>自然人憑證委外轉線上委任時可預測三重槽位：獨家平台＋政府持股＋民營免責——2026 爭議逐項命中（惡意替換判別式的事前版）</td>
+        <td>消費者聲量大但分散；報關公會聲量小但有組織——注意力不對稱本身被定價</td></tr>
+
+      <tr><td><span class="case">福麥炸藥案</span><span class="pos">S6→S5 · T1→T2</span></td>
+        <td>軍備局長（採購核准權）：<span class="tag d">有權推責</span>（「20 年同樣規定」）；國防部長：有權未坐</td>
+        <td>採購資格制度設計時可預測「室內裝修可投炸藥標」槽位——事後證實</td>
+        <td>軍購弊案注意力週期短；「已解約」敘事即版面終點</td></tr>
+
+      <tr class="group-row"><td colspan="4">B｜已結算（T2／S7–S8）</td></tr>
+
+      <tr><td><span class="case">國艦彈藥弊案</span><span class="pos">S7 · T2</span></td>
+        <td>糾正＋停權後責任帳結清，無人再需坐椅</td>
+        <td>後勤採購封閉鏈設計時可預測；結算後無觀測價值</td>
+        <td>—</td></tr>
+
+      <tr><td><span class="case">台電電價公式</span><span class="pos">S7 · T2</span></td>
+        <td>台電董座：<span class="tag d">道具椅</span>（坐虧損帳但無電價決定權）；經濟部長（電價核定權✓）：實握但漂移敘事掩護——<b>有權裝無權</b>，名實軸的新亞型</td>
+        <td>電價公式設計時可預測「虧損無人負責」——711 億撥補命中</td>
+        <td>電價議題注意力強但四方漂移敘事成功分散歸屬</td></tr>
+
+      <tr><td><span class="case">數位中介法</span><span class="pos">S7 · T2</span></td>
+        <td>部會首長對重啟皆有權＝<span class="tag d">集體有權不坐</span>（憲政形態的道具椅：每個人都有權，所以沒有人負責）</td>
+        <td>立法時可預測「退回後重啟無主詞」——4 年命中</td>
+        <td>—</td></tr>
+
+      <tr><td><span class="case">高端疫苗</span><span class="pos">S8 · T2</span></td>
+        <td>採購決策者當時實坐（EUA 指揮權），敘事逆轉後功勞帳轉型——名實軸在 S8 失效（位置已換人）</td>
+        <td>EUA 緊急授權機制可預測「無比價無談判」槽位</td>
+        <td>—</td></tr>
+
+      <tr><td><span class="case">陳水扁案</span><span class="pos">S8 · T2 司法版</span></td>
+        <td>總統（特赦權）：<span class="tag d">有權不坐</span>——不行使＝案件資產不滅；雙方皆從不結案獲利</td>
+        <td>2008 政黨輪替時可預測「司法案件動員資產化」</td>
+        <td>挺扁／反扁雙方注意力產業皆從案件延續獲利——觀察者帳雙邊同向</td></tr>
+
+      <tr><td><span class="case">拉法葉案</span><span class="pos">S8 · T2 終極</span></td>
+        <td>佣金位置離岸＝<span class="tag g">無椅</span>（管轄真空）；死亡切割後連名都蒸發</td>
+        <td>1991 採購時佣金槽位理論可測（事後經不起訴與佣金傳聞證實）；預判閘對離岸槽位能力有限＝催生「看離岸」視角</td>
+        <td>35 年案件已成史料，注意力歸零＝終極靜默結案</td></tr>
+
+      <tr class="group-row"><td colspan="4">C｜極端型</td></tr>
+
+      <tr><td><span class="case">資遣通報黑數</span><span class="pos">S4 · T2</span></td>
+        <td>勞動部長有權設彙整職位但職位從未設立＝<span class="tag g">無椅</span>——比道具椅更早：椅子沒造</td>
+        <td>通報制度設計時可預測黑數——制度名字就叫「流量通報」</td>
+        <td>黑數受害者（失業勞工）連被看見的資格都沒有＝注意力帳的負無限</td></tr>
+
+      <tr><td><span class="case">個保會組織法</span><span class="pos">S5 · T2</span></td>
+        <td>黨團協商無單一主詞＝<span class="tag g">制度性無椅</span>（集體決策的道具化）</td>
+        <td>組織法立法時可預測「無定期」槽位</td>
+        <td>—</td></tr>
+
+      <tr class="group-row"><td colspan="4">D｜對照與特殊</td></tr>
+
+      <tr><td><span class="case">進口雞蛋</span><span class="pos">✅ 有主</span></td>
+        <td>專案辦公室主任：<span class="tag a">實坐</span>（三權齊＋具名＋時限）——健康基線四項特徵的實證來源</td>
+        <td>專案制本身即「pre-mortem 過關」的設計：先設椅子再做事</td>
+        <td>—</td></tr>
+
+      <tr><td><span class="case">憲政對抗</span><span class="pos">⚖️ 無裁判</span></td>
+        <td>雙方皆握有權無更上級＝timebox 與三問皆失效，需憲法法庭補位</td>
+        <td>不適用（憲政層需另設裁判機制後才有意義）</td>
+        <td>雙方動員產業從對抗延續獲利——觀察者帳雙邊同向（同陳水扁案型）</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <div class="eyebrow">TRIAL VERDICT</div>
+  <h2 style="font-size:23px;margin:0 0 6px">二、試跑統計與三閘判定</h2>
+  <div class="stats">
+    <div class="stat a"><div class="n">5</div><div class="l"><b>看名實·實坐</b><br>關貿董座／台糖董座／雞蛋專責主任等——權力三問最強信號：椅子真假立刻分層</div></div>
+    <div class="stat d"><div class="n">9</div><div class="l"><b>看名實·有權不坐／道具椅</b><br>含新亞型「有權裝無權」（經濟部長電價漂移）與「議題錯配型」（台船董座）——舊🪑分型細分出三亞型</div></div>
+    <div class="stat g"><div class="n">4</div><div class="l"><b>看名實·結構無椅</b><br>F-16V 買方／資遣黑數／個保會／拉法葉離岸——無椅比道具椅更早發生，對策是造椅不是催人</div></div>
+    <div class="stat m"><div class="n">12+</div><div class="l"><b>看預判·回溯命中</b><br>17 案中 15 個可回溯案件裡，12+ 的槽位在 S1／制度設計時即可寫進鑑識單——任命鏈類（吳乃仁、徐佳青、EZ WAY）全命中</div></div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h3>三閘試跑判定</h3>
+    <p><b>看名實：通過，升正式閘。</b>理由：①把舊🪑/🚫分型細分為「道具椅／有權不坐／有權裝無權／結構無椅」四亞型，每亞型對策不同（道具椅→戳穿、有權不坐→timebox 催坐、有權裝無權→名實對照表、無椅→造椅立法）；②試跑中發現預期外的新亞型「有權裝無權」——框架自我迭代功能的實證。</p>
+    <p><b>看預判：通過，升正式模式。</b>理由：回溯命中率顯示槽位的可預測性是真實的，尤其任命鏈類——「誰任命」比「誰犯案」早五年出現在雷達上。限制：對離岸槽位（拉法葉）能力有限，與「看離岸」視角綁定補強。</p>
+    <p><b>看器：保留為收束段強制欄，暫不升閘。</b>理由：每案可寫但訊號最薄；試跑的意外發現——觀察者帳存在系統性偏向：<b>流量流向娛樂端（管收 12 天）、靜默流向金錢端（撤回追償）、受害者端永遠零流量（36 則中 0 主詞）</b>。這條偏向本身就是「看量」視角的量化標的，與報告 19 視角 02 合併追蹤。</p>
+  </div>
+
+  <div class="punch">
+    <div class="q">試跑最重要的一句話：<b>「無權」常常不是沒有權力，而是權力坐在別的議題上、別的名字下、或別的管轄區裡</b>——看名實把這三種「無權」分開後，每一種的對策才看得見。</div>
+    <p>升版狀態：看名實、看預判於本表通過試跑，寫入引擎 v4.0 草案；11/6 EZ WAY 檢討報告仍是正式驗收場（看名實對具名者的三權核對＋看預判事前鑑識單對照）。</p>
+  </div>
+</section>
+
+<div class="note">
+  <b>查證分層：</b>本表全部事實引用自體系內已標註報告（13/14/17/18），無新增外部事實。權力三問的權限判斷屬結構推定（依組織法通例與個案已載事實），標⚠️者待一手文件；「實坐／道具椅／無椅」為分型標記非定罪。看預判回溯為反事實推論（若當時跑鑑識單），命中與否供評估閘效，不證明當事人預謀。觀察者帳為結構觀察，不指控任何媒體或個人動機。
+</div>
+
+<footer>v4.0 三新閘 17 案試跑 · 2026-10-12 · 報告體系第 20 份 · 本機靜態檔案</footer>
+
+</div>
+</body></html>

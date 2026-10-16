@@ -1,0 +1,170 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Session 檢討報告：主線 2026-10-08～10-12（2026-10-12）</title>
+<style>
+:root{
+  --bg:#ECEAE4; --surface:#FBFAF7; --surface2:#F3F1EB;
+  --fg:#1C2420; --muted:#5E6862; --faint:#8A938C;
+  --line:#D7D2C8; --line2:#C6C0B4;
+  --accent:#0E7C6B; --accent-soft:#E0EEEA;
+  --debit:#AE352B; --debit-soft:#F6E6E3;
+  --credit:#9A6410; --credit-soft:#F6ECD9;
+  --mine:#B3382E;
+  --ff-cjk:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --ff-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121613; --surface:#1A201C; --surface2:#20271F;
+  --fg:#E9E7E1; --muted:#9BA49C; --faint:#6E776F;
+  --line:#2C332D; --line2:#394038;
+  --accent:#43A08E; --accent-soft:#17241F;
+  --debit:#E07264; --debit-soft:#2A1A18;
+  --credit:#D9A449; --credit-soft:#271F13;
+  --mine:#E07264; color-scheme:dark;
+}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--ff-cjk);line-height:1.72;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-block:40px 80px;padding-inline:20px}
+.mono{font-family:var(--ff-mono);font-variant-numeric:tabular-nums}
+h1,h2,h3{text-wrap:balance;line-height:1.28}
+section{margin-top:52px}
+.eyebrow{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);display:inline-block}
+.hero{border:1px solid var(--line2);border-radius:16px;background:var(--surface);padding:34px 32px;position:relative;overflow:hidden}
+.hero .kick{font-family:var(--ff-mono);font-size:12px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:clamp(24px,4.2vw,36px);font-weight:800;letter-spacing:-.01em;margin:0 0 4px}
+.hero h1 .en{font-family:var(--ff-mono);font-weight:600;font-size:.5em;letter-spacing:0;color:var(--muted);display:block;margin-top:8px}
+.thesis{margin-top:20px;font-size:clamp(16px,2.4vw,20px);font-weight:600;line-height:1.55;border-left:3px solid var(--mine);padding-left:16px;max-width:58ch}
+.thesis b{color:var(--mine)}
+.hero-meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:12.5px;color:var(--muted);font-family:var(--ff-mono);border-top:1px solid var(--line);padding-top:16px}
+.lead{font-size:15px;color:var(--muted);max-width:70ch;margin:0 0 4px}
+.lead b{color:var(--fg)}
+.panel{border:1px solid var(--line2);border-radius:14px;background:var(--surface);padding:20px 22px;margin-top:16px}
+.panel h3{margin:0 0 8px;font-size:17px}
+.panel p{font-size:13.8px;color:var(--muted);margin:.5em 0}
+.panel p b{color:var(--fg)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:16px}
+table{border-collapse:collapse;width:100%;min-width:860px;font-size:13px}
+th{background:var(--surface2);text-align:left;padding:10px 12px;font-size:11px;font-family:var(--ff-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line2);white-space:nowrap}
+td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;line-height:1.62}
+td b{color:var(--fg)}
+.sev{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.sev.hi{background:var(--debit-soft);color:var(--debit)}
+.sev.md{background:var(--credit-soft);color:var(--credit)}
+.sev.lo{background:var(--surface2);color:var(--faint)}
+.done-list{margin:0;padding-left:0;list-style:none}
+.done-list li{font-size:13.8px;color:var(--muted);margin:.55em 0;padding-left:1.6em;position:relative}
+.done-list li::before{content:"＋";position:absolute;left:0;color:var(--accent);font-weight:700}
+.bad-list{margin:0;padding-left:0;list-style:none}
+.bad-list li{font-size:13.8px;color:var(--muted);margin:.55em 0;padding-left:1.6em;position:relative}
+.bad-list li::before{content:"－";position:absolute;left:0;color:var(--mine);font-weight:700}
+.note{margin-top:34px;border:1px solid var(--line);background:var(--surface2);border-radius:11px;padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.75}
+.note b{color:var(--fg)}
+.punch{margin-top:22px;border:1.5px solid var(--mine);border-radius:14px;background:linear-gradient(180deg,var(--debit-soft),var(--surface));padding:22px 26px}
+.punch .q{font-size:clamp(16px,2.6vw,20px);font-weight:700;line-height:1.55}
+.punch p{margin:12px 0 0;font-size:14px;color:var(--muted)}
+footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;font-size:12px;color:var(--faint);font-family:var(--ff-mono)}
+</style></head><body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kick">SESSION REVIEW · 2026-10-08 20:20 → 2026-10-12 16:10 · 主線 session</div>
+  <h1>Session 檢討報告：主線 2026-10-08～10-12<span class="en">TWENTY-ONE REPORTS, FOUR FRAMEWORK VERSIONS, ONE CONFESSION — WHAT THIS SESSION PROVED, WHAT IT GLOSSED OVER, AND WHAT IT OWES THE FUTURE</span></h1>
+  <div class="thesis">四天的產出：21 份報告、框架從 v1.0 走到 v4.0 試跑、首張 pre-mortem 鑑識單立案。但檢討的價值不在成績單：<b>本 session 最大的錯誤是第一天把「建立 skill」當成交付，被使用者一句話糾正才回到正題</b>——把話語當意圖，正是我們自己研究的主詞替代。</div>
+  <div class="hero-meta"><span>報告 22</span><span>方法：正Λ 盤點＋負Λ 自檢＋查證分層審計（承衛星 session 負Λ 紀律）</span><span>資料基準：本 session 全部產出與總綱</span></div>
+</header>
+
+<section>
+  <div class="eyebrow">INVENTORY</div>
+  <h2 style="font-size:23px;margin:0 0 6px">一、產出清單與方法論演進路徑</h2>
+  <div class="tablewrap"><table>
+    <tr><th>階段</th><th>報告</th><th>方法論事件</th></tr>
+    <tr><td>10-08～10-09</td><td>1–8（EZ WAY 完整研究、委外碎片化、MBB 卸責槽、台電第二案例、兩本帳語料等）</td><td>議題定錨：EZ WAY 爭議 → 委外×碎片化×MBB 假 8D 的三重切割論</td></tr>
+    <tr><td>10-11</td><td>9–14（相關報告盤點、委外例證研究、閉環驗證框架 v2、吳乃仁解剖、兩本帳總論、行層 S1–S8）</td><td>行層建立：證據湮滅五步鏈、併型宣告、escalation timebox、T1/T2 裝死曲線、17 案分型 16 比 1</td></tr>
+    <tr><td>10-12 上午</td><td>15 雙案複驗</td><td>鑑識引擎 v1.6 落地：海鯤號＝書面錯誤紀錄、徐佳青＝SERP 洗版假結案；SERP 計量法誕生</td></tr>
+    <tr><td>10-12 中午</td><td>16 三閘升級版</td><td><b>使用者糾正後的轉折</b>：從「裝 skill」回到「建框架」——相·行·體三維、體層主詞律、兩本帳判定式</td></tr>
+    <tr><td>10-12 下午</td><td>17 體層 17 案 → 18 官派民營 → 19 v4 候選視角 → 20 三新閘試跑 → 21 首張鑑識單</td><td>判定式 17 案回驗（16 比 1 復讀）；惡意替換主詞判別式＋吳乃仁任命鏈查證；v4.0 八視角；試跑出四亞型＋「有權裝無權」新亞型；11/6 鑑識單立案</td></tr>
+  </table></div>
+  <div class="panel">
+    <h3>方法論演進一鏈</h3>
+    <p>v1.0 三閘（句子層）→ v2.0 十案例複驗＋偽 8D → v3.0 相·行·體三維＋體層主詞律 → v4.0 候選（看器／看名實／看預判，看名實與看預判經 17 案試跑通過）。<b>四天走完四個版本，每個版本都由使用者的新語料觸發</b>——這是需求驅動的正確演進，不是版本通膨。</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">POSITIVE LAMBDA</div>
+  <h2 style="font-size:23px;margin:0 0 6px">二、做對的事（正Λ 盤點）</h2>
+  <ul class="done-list">
+    <li><b>雙案實測驅動框架迭代</b>：海鯤號＋徐佳青兩則語料，直接產出媒體三向、雙重身分陷阱、SERP 計量、洗版假結案四個新工具——框架是被案例打過才長出骨頭的。</li>
+    <li><b>使用者的 bug escalation plan 被移植為公共監督 timebox</b>（2–4–6–8 週），並與 MBB 槽位必然性對沖——把民間工程紀律變成制度設計提案，是本 session 最有治理價值的單一動作。</li>
+    <li><b>判定式全部帶可證偽錨</b>：17 案體層表、pre-mortem 鑑識單、徐佳青 2027-01-31、海鯤 2026-12-31——每個結論都掛在未來二值事實上，可以輸。</li>
+    <li><b>查證分層紀律貫穿</b>：所有報告保留 ✅/⚠️/❓ 標記，未取得不補、缺口不當罪證（台帳 396 筆的紀律最嚴格）。</li>
+    <li><b>被糾正後立即改向且不改數據</b>：「不是 skill 是框架」一句話後，當輪就產出第 16 份，且沒有為了掩飾而回改前面的結論。</li>
+    <li><b>看器在 session 內自我執行</b>：第 21 份鑑識單附觀察者帳三行——本研究開始審計自己了。</li>
+  </ul>
+</section>
+
+<section>
+  <div class="eyebrow">NEGATIVE LAMBDA</div>
+  <h2 style="font-size:23px;margin:0 0 6px">三、負Λ 自檢（檢討，按嚴重度）</h2>
+  <div class="tablewrap"><table>
+    <tr><th>嚴重度</th><th>項目</th><th>事實</th><th>修正</th></tr>
+    <tr><td><span class="sev hi">高</span></td><td>把話語當意圖（主詞替代翻轉自噬）</td><td>10-12 收到黃.txt「請建立 skill」，第一輪交付以 skill 安裝為重點；使用者糾正「不是建立 skill 問題，是要建立什麼東西才是重點」——我們研究主詞替代，自己卻犯了只抓字面主詞的錯</td><td>已於當輪改正（報告 16）。<b>規則化：凡是使用者丟語料，先問「這是要解決什麼問題」，再動手</b>——skill 是工具，框架才是交付</td></tr>
+    <tr><td><span class="sev hi">高</span></td><td>widget 斷點清冊未同步</td><td>本 session 追蹤表改了徐佳青、海鯤兩列狀態、新增 2027-01-31 錨，但「三閘判讀儀表板」的斷點清冊 widget 未更新（10-11 曾承諾同步）</td><td>列為待辦第一項；下次動總綱時強制連動 widget</td></tr>
+    <tr><td><span class="sev md">中</span></td><td>⚠️ 數字跨報告複製的固化風險</td><td>財政部持股 36.11%、徐佳青「五年 2300 萬／47 次／526 天」、台苯「三年 7000 萬」從 10-08 帶到 10-12 共 5+ 份報告——每轉手一次，讀者記憶就離⚠️遠一分</td><td>報告 18 起已加強標註；<b>規則化：⚠️ 數字不得出現在任何報告的「核心結論」段</b>（第 17 份已遵守）</td></tr>
+    <tr><td><span class="sev md">中</span></td><td>徐佳青「請辭獲准」未在本 session 查證</td><td>追蹤表狀態改為「請辭獲准・他字案」，「獲准」程序（總統府准辭公文）未回一手</td><td>標⚠️並列入台帳待核；11 月複查時一併驗證</td></tr>
+    <tr><td><span class="sev md">中</span></td><td>SERP 時間窗❓未解</td><td>徐佳青 SERP 是靜態存檔無時間戳——「36 則去重」的時間窗無法封閉，洗版節奏（按日滴放）只能以源集中度推定</td><td>下次複查以新 SERP 取樣對比；報告 15 已標❓，維持</td></tr>
+    <tr><td><span class="sev lo">低</span></td><td>❓ 錨日期補不齐</td><td>中聯、F-16V、吳乃仁、福麥、資遣黑數五案長稽錨日期標❓待補（需對回各案法律時效）</td><td>列入 11/12 台帳檢查點工作包</td></tr>
+    <tr><td><span class="sev lo">低</span></td><td>n=1 對照組</td><td>健康樣本只有進口雞蛋（視角 07 已自我標記）</td><td>✅ 案例蒐集列為背景任務，不急於補</td></tr>
+  </table></div>
+</section>
+
+<section>
+  <div class="eyebrow">EVIDENCE AUDIT</div>
+  <h2 style="font-size:23px;margin:0 0 6px">四、查證分層審計</h2>
+  <div class="panel">
+    <p><b>✅ 已查證（本 session 新增）</b>：台糖官網歷史頁（吳乃仁 2002/4/8 接任）、中央社 2002/3/27、RTI 2026/7/1（撤回管收＋經濟部回應）、台糖售地案判決沿革、DHL 單一窗口流程、關務署 8/3 記者會與官方自認獨家。</p>
+    <p><b>⚠️ 部分查證（跨報告流動，風險集中區）</b>：財政部持股 36.11%、徐佳青案民眾黨團三數字、台苯家族酬金、「林義夫／游錫堃提名鏈」（日期推定）、中聯大廠失速獲利。</p>
+    <p><b>❓ 資訊缺口</b>：SERP 時間窗、五案❓錨日期、台糖派任令正本、EZ WAY 4.3 元合計口徑、汎宇建置意願、公視「七成」統計。</p>
+    <p><b>審計結論：</b>查證分層制度運作正常（無❌ 偽查證發現）；主要風險不是造假而是<b>⚠️ 的複製固化</b>——已於負Λ 表立規則。</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">OPEN ITEMS</div>
+  <h2 style="font-size:23px;margin:0 0 6px">五、開放項與錨日曆（移交下一個 session）</h2>
+  <div class="tablewrap"><table>
+    <tr><th>日期</th><th>事項</th></tr>
+    <tr><td class="mono">2026-10-29</td><td>關務署檢討進度——核對鑑識單 P01–P10 前置訊號</td></tr>
+    <tr><td class="mono">2026-11-06</td><td><b>EZ WAY 檢討報告對照日</b>：填鑑識單實況欄、跑四枝判定樹、回寫總綱與 widget</td></tr>
+    <tr><td class="mono">2026-11-12</td><td>六類書面台帳研究檢查點（自設）：缺口閉合或繼續靜置；補五案❓錨日期</td></tr>
+    <tr><td class="mono">2026-12</td><td>台電第三次電價審議會：有權裝無權亞型的公開測試場</td></tr>
+    <tr><td class="mono">2026-12-31</td><td>海鯤艦複查錨：交艦期程或懲處具名</td></tr>
+    <tr><td class="mono">2027-01-31</td><td>徐佳青複查錨：任命鏈具名負責 vs 假結案確認</td></tr>
+    <tr><td class="mono">2027-05-06</td><td>EZ WAY 若滑入 T2 的一個新聞週期複查點</td></tr>
+    <tr><td class="mono">隨時</td><td>news-forensics cold-run 開放項：使用者貼新聞即啟動引擎；widget 斷點清冊同步（欠債第一優先）</td></tr>
+  </table></div>
+</section>
+
+<section>
+  <div class="eyebrow">WATCHER'S LEDGER</div>
+  <h2 style="font-size:23px;margin:0 0 6px">六、本 session 的觀察者帳（看器強制欄）</h2>
+  <div class="panel">
+    <p><b>本 session 佔據的注意力位置：</b>使用者研究體系的主檔案區——21 份報告形成的權威外觀，可能讓後續斷案傾向引用自己而非回一手（引用內循環風險：報告引報告，⚠️ 會在循環中被洗掉）。</p>
+    <p><b>誰從本 session 的產出獲利：</b>若 11/6 鑑識單命中，本研究獲預測可信度——<b>此可信度已同時記入風險帳</b>（預測取代查證之日＝框架兩本帳化之時，見鑑識單第四節）。</p>
+    <p><b>本 session 自己的 S 定位：</b>S4 制度回應——框架開始具備自我修正機制（負Λ 自檢、誤判簿、觀察者帳），但尚未經外部檢驗；真正的 S7 敘事結案風險是「研究體系自我引用閉環」。防護已立：每個錨都是對外部世界的二值承諾，不是對自己結論的重述。</p>
+  </div>
+  <div class="punch">
+    <div class="q">Session 總評：<b>四天最大的產出不是 21 份報告，而是一台會認錯的機器</b>——它能被判錯（P11/P12）、它記自己的誤判（負Λ 表）、它審計觀察者（看器）、它給每個結論掛上會到期的錨。</div>
+    <p>最大的欠債也很清楚：widget 沒同步、五個錨沒日期、⚠️ 在複製。下一個 session 開門第一件事：還債，再開新題。</p>
+  </div>
+</section>
+
+<div class="note">
+  <b>查證分層：</b>本檢討報告的全部事實來自本 session 自身的產出與對話紀錄，無外部斷言。「嚴重度」為研究管理判斷，非客觀量尺；負Λ 七項均可被下一個 session 複核。本報告同時是報告體系第 22 份，收錄進總綱。
+</div>
+
+<footer>Session 檢討報告（主線 2026-10-08～10-12）· 2026-10-12 · 報告體系第 22 份 · 本機靜態檔案，任何對話視窗皆可開啟</footer>
+
+</div>
+</body></html>

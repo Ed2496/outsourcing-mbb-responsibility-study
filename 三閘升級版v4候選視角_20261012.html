@@ -1,0 +1,195 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>三閘升級版 v4.0 候選視角：看器×看名實×看預判（2026-10-12）</title>
+<style>
+:root{
+  --bg:#ECEAE4; --surface:#FBFAF7; --surface2:#F3F1EB;
+  --fg:#1C2420; --muted:#5E6862; --faint:#8A938C;
+  --line:#D7D2C8; --line2:#C6C0B4;
+  --accent:#0E7C6B; --accent-soft:#E0EEEA;
+  --debit:#AE352B; --debit-soft:#F6E6E3;
+  --credit:#9A6410; --credit-soft:#F6ECD9;
+  --mine:#B3382E;
+  --ff-cjk:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --ff-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121613; --surface:#1A201C; --surface2:#20271F;
+  --fg:#E9E7E1; --muted:#9BA49C; --faint:#6E776F;
+  --line:#2C332D; --line2:#394038;
+  --accent:#43A08E; --accent-soft:#17241F;
+  --debit:#E07264; --debit-soft:#2A1A18;
+  --credit:#D9A449; --credit-soft:#271F13;
+  --mine:#E07264; color-scheme:dark;
+}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--ff-cjk);line-height:1.72;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-block:40px 80px;padding-inline:20px}
+.mono{font-family:var(--ff-mono);font-variant-numeric:tabular-nums}
+h1,h2,h3{text-wrap:balance;line-height:1.28}
+section{margin-top:52px}
+.eyebrow{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);display:inline-block}
+.hero{border:1px solid var(--line2);border-radius:16px;background:var(--surface);padding:34px 32px;position:relative;overflow:hidden}
+.hero .kick{font-family:var(--ff-mono);font-size:12px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:clamp(24px,4.2vw,36px);font-weight:800;letter-spacing:-.01em;margin:0 0 4px}
+.hero h1 .en{font-family:var(--ff-mono);font-weight:600;font-size:.5em;letter-spacing:0;color:var(--muted);display:block;margin-top:8px}
+.thesis{margin-top:20px;font-size:clamp(16px,2.4vw,20px);font-weight:600;line-height:1.55;border-left:3px solid var(--mine);padding-left:16px;max-width:58ch}
+.thesis b{color:var(--mine)}
+.hero-meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:12.5px;color:var(--muted);font-family:var(--ff-mono);border-top:1px solid var(--line);padding-top:16px}
+.lead{font-size:15px;color:var(--muted);max-width:70ch;margin:0 0 4px}
+.lead b{color:var(--fg)}
+.panel{border:1px solid var(--line2);border-radius:14px;background:var(--surface);padding:20px 22px;margin-top:16px}
+.panel h3{margin:0 0 8px;font-size:17px}
+.panel p{font-size:13.8px;color:var(--muted);margin:.5em 0}
+.panel p b{color:var(--fg)}
+.formula{margin-top:14px;border:1px dashed var(--line2);border-radius:10px;background:var(--surface2);padding:12px 16px;font-size:13.5px}
+.formula b{color:var(--mine)}
+.vp{border:1px solid var(--line2);border-radius:14px;background:var(--surface);padding:22px 24px;margin-top:16px;position:relative}
+.vp .no{position:absolute;top:14px;right:18px;font-family:var(--ff-mono);font-size:26px;font-weight:700;color:var(--line2)}
+.vp h3{margin:0 0 4px;font-size:18px}
+.vp .evi{font-size:12.5px;color:var(--accent);font-family:var(--ff-mono);margin-bottom:8px}
+.vp p{font-size:13.8px;color:var(--muted);margin:.5em 0}
+.vp p b{color:var(--fg)}
+.vp .chg{margin-top:10px;border-top:1px dashed var(--line2);padding-top:10px;font-size:13px}
+.vp .chg b{color:var(--mine)}
+.vp.pri{border:1.5px solid var(--mine)}
+.vp.pri::after{content:"v4.0 核心候選";position:absolute;top:16px;right:56px;font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.1em;color:var(--mine);font-weight:700}
+.gate{border:1px solid var(--line);border-radius:11px;background:var(--surface2);padding:14px 18px;margin-top:12px;font-size:13px;font-family:var(--ff-mono);line-height:1.7}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:16px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
+th{background:var(--surface2);text-align:left;padding:10px 12px;font-size:11px;font-family:var(--ff-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line2);white-space:nowrap}
+td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;line-height:1.62}
+td b{color:var(--fg)}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.tag.a{color:var(--accent);background:var(--accent-soft)}
+.tag.d{color:var(--debit);background:var(--debit-soft)}
+.tag.g{color:var(--credit);background:var(--credit-soft)}
+.tag.gr{color:var(--faint);background:var(--surface2)}
+.vermap{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.vchip{border:1px solid var(--line2);border-radius:10px;background:var(--surface);padding:8px 14px;font-size:12.5px;font-family:var(--ff-mono)}
+.vchip b{font-size:12px}
+.vchip.cur{border-color:var(--mine)}
+.arrow{color:var(--faint)}
+.note{margin-top:34px;border:1px solid var(--line);background:var(--surface2);border-radius:11px;padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.75}
+.note b{color:var(--fg)}
+.punch{margin-top:22px;border:1.5px solid var(--mine);border-radius:14px;background:linear-gradient(180deg,var(--debit-soft),var(--surface));padding:22px 26px}
+.punch .q{font-size:clamp(16px,2.6vw,20px);font-weight:700;line-height:1.55}
+.punch p{margin:12px 0 0;font-size:14px;color:var(--muted)}
+footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;font-size:12px;color:var(--faint);font-family:var(--ff-mono)}
+</style></head><body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kick">FRAMEWORK ROADMAP · 2026-10-12 · 承報告 16（v3.0 三維）／報告 18（惡意替換判別式）</div>
+  <h1>三閘升級版 v4.0 候選視角<span class="en">EIGHT LENSES FOR THE NEXT ITERATION — WATCHER, NAME-REALITY GAP, PRE-MORTEM</span></h1>
+  <div class="thesis">v3.0 的三維（相·行·體）判得了結構，但雙案實測暴露三個活漏洞：<b>觀察者自己不在框內</b>（看器）、<b>具名冒充負責</b>（看名實）、<b>只能事後記錄不能事前阻止</b>（看預判）。v4.0 以這三個為核心候選，其餘五個視角按資料累積補入。</div>
+  <div class="hero-meta"><span>報告 19</span><span>版本沿革：v1.0 三閘（句子層）→ v2.0 複驗＋偽 8D → v3.0 相行體三維 → v4.0 候選（本文）</span><span>首測場：2026-11-06 關務署 EZ WAY 檢討報告</span></div>
+  <div class="vermap">
+    <span class="vchip"><b>v1.0</b> 三閘｜句子層</span><span class="arrow">→</span>
+    <span class="vchip"><b>v2.0</b> 複驗＋偽 8D</span><span class="arrow">→</span>
+    <span class="vchip"><b>v3.0</b> 相·行·體三維</span><span class="arrow">→</span>
+    <span class="vchip cur"><b>v4.0 候選</b> ＋看器 ＋看名實 ＋看預判</span>
+  </div>
+</header>
+
+<section>
+  <div class="eyebrow">CORE CANDIDATES</div>
+  <h2 style="font-size:23px;margin:0 0 6px">一、v4.0 核心候選三視角</h2>
+
+  <div class="vp pri">
+    <div class="no">01</div>
+    <h3>看器——把觀察者放進框架（第四維）</h3>
+    <div class="evi">體系內證據：引擎 v1.6 負Λ 自檢（Session 檢討報告）；徐佳青案權責鎖「媒體無結案權」；兩本帳理論本身也佔據注意力位置</div>
+    <p>框架掃描卸責結構，但掃描者本身就是一個槽位：媒體、SEO、研究者、這份報告體系——都在注意力市場佔位、都可能被兩本帳化。Goodhart 定律保證：長稽錨一旦變成 KPI，就會出現「為了錨而錨」的行為；兩本帳理論最後也可能被用成指控工具，理論的功勞帳記滿、責任帳（誤判成本）無人記。</p>
+    <div class="chg"><b>疊代改變：</b>每份斷案強制附「觀察者帳」三行——本報告佔據哪個注意力位置／誰可能從本報告存在獲利／本報告的長稽錨被遊戲化的方式預演。體系層：每年自審一次「本研究的兩本帳化檢查」（斷案命中率、誤判記錄公開）。</div>
+    <div class="gate">看器閘（引擎新增）：「這份報告本身，若被當成武器使用，會砍向誰？我是否已把這個可能性寫進觀察者帳？」</div>
+  </div>
+
+  <div class="vp pri">
+    <div class="no">03</div>
+    <h3>看名實——具名≠有權（堵偽出席）</h3>
+    <div class="evi">體系內證據：黃.txt 陳政宏＝具名、在場、無決策權的第三方主詞（「非當責人，也非一階主管」）；行層④已有雛形（出面者越沒決策權空椅子越深）但未獨立成閘</div>
+    <p>比空椅子更進化的卸責形態是<b>偽出席</b>：有人坐著，但坐的是道具椅。應對 timebox 的第一個演化必然出現在第 7 週的無權具名——「已有人負責」的假象成本最低。若 v4.0 不立此閘，8 週線一落地就會被道具椅穿透。</p>
+    <div class="chg"><b>疊代改變：</b>行層新增「權力三問」閘，接在具名之後——①預算簽字權②人事權③否決權。三項齊＝實坐；缺一＝標「工具人主詞」，空椅子判定維持。誤判記錄：若後續證明具名者實際行使三權之一，記誤判、回調該案分型。</div>
+    <div class="gate">權力三問閘：「名字✓ 之後——他簽得了錢嗎？他動得了人嗎？他否決得了方案嗎？——答不出三個『能』，椅子仍是空的。」</div>
+  </div>
+
+  <div class="vp pri">
+    <div class="no">05</div>
+    <h3>看預判——pre-mortem 鑑識（從記錄卸責到阻止卸責）</h3>
+    <div class="evi">體系內證據：官派民營判別式（報告 18）可反向使用；11/6 後可能的 EZ WAY 修法＝現成測試場；S1–S8 模型天然是預測骨架</div>
+    <p>框架目前向後判讀：新聞進來、斷案出去、錨立好等待。但治理的目的不是把卸責記錄得更漂亮，而是<b>在它發生前就拆掉槽位</b>。pre-mortem 鑑識：制度一提出（新法、新任命、新章程），先假設它三年後發生弊案，用框架倒推槽位在哪。</p>
+    <div class="chg"><b>疊代改變：</b>引擎新增「預判模式」——輸入制度文本，輸出《pre-mortem 鑑識單》：預測主詞誰坐（S1）→ 權力三問預測 → 惡意替換判別式 → 預測消失機制七選一 → 預立觀測點與錨。判讀模式與預判模式共用同一套閘，方向相反。</div>
+    <div class="gate">pre-mortem 五欄：①三年後這個制度會在哪一格（S1–S8 預測）②誰會坐在椅子上（預測主詞）③那個人有沒有三權（權力三問）④出事時責任帳記給誰、功勞帳歸誰（兩本帳預演）⑤第一個可證偽觀測點與日期。</div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">SECOND TIER</div>
+  <h2 style="font-size:23px;margin:0 0 6px">二、第二順序五視角（隨資料累積補入）</h2>
+
+  <div class="vp">
+    <div class="no">02</div>
+    <h3>看量——注意力成為第五本帳</h3>
+    <div class="evi">體系內證據：美國千金寓言（零 L1 合成敘事佔位）、徐佳青 SERP 36 則計量法</div>
+    <p>卸責已進入注意力經濟：情感內容以零成本佔據問責版面。SERP 計量可平移到短影音（播放量×框架一致度×源集中度）。</p>
+    <div class="chg"><b>疊代改變：</b>每案加「注意力帳」欄——聲量佔位成本誰付／誰免費佔／版面被佔期間哪個問責主題被擠出。</div>
+  </div>
+
+  <div class="vp">
+    <div class="no">04</div>
+    <h3>看傷——受害者獨立成軸</h3>
+    <div class="evi">體系內證據：徐佳青案 36 則中根案受害者主詞數＝0；拉法葉、資遣黑數可回填</div>
+    <p>「誰消失了」目前只是體層第五問。應升級為強制欄位：定義「受害者復現率」＝根案受害者以主詞身分出現在後續報導的比例；歸零＝敘事結案完成的定量判準。</p>
+    <div class="chg"><b>疊代改變：</b>每案回填復現率曲線；復現率與 S 階段疊圖，形成「受害者消失速度」這條新曲線。</div>
+  </div>
+
+  <div class="vp">
+    <div class="no">06</div>
+    <h3>看離岸——管轄真空就是槽位</h3>
+    <div class="evi">體系內證據：拉法葉佣金位置（汪傳浦家族）、徐佳青日內瓦</div>
+    <p>體層主詞已跨境，書面台帳的六類文件結構上取不到境外資料。管轄權真空本身成為槽位。</p>
+    <div class="chg"><b>疊代改變：</b>體層主詞欄加「管轄權」欄位（境內／離岸／無管轄）；離岸者改以「代理鏈斷點」追蹤錢的中介換手點。</div>
+  </div>
+
+  <div class="vp">
+    <div class="no">07</div>
+    <h3>看對照組——n=1 撐不住 16</h3>
+    <div class="evi">體系內證據：17 案唯一 ✅ 是進口雞蛋；國際同型制度未蒐集</div>
+    <p>沒有健康樣本的框架會把病態誤當常態，16 比 1 只是敘事不是數據。</p>
+    <div class="chg"><b>疊代改變：</b>主動蒐集國內外 ✅ 案例，n≥5 後分型統計才具備統計意義；同時記錄 ✅ 案的四項特徵（專責／具名／三權／時限）作為健康基線。</div>
+  </div>
+
+  <div class="vp">
+    <div class="no">08</div>
+    <h3>看反遊戲化——timebox 必配三件套</h3>
+    <div class="evi">體系內證據：與視角 03 聯動；第 7 週無權具名是可預測的對策</div>
+    <p>8 週線若被採納，卸責槽必演化「假升級」對策。</p>
+    <div class="chg"><b>疊代改變：</b>升級成立定義＝「具名＋承諾＋日期」三件套齊全，缺一維持 S5 告警——漏洞在立法前就被設計掉。</div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">TEST PLAN</div>
+  <h2 style="font-size:23px;margin:0 0 6px">三、首測計畫：2026-11-06 EZ WAY 檢討報告</h2>
+  <div class="tablewrap"><table>
+    <tr><th>新閘</th><th>測試內容</th><th>判定</th></tr>
+    <tr><td><b>看名實</b></td><td>檢討報告若具名負責人——核對其對關貿費率、第二家開放與否決權是否可行使</td><td>三權缺一＝道具椅，S5 維持</td></tr>
+    <tr><td><b>看預判</b></td><td>11/6 前先出《pre-mortem 鑑識單》：預測檢討報告的結構（具名與否／第二家時程／責任歸屬敘事）</td><td>事後對照，命中記入 v4.0 可信度</td></tr>
+    <tr><td><b>看器</b></td><td>本研究對 EZ WAY 的全部斷案附觀察者帳：研究本身成為輿情一方時，誰受益</td><td>每份斷案強制三行，缺不結案</td></tr>
+  </table></div>
+  <div class="punch">
+    <div class="q">v4.0 的定位：<b>v3.0 讓卸責無處遁形，v4.0 讓卸責無處可建。</b>看器保證武器不會反過來定義握劍的人，看名實保證椅子上坐的是人不是道具，看預判把整個框架從「稽核記錄」推向「制度設計」。</div>
+    <p>升版紀律：三個核心閘在 11/6 實測通過前，v4.0 維持「候選」標記；誤判記錄一律公開回填。</p>
+  </div>
+</section>
+
+<div class="note">
+  <b>查證分層：</b>本文為方法論路線圖，事實引用全部來自體系內已標註之報告（12–18）。視角編號與 2026-10-12 對話一致；「八視角」中本文核心列三、第二序列五，優先序依雙案實測暴露的活漏洞排序。11/6 為已知法定檢討期限；pre-mortem 鑑識單產出時間列為 11/6 前。
+</div>
+
+<footer>三閘升級版 v4.0 候選視角 · 2026-10-12 · 報告體系第 19 份 · 本機靜態檔案</footer>
+
+</div>
+</body></html>

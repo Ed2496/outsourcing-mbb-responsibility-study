@@ -1,0 +1,258 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>三閘升級版：相·行·體三維思考——主詞事實×責任決策×時間軸對價受益者（2026-10-12）</title>
+<style>
+/* 與《兩本帳》《行層 S1–S8》同一設計語言：鑑識深板岩 + 品牌 teal + 責任帳紅 / 功勞帳金 */
+:root{
+  --bg:#ECEAE4; --surface:#FBFAF7; --surface2:#F3F1EB;
+  --fg:#1C2420; --muted:#5E6862; --faint:#8A938C;
+  --line:#D7D2C8; --line2:#C6C0B4;
+  --accent:#0E7C6B; --accent-soft:#E0EEEA;
+  --debit:#AE352B; --debit-soft:#F6E6E3;
+  --credit:#9A6410; --credit-soft:#F6ECD9;
+  --mine:#B3382E;
+  --ff-cjk:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  --ff-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121613; --surface:#1A201C; --surface2:#20271F;
+  --fg:#E9E7E1; --muted:#9BA49C; --faint:#6E776F;
+  --line:#2C332D; --line2:#394038;
+  --accent:#43A08E; --accent-soft:#17241F;
+  --debit:#E07264; --debit-soft:#2A1A18;
+  --credit:#D9A449; --credit-soft:#271F13;
+  --mine:#E07264; color-scheme:dark;
+}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--ff-cjk);line-height:1.72;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-block:40px 80px;padding-inline:20px}
+.mono{font-family:var(--ff-mono);font-variant-numeric:tabular-nums}
+h1,h2,h3{text-wrap:balance;line-height:1.28}
+section{margin-top:52px}
+.eyebrow{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);display:inline-block}
+.hero{border:1px solid var(--line2);border-radius:16px;background:var(--surface);padding:34px 32px;position:relative;overflow:hidden}
+.hero .kick{font-family:var(--ff-mono);font-size:12px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:clamp(25px,4.6vw,40px);font-weight:800;letter-spacing:-.01em;margin:0 0 4px}
+.hero h1 .en{font-family:var(--ff-mono);font-weight:600;font-size:.5em;letter-spacing:0;color:var(--muted);display:block;margin-top:8px}
+.thesis{margin-top:20px;font-size:clamp(16px,2.4vw,20px);font-weight:600;line-height:1.55;border-left:3px solid var(--mine);padding-left:16px;max-width:56ch}
+.thesis b{color:var(--mine)}
+.hero-meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:12.5px;color:var(--muted);font-family:var(--ff-mono);border-top:1px solid var(--line);padding-top:16px}
+.lead{font-size:15px;color:var(--muted);max-width:70ch;margin:0 0 4px}
+.lead b{color:var(--fg)}
+
+/* 三維軸卡 */
+.axes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+@media(max-width:860px){.axes{grid-template-columns:1fr}}
+.axis{border:1px solid var(--line2);border-radius:14px;background:var(--surface);padding:20px 22px;position:relative}
+.axis::before{content:attr(data-n);position:absolute;top:14px;right:18px;font-family:var(--ff-mono);font-size:30px;font-weight:700;color:var(--line2)}
+.axis h3{margin:0 0 4px;font-size:18px}
+.axis .q{font-size:12.5px;font-family:var(--ff-mono);color:var(--accent);margin-bottom:10px}
+.axis p{font-size:13.8px;color:var(--muted);margin:.5em 0}
+.axis p b{color:var(--fg)}
+.axis .verdict{margin-top:12px;border-top:1px dashed var(--line2);padding-top:10px;font-size:13px}
+.axis.xiang .verdict b{color:var(--debit)}
+.axis.xing .verdict b{color:var(--accent)}
+.axis.ti .verdict b{color:var(--credit)}
+
+/* 通用面板與表 */
+.panel{border:1px solid var(--line2);border-radius:14px;background:var(--surface);padding:20px 22px;margin-top:16px}
+.panel h3{margin:0 0 8px;font-size:17px}
+.panel p{font-size:13.8px;color:var(--muted);margin:.5em 0}
+.panel p b{color:var(--fg)}
+.formula{margin-top:14px;border:1px dashed var(--line2);border-radius:10px;background:var(--surface2);padding:12px 16px;font-size:13.5px}
+.formula b{color:var(--mine)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:16px}
+table{border-collapse:collapse;width:100%;font-size:13.2px;min-width:720px}
+th{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 14px;border-bottom:1px solid var(--line2);background:var(--surface2);white-space:nowrap}
+td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6}
+tr:last-child td{border-bottom:none}
+td b{color:var(--fg)}
+.tag{display:inline-block;font-family:var(--ff-mono);font-size:11px;padding:1px 8px;border-radius:99px;border:1px solid var(--line2);color:var(--muted);margin-right:4px;white-space:nowrap}
+.tag.d{color:var(--debit);border-color:var(--debit);background:var(--debit-soft)}
+.tag.c{color:var(--credit);border-color:var(--credit);background:var(--credit-soft)}
+.tag.a{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
+
+/* 詞庫 */
+.lex{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+@media(max-width:760px){.lex{grid-template-columns:1fr}}
+.lex .panel{margin-top:0}
+.lex ul{margin:.4em 0;padding-left:1.2em;font-size:13.5px;color:var(--muted)}
+.lex li{margin:.3em 0}
+.lex li b{color:var(--fg)}
+
+/* 時間軸對價圖 */
+.pairbox{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:18px 20px;margin-top:16px;overflow-x:auto}
+.pair{display:grid;grid-template-columns:110px 1fr 1fr;gap:0;min-width:640px}
+.pair .ph{font-family:var(--ff-mono);font-size:11.5px;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line);display:flex;align-items:center}
+.pair .cell{padding:10px 12px;border-bottom:1px solid var(--line);font-size:13px}
+.pair .cell.deb{background:var(--debit-soft)}
+.pair .cell.cre{background:var(--credit-soft)}
+.pair .head{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding:8px 12px;border-bottom:2px solid var(--line2)}
+.pair .head.d{color:var(--debit)}
+.pair .head.c2{color:var(--credit)}
+.pair .sum{border-bottom:none;font-weight:700}
+
+/* 判讀循環 */
+.loop{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;margin-top:16px}
+.step{flex:1 1 200px;border:1px solid var(--line2);border-radius:12px;background:var(--surface);padding:16px 18px}
+.step .no{font-family:var(--ff-mono);font-size:11px;color:var(--accent);letter-spacing:.12em}
+.step h4{margin:4px 0 6px;font-size:15px}
+.step p{font-size:13px;color:var(--muted);margin:.3em 0}
+.arrow{align-self:center;color:var(--faint);font-size:20px;font-family:var(--ff-mono)}
+
+.note{margin-top:40px;border:1px dashed var(--line2);border-radius:12px;background:var(--surface2);padding:16px 20px;font-size:13px;color:var(--muted)}
+.note b{color:var(--fg)}
+footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;font-size:12px;color:var(--faint);font-family:var(--ff-mono)}
+</style></head><body>
+<div class="wrap">
+
+<div class="hero">
+  <div class="kick">FRAMEWORK UPGRADE · 三閘升級版 v3.0</div>
+  <h1>相·行·體三維思考<span class="en">SUBJECT × DECISION × TIME-AXIS QUID PRO QUO</span></h1>
+  <div class="thesis">主詞在<b>相</b>層被替代、責任在<b>行</b>層被凍結、利益在<b>體</b>層的時間軸上歸位。三層必須疊在同一條長時間軸上對價：<b>誰的責任，以長久時間看才浮現；誰是最終最大受益者，誰才是體層主詞。</b></div>
+  <div class="hero-meta"><span>2026-10-12</span><span>報告 16</span><span>承：報告 13 兩本帳／報告 14 行層 S1–S8／報告 15 鑑識雙案</span><span>法源：黃.txt 語料＋prompt三閘相行體 v1.6</span></div>
+</div>
+
+<section>
+  <div class="eyebrow">WHY UPGRADE</div>
+  <h2>一、為什麼舊三閘必須升級</h2>
+  <p class="lead">舊三閘（主詞歸位／可證偽／對稱）全部運作在<b>句子層</b>——單一新聞、單一時間切片。它們能判斷「這句話在主詞上做了什麼手腳」，但有三件事判不了：</p>
+  <div class="panel">
+    <p><b>① 判不了受益者。</b>主詞歸位閘抓到「主詞蒸發」，但蒸發之後誰領功、誰拿錢，句子層看不見。EZ WAY 的收費爭議裡，每句官方回應都過得了三閘，但時間軸拉長，利益早已歸位到特定位置。</p>
+    <p><b>② 判不了責任決策。</b>話語過閘不等於椅子有人坐。海鯤號的報導句句有出處，但出面的是賣方、該負責的買方不在場——句子全部合格，決策位置空著。</p>
+    <p><b>③ 判不了單案與制度的關係。</b>單案判對十次，仍可能看不懂制度。拉法葉 35 年、陳水扁 20 年——任何單一切片都合法，<b>非法性（或卸責性）只在長軸上顯影</b>。</p>
+  </div>
+  <div class="formula">升級公式：<b>看相</b>（主詞×事實：話語在主詞上做什麼）→ <b>看行</b>（責任決策：誰是主詞、上級長官是誰、椅子誰坐）→ <b>看體</b>（時間軸對價：長久時間裡成本歸誰、利益歸誰）。三維缺一維＝判讀未完成，只標缺口、不補。</div>
+</section>
+
+<section>
+  <div class="eyebrow">DIMENSION 1 · 看相</div>
+  <h2>二、看相：主詞×事實——話語在主詞上做什麼</h2>
+  <p class="lead">相層看的是<b>被說出來的</b>。先把報導拆三層：L1 可查證事實（時間／數字／落款／具名單位）｜L2 當事人或消息源說法（標主詞）｜L3 記者框架（形容詞／因果／標題對立框）。L2/L3 被當 L1 用標🚩；當事人或對手揭的數字掛⚠️。</p>
+  <div class="panel">
+    <h3>三閘（只過被用來終止追問／緩頰／轉移的句子）</h3>
+    <p><b>【主詞歸位閘】</b>主詞是當責者本人，還是離位了？離位＝主詞替代。免責聲明判別：先問它指回真主詞（歸位、誠實）還是指向無人（蒸發、逃避）——不把正當聲明誤判成卸責。</p>
+    <p><b>【可證偽閘】</b>這句若為假怎麼驗？驗不了＝話術。推測意圖／動機一律不可證偽，不碰。</p>
+    <p><b>【對稱閘】</b>同一標準套到對立方還成立嗎？只對一方＝武器化。無對立方時套回發言者自己過去的案。</p>
+    <p>四格收斂：✅真規則／⚔️真事被當武器（留作情報）／😱純恐慌（丟）／🗣️純話術（丟）。</p>
+  </div>
+  <div class="lex">
+    <div class="panel">
+      <h3>MBB 版主詞替代詞庫</h3>
+      <ul>
+        <li><b>蒸發：</b>主詞變「機關／制度／程序／輿論／調查中／搭配／基層」；被動語態＝蒸發訊號。</li>
+        <li><b>稀釋向上：</b>用「你／他／大家／團隊／專案／老闆／主管／客人／客戶／公司／企業／集團／國家／民族／世界／宇宙」替代「我」——越換越大，大到沒有一個人。「為了公司／國家」＝把「我決定」溶進無法究責的集體。</li>
+        <li><b>橫向轉嫁：</b>賣方替責任方、第三方替一階主管。</li>
+        <li><b>匿名借殼：</b>「專家說／輿論／有人說／官員說／匿名說」借主詞。</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>媒體版主詞替代詞庫（v1.6 新增）</h3>
+      <ul>
+        <li><b>賣方替代責任方：</b>報導讓郭璽、台船（賣方）回應海軍（買方）的交艦責任。</li>
+        <li><b>第三方替代一階主管：</b>陳政宏既非當責人、也非一階主管，卻被一群媒體推上主詞位，替一階主管回應——<b>主詞替代正是 MBB 第一步</b>，相層檢驗可直接抓出。</li>
+        <li><b>輿論／有人說／政府官員說／匿名說</b>替代媒體陳述之責任。</li>
+        <li><b>終極型：</b>「以上言論不代表本台立場」＝主詞徹底抽空。（判別：版權宣告式的正當權利註記指回真權利人＝誠實；把自身陳述責任抽空的聲明＝蒸發。）</li>
+      </ul>
+      <p>雙案驗證：海鯤號報導中出面主詞全是非一階主管（賣方、第三方）＝詞庫「橫向轉嫁」命中；徐佳青 SERP 以「她已辭職」為框架主詞＝根案主詞（霸凌事實、任命鏈）被外案主詞洗掉，命中「雙重身分陷阱」。</p>
+    </div>
+  </div>
+  <div class="panel">
+    <h3>〔SERP 專用〕覆蓋形狀計量</h3>
+    <p>筆數×時間窗、消息源集中度、框架一致度、是否只報「已辭職」而不報主題。讀數高＋源集中＋框架一致＝按日滴放的放大。徐佳青案實測：36 則去重、10 則辭職語、11 則霸凌語、源集中陳智菡與民眾黨——四項全中。</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">DIMENSION 2 · 看行</div>
+  <h2>三、看行：責任決策——誰是主詞，上級長官是誰</h2>
+  <p class="lead">行層看的是<b>該做而沒被做的</b>。話語過閘之後，把鏡頭轉向組織：這件事在誰的職掌裡？誰該簽字？誰出面了、出面的有沒有決策權？</p>
+  <div class="panel">
+    <p><b>① 釘名字：</b>事發單位是誰？上一級、上二級是誰？<b>釘不出名字本身就是發現</b>——S5 的真空的特徵就是整條鏈上找不到一個該負責的具名主詞。</p>
+    <p><b>② 誰出面 vs 誰該負責：</b>出面者越沒決策權（甫上任、非拍板者、賣方），空椅子越深。賣方替買方發言＝空椅子現場。</p>
+    <p><b>③ 責任隨時間上升還是凍結：</b>健康組織 escalation 上升，病態組織凍結在執行層。找「該有人具名認領卻沒有」的那一格＝空椅子。</p>
+    <p><b>④ 媒體拿書面做什麼（三向）：</b>逼＝媒體本身持續追問未答（守空椅子；追問者須是媒體本身）｜書面錯誤紀錄＝把非回應標成「回應」登出、不追問無結果（標題殺人）｜放＝用 SEO 替一階主管宣布「已辭職＝不用回答」（冒充結案權）。<b>權責鎖：一群媒體不是當事人的一階主管、沒有結案權；它宣布的結案是假的。</b>只問可查的權責歸屬，不碰媒體動機（「媒體蓄意幫霸凌」不可證偽、不採）。</p>
+    <p><b>⑤ 書面：</b>有落款→責任帳（會被追）；無書面但顯然該決策→零決策→功勞帳（躲責＋可能領功）。</p>
+    <p><b>⑥ 分型：</b>🪑有人不坐／🚫椅子被拆／✅有主。該坐沒坐與椅子被拆是同一機制的兩個時間點（報告 14 併型宣告）。</p>
+    <p><b>⑦ Escalation timebox：</b>移植使用者 bug 管理紀律——2 週工程師、3–4 週課長副理、5–6 週部長經理、7–8 週處長協理出面報告客戶。<b>公共案件監督：超過 8 週無人具名認領＝S5 告警成立，不作為本身成為可歸屬對象。</b></p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">DIMENSION 3 · 看體</div>
+  <h2>四、看體：時間軸對價受益者——誰的責任以長久時間</h2>
+  <p class="lead">體層看的是<b>長期最終最大獲利</b>。把相層抓到的話語、行層釘到的椅子，全部釘到一條長時間軸上，問一個句子層永遠問不出的問題：<b>在這條軸上，成本歸誰付、利益歸誰拿？兩邊是不是同一批人？</b></p>
+  <div class="panel">
+    <p><b>① 責任向下／向外倒給誰：</b>執行層、底層個人、或無主詞的「整合問題」。單點看是執行層的錯，長軸看是位置的利。</p>
+    <p><b>② 誰留書面最少、卻獲利最多：</b>「無法被究責」與「獲利最高」是同一個位置。</p>
+    <p><b>③ 兩本帳對價：</b>責任帳（出事被追）與功勞帳（平時得利）指向是否同一批人？<b>不是＝兩本帳成立</b>——這就是體層的核心判定式。</p>
+    <p><b>④ 換帳：</b>用「花錢／特權」的帳蓋掉「霸凌／瀆職」的帳（徐佳青案：五年 2300 萬公帳對價的是瀆職指控，輿情卻只結在「她已辭職」）。</p>
+    <p><b>⑤ 誰消失了：</b>原始事件該被保護／追責的主體（受害者）在覆蓋裡有沒有消失——日內瓦基層在 36 則 SERP 中不是主詞。</p>
+    <p><b>⑥ 體層主詞律：</b><b>長期最終最大受益者＝體層主詞。</b>相層主詞會被替代、行層椅子會空著，但體層的利益歸位騙不了人：錢、位子、權力的長期淨流向，就是責任的長期真主詞。兩極化是過程，終極集中化是體層趨勢——權力與利益向越來越少的位置集中，責任與成本向越來越分散的底層傾倒。</p>
+  </div>
+  <div class="pairbox">
+    <div class="pair">
+      <div class="head"></div><div class="head d">責任帳（成本誰付）</div><div class="head c2">功勞帳（利益誰拿）</div>
+      <div class="ph">T0 爆發</div><div class="cell deb">執行層被點名、基層被爆料</div><div class="cell cre">首長聲量、危機處理形象</div>
+      <div class="ph">T1 切割</div><div class="cell deb">當事人請辭／調職、個人承責</div><div class="cell cre">任命鏈、監督鏈不進調查</div>
+      <div class="ph">T2 靜默</div><div class="cell deb">追問者疲勞、媒體版面轉移</div><div class="cell cre">書面最少者照常升遷</div>
+      <div class="ph">T3 長軸</div><div class="cell deb sum">受害者消失、制度無人修補</div><div class="cell cre sum">位置留住利益＋下一個槽位再啟動</div>
+    </div>
+  </div>
+  <div class="formula">體層判定式：<b>若 長期最大淨獲利者 ≠ 名義當責者，且 前者書面最少、後者書面最多 → 兩本帳成立，體層主詞歸前者。</b>這是「誰的責任以長久時間」的定量讀法：不看誰被罵，看誰一直拿。</div>
+</section>
+
+<section>
+  <div class="eyebrow">INTEGRATION</div>
+  <h2>五、三維合體：一個判讀循環，如何對接既有體系</h2>
+  <div class="loop">
+    <div class="step"><div class="no">STEP 1 · 看相</div><h4>抓句子</h4><p>新聞拆 L1/L2/L3，三閘過「被用來終止追問的句子」，標主詞替代類型。產出：這篇報導的話語在主詞上做了什麼。</p></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="no">STEP 2 · 看行</div><h4>釘椅子</h4><p>事發單位、上一級、上二級是誰；誰出面 vs 誰該負責；媒體三向（逼／書面錯誤紀錄／放）；8 週 timebox 對錶。產出：空椅子在哪一格、誰該坐沒坐。</p></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="no">STEP 3 · 看體</div><h4>上長軸</h4><p>把前兩層的發現釘到長時間軸：責任帳 vs 功勞帳是否同一批人；長期最大淨獲利者是誰；誰消失了。產出：體層主詞＋兩本帳判定。</p></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="no">LOCK · 收束</div><h4>立錨</h4><p>S1–S8 定位＋消失機制七選＋可證偽錨（到某日，若 X＝卸責確認；若 Y＝我判錯）。三維缺一維，只標缺口、不補、不斷案。</p></div>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <tr><th>既有體系部件</th><th>在三維中的位置</th><th>升級後的變化</th></tr>
+      <tr><td><b>S1–S8 階段模型</b>（報告 14）</td><td>體層的時間刻度</td><td>從「案件分期工具」升級為「對價軸的座標」：每格都可讀出當時責任帳／功勞帳各記在誰頭上。</td></tr>
+      <tr><td><b>兩本帳</b>（報告 13）</td><td>體層的帳本結構</td><td>從「行層現象描述」升級為體層判定式：兩帳不同人＝卸責結構成立的定量證據。</td></tr>
+      <tr><td><b>MBB 卸責槽</b>（報告 7、8）</td><td>體層的必然性</td><td>槽位必然＝體層趨勢：誰坐進「書面最少、獲利最多」的位置，誰就自動執行卸責，與個人品質無關。</td></tr>
+      <tr><td><b>三閘（舊）</b>（報告 10、11）</td><td>相層工具</td><td>保留但降格：從「終點」變「起點」——過閘只是判讀第一步。</td></tr>
+      <tr><td><b>三閘判讀儀表板</b>（Canvas）</td><td>三維的展示面</td><td>斷點清冊每案補「體層主詞」欄位：長期最大淨獲利者（初判），作為長稽錨。</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">DOUBLE CASE RE-TEST</div>
+  <h2>六、雙案三維回驗：升級前 vs 升級後</h2>
+  <div class="tablewrap">
+    <table>
+      <tr><th>維度</th><th>海鯤號（2026-10-09/10）</th><th>徐佳青（2026-10-07 SERP）</th></tr>
+      <tr><td><b>看相</b><br><span class="tag a">主詞×事實</span></td><td>L1 碰了周邊（郭璽爆料、台船類比），主題「交艦誰負責」全是 L2；出面主詞全是賣方／第三方＝橫向轉嫁命中。</td><td>36 則去重中辭職語 10、霸凌語 11，源集中於單一政黨＝覆蓋形狀四項全中；根案主詞被外案主詞洗掉。</td></tr>
+      <tr><td><b>看行</b><br><span class="tag a">責任決策</span></td><td>該負責＝海軍（買方）；出面＝台船董座（賣方）以高鐵類比代打＝空椅子現場；媒體三向＝書面錯誤紀錄。</td><td>一階主管＝任命她的總統府／行政院，始終無人具名；媒體三向＝放（以辭職冒充結案，權責鎖：媒體無結案權）。</td></tr>
+      <tr><td><b>看體</b><br><span class="tag c">時間軸對價</span></td><td>責任帳：預算超支、期程延誤记在納稅人與海軍基層；功勞帳：後續艦訂單與預算留在原位置。<b>長軸觀測：第二艘訂單落點＝體層主詞試金石。</b></td><td>責任帳：五年 2300 萬⚠️公帳＋日內瓦基層受害；功勞帳：任命鏈零成本止血，監督責任無人承擔。<b>長軸觀測：2027-01-31 前若任命鏈無人具名負責＝兩本帳成立。</b></td></tr>
+      <tr><td><b>升級前斷點</b></td><td>只能說「書面錯誤紀錄」——句子層定性即結束。</td><td>只能說「洗版假結案」——輿情層定性即結束。</td></tr>
+      <tr><td><b>升級後斷點</b></td><td>加上體層：若交艦無期程且第二艘照訂＝利益歸位完成，責任歸屬可由長軸對價反推。</td><td>加上體層：受害者消失＋任命鏈免責＝體層主詞不在輿情裡，在任命權裡。</td></tr>
+    </table>
+  </div>
+  <div class="panel">
+    <h3>可證偽錨（本次新增／沿用的長稽點）</h3>
+    <p>・海鯤艦：<b>2026-12-31</b> 前若交艦期程具名公布或懲處具名＝我判錯；若無＝書面錯誤紀錄確認、且體層利益繼續歸位。</p>
+    <p>・徐佳青：<b>2027-01-31</b> 前若任命鏈（總統府／行政院）任一人具名承擔任命或監督責任＝我判錯；若無＝假結案確認、兩本帳成立。</p>
+    <p>・EZ WAY：<b>2026-11-06</b> 關務署檢討報告若無具名結論＝T1→T2 預測核銷（沿報告 14）。</p>
+  </div>
+</section>
+
+<div class="note">
+  <strong>查證分層：</strong>本報告為方法論層，事實引用全部來自體系內已標註之報告（13、14、15）。徐佳青案「五年 2300 萬／47 次／526 天」為民眾黨團說法⚠️；「監院東沙營認定」⚠️，回一手前不定論。雙重身分陷阱（外案主角＝根案一階主管時，以外案身分辭職被洗成「根案已處理」）已在徐案觀察到雛形，長軸上持續觀測是否完全兌現。
+</div>
+
+<footer>三閘升級版 v3.0 · 相行體三維思考 · 2026-10-12 · 報告體系第 16 份 · 本機靜態檔案，任何對話視窗皆可開啟</footer>
+
+</div>
+</body></html>
